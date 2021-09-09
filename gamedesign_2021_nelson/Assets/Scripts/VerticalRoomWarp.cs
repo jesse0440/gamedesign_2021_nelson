@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class VerticalRoomWarp : MonoBehaviour
 {
     // The ID of the next room
-    // Needs to be entered manually for each vertical warp object!!
-    public int next_room_id;
+    // Needs to be entered manually in the editor for each vertical warp object!!
+    [SerializeField]
+    int next_room_id;
 
     // When entering the trigger
     private void OnTriggerEnter2D(Collider2D collision) 
