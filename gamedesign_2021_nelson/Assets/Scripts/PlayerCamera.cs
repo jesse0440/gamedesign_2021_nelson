@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public Transform player;
+    // Player variable
+    public Transform player_location;
 
-    // Start is called before the first frame update
-    void Start()
+    // Assign the player variable
+    void Start() 
     {
-        
+        player_location = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z);
+        // Update camera position based on player position
+        transform.position = new Vector3(player_location.position.x, transform.position.y, transform.position.z);
     }
 }
