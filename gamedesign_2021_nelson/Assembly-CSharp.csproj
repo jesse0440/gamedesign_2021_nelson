@@ -36,12 +36,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\PlayerFall.cs" />
      <Compile Include="Assets\Scripts\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\PlayerFall.cs" />
      <Compile Include="Assets\Scripts\EnemyObject.cs" />
+     <Compile Include="Assets\Scripts\VerticalRoomWarp.cs" />
      <Compile Include="Assets\Scripts\EnemyTop.cs" />
-     <Compile Include="Assets\Scripts\RoomWarp.cs" />
+     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/unity addons/2020.3.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -621,9 +622,6 @@
     <Reference Include="Unity.VSCode.Editor">
         <HintPath>D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.PixelPerfect">
-        <HintPath>D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
         <HintPath>D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
@@ -651,11 +649,11 @@
     <Reference Include="Unity.2D.Psdimporter.Editor">
         <HintPath>D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Path.Editor">
-        <HintPath>D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
         <HintPath>D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Path.Editor">
+        <HintPath>D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -680,9 +678,6 @@
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
         <HintPath>D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect.Editor">
-        <HintPath>D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

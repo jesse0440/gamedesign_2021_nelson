@@ -21,9 +21,15 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Find the necessary components of the player object
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
+
+        // Import the coordinates to your location in the room or use default if unavailable, then warp to the location
+        float tempXCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " X Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.x);
+        float tempYCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " Y Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.y);
+        transform.position = new Vector2(tempXCoordinate, tempYCoordinate);
     }
 
     // Update is called once per frame

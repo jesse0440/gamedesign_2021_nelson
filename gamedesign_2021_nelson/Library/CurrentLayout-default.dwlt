@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 63
+  controlID: 43
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 64
+  controlID: 44
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -310,7 +310,7 @@ MonoBehaviour:
     m_CachedPref: 50
     m_ControlHash: 1964396721
     m_PrefName: Preview_TilemapBrushInspector
-  m_Palette: {fileID: 7498691983434169355, guid: 593f1aa574287dd42a431e1d80bc12d7, type: 3}
+  m_Palette: {fileID: 3652016709411352315, guid: b7b0a15ea28023b46aba6af44eb36b46, type: 3}
   m_DrawGizmos: 0
 --- !u!114 &13
 MonoBehaviour:
@@ -375,21 +375,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\1tyopoyta\lappari\koulu\9. pelisuunnittelu\gamedesign_2021_nelson\gamedesign_2021_nelson
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b4440000
-    m_LastClickedID: 17588
+    m_SelectedIDs: b2440000
+    m_LastClickedID: 17586
     m_ExpandedIDs: 000000009e440000a0440000a2440000a444000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -539,9 +539,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 72faffff
+      m_SelectedIDs: 022d0100
       m_LastClickedID: 0
-      m_ExpandedIDs: 42fbffff
+      m_ExpandedIDs: 8e36ffffb436ffffe039ffff1e3affff1840ffff3e40ffff2841ffffaa41ffffc645ffff9246ffffaa47ffff2e48ffffa653ffffee53ffff5a55ffff8a56fffff256ffff405bffff9464ffffbc64ffff8068ffff4c69ffff2e74ffff2076ffff6476ffff9876ffff9079ffff2a7affff9a7effffc47effffc880ffffec81ffff1889ffff688affff908affffb88affff088bffff2e93ffffe493ffff469effffec9effffd8a2ffff6ea4ffff64a5ffff92a5ffffe8a5ffffd4a6ffff44a9ffff28adffff6cb5ffffe4b5ffffa4b8ffff7cbaffffcebbffff74bdffffe6bdffffaabeffff92c0ffff38c1ffffb0c2ffffb0c3ffff98c8ffff5cc9ffff24ceffff64d7ffff90d7ffff42fbfffff4ffffff16480000de4b00002e630000ca7600007e840000901d0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -601,9 +601,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 6.3799787, y: -1.3422966, z: -121.76436}
+    m_Target: {x: -1.8409677, y: -5.9094853, z: -326.7946}
     speed: 2
-    m_Value: {x: 6.3799787, y: -1.3422966, z: -121.76436}
+    m_Value: {x: -1.8409677, y: -5.9094853, z: -326.7946}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -654,9 +654,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 11.009427
+    m_Target: 36.153908
     speed: 2
-    m_Value: 11.009427
+    m_Value: 36.153908
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -729,8 +729,8 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
     m_HBaseRangeMin: -435.5
     m_HBaseRangeMax: 435.5
-    m_VBaseRangeMin: -270
-    m_VBaseRangeMax: 270
+    m_VBaseRangeMin: -259.5
+    m_VBaseRangeMax: 259.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -747,11 +747,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 0
+      y: 21
       width: 871
-      height: 540
+      height: 519
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 435.5, y: 270}
+    m_Translation: {x: 435.5, y: 259.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -759,9 +759,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -435.5
-      y: -270
+      y: -259.5
       width: 871
-      height: 540
+      height: 519
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 871, y: 540}
