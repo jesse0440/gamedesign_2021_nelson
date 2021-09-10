@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637667753689221529
-    m_Hash: 1371076547
+      ticks: 637668862239529653
+    m_Hash: 1943986549
   m_LockFileStatus:
     m_FilePath: D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637667753689602972
-    m_Hash: 2341550566
+      ticks: 637668862239529653
+    m_Hash: 1793396470
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
