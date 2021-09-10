@@ -9,6 +9,8 @@ TagManager:
   - GameManager
   - BoundaryManager
   - Boundary
+  - PhasePlatformDown
+  - PhasePlatformUp
   layers:
   - Default
   - TransparentFX

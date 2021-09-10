@@ -35,7 +35,7 @@ public class EnemyObject : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // If the collided object is a player
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && alreadyAttacked == false)
         {
             // Substract the enemy damage from the player's health
             collision.gameObject.GetComponent<PlayerController>().playerHealth -= enemyDamage;
