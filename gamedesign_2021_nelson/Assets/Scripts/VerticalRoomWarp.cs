@@ -9,7 +9,7 @@ public class VerticalRoomWarp : MonoBehaviour
     // The ID of the next room
     // Needs to be entered manually in the editor for each vertical warp object!!
     [SerializeField]
-    int next_room_id;
+    int nextRoomId;
 
     // When entering the trigger
     private void OnTriggerEnter2D(Collider2D collision) 
@@ -31,7 +31,7 @@ public class VerticalRoomWarp : MonoBehaviour
         if (collision.gameObject.tag == "Player") 
         {
             // Load next room
-            SceneManager.LoadScene(next_room_id);
+            SceneManager.LoadScene(nextRoomId);
         }
     }
 }

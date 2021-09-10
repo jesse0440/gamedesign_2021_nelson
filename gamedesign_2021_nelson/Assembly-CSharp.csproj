@@ -43,6 +43,7 @@
      <Compile Include="Assets\Scripts\EnemyObject.cs" />
      <Compile Include="Assets\Scripts\VerticalRoomWarp.cs" />
      <Compile Include="Assets\Scripts\EnemyTop.cs" />
+     <Compile Include="Assets\Scripts\AbilityUnlock.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/unity addons/2020.3.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

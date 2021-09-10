@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,26 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    // Player statistics
-    public float player_health = 100f;
-    public float player_max_health = 100f;
-    public float player_speed = 7f;
-    public float player_jump_height = 7.5f;
-    public float player_jump_counter = 0;
-    public float player_max_jump_counter = 2;
+    // Player statistics which are accessed from elsewhere
+    public float playerHealth = 100f;
+    public float playerMaxJumpCounter = 1;
+    public float playerJumpCounter = 0;
 
+    // Player statistics which are only needed in this script
+    float playerMaxHealth = 100f;
+    float playerSpeed = 7f;
+    float playerJumpHeight = 12f;
+    
     // Player components
-    public Rigidbody2D rb;
-    public BoxCollider2D bc;
-    public SpriteRenderer sprite;
+    Rigidbody2D rigidBody;
+    PolygonCollider2D polygonCollider;
+    SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         // Find the necessary components of the player object
-        rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        rigidBody = GetComponent<Rigidbody2D>();
+        polygonCollider = GetComponent<PolygonCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Find out if double jump is unlocked or use default value
+        playerMaxJumpCounter = PlayerPrefs.GetInt("DoubleJumpUnlocked", 1);
 
         // Import the coordinates to your location in the room or use default if unavailable, then warp to the location
         float tempXCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " X Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.x);
@@ -36,7 +42,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // If the player's health drops to zero or bugs out otherwise
-        if (player_health > player_max_health || player_health <= 0) 
+        if (playerHealth > playerMaxHealth || playerHealth <= 0) 
         {
             // Respawn the player
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -45,33 +51,40 @@ public class PlayerController : MonoBehaviour
         float horizontalDirection = Input.GetAxis("Horizontal");
 
         // The player movement
-        rb.velocity = new Vector2(horizontalDirection * player_speed, rb.velocity.y);
+        rigidBody.velocity = new Vector2(horizontalDirection * playerSpeed, rigidBody.velocity.y);
 
         // While moving right
         if (horizontalDirection > 0) 
         {
             // Flip sprite to face right
-            sprite.flipX = false;
+            spriteRenderer.flipX = false;
         }
 
         // While moving left
         if (horizontalDirection < 0)
         {
             // Flip sprite to face left
-            sprite.flipX = true;
+            spriteRenderer.flipX = true;
+        }
+
+        // Jumping up with W or Up Arrow if your jump counter is not maxed
+        if (Input.GetButtonDown("Jump") && playerJumpCounter < playerMaxJumpCounter)
+        {
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, playerJumpHeight);
+            playerJumpCounter++;
         }
 
         // Jumping up with Spacebar if your jump counter is not maxed
-        if (Input.GetKeyDown(KeyCode.Space) && player_jump_counter < player_max_jump_counter)
+        if (Input.GetButtonDown("Jump2") && playerJumpCounter < playerMaxJumpCounter)
         {
-            rb.velocity = new Vector2(rb.velocity.x, player_jump_height);
-            player_jump_counter++;
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, playerJumpHeight);
+            playerJumpCounter++;
         }
 
-        // Resetting the jump counter when player hits the ground/enemy
-        if (player_jump_counter < 0 || player_jump_counter >= player_max_jump_counter && bc.IsTouchingLayers())
+        // Resetting the jump counter when player hits the ground/enemy/wall
+        if (rigidBody.velocity.y == 0)
         {
-            player_jump_counter = 0;
+            playerJumpCounter = 0;
         }
     }
 }

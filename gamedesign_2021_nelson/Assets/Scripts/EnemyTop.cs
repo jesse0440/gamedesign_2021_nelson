@@ -5,18 +5,22 @@ using UnityEngine;
 public class EnemyTop : MonoBehaviour
 {
     // The enemy's parent object
-    public GameObject enemy_parent_object;
+    GameObject enemyParentObject;
 
     // Assign the enemy parent object
     void Start()
     {
-        enemy_parent_object = transform.parent.gameObject;
+        enemyParentObject = transform.parent.gameObject;
     }
 
     // When the player jumps on the top of this enemy
     private void OnCollisionEnter2D(Collision2D collision) 
     {
-        // Destroy the enemy parent object
-        Destroy(enemy_parent_object);
+        // If the collided object is a player
+        if (collision.gameObject.tag == "Player")
+        {
+            // Destroy the enemy parent object
+            Destroy(enemyParentObject);
+        }
     }
 }

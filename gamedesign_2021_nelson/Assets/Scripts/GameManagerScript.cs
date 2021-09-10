@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
     // Variable for determining an unique instance
-    private static GameObject gameManagerInstance;
+    GameObject gameManagerInstance;
 
     // Wake up protocols
     void Awake()

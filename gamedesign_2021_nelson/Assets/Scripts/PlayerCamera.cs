@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     // Player transform
-    public Transform player_location;
+    Transform playerLocation;
 
     // Camera boundaries
     // Needs to be entered manually in the editor for each individual room!!
@@ -21,7 +21,7 @@ public class PlayerCamera : MonoBehaviour
     // Assign the player variable
     void Start() 
     {
-        player_location = GameObject.FindWithTag("Player").transform;
+        playerLocation = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -29,8 +29,8 @@ public class PlayerCamera : MonoBehaviour
     {
         // Update camera position based on player position
         // vvvvv Old method, leaving here just in case
-        // transform.position = new Vector3(player_location.position.x, transform.position.y, transform.position.z);
-        transform.position = new Vector3(player_location.position.x, player_location.position.y, transform.position.z);
+        // transform.position = new Vector3(playerLocation.position.x, transform.position.y, transform.position.z);
+        transform.position = new Vector3(playerLocation.position.x, playerLocation.position.y, transform.position.z);
 
         // Clamp the edges of the camera to the set limits
         transform.position = new Vector3
@@ -41,7 +41,7 @@ public class PlayerCamera : MonoBehaviour
         );
     }
 
-    // An outline of the size of the camera boundaries in the level
+    // An outline tool representing the size of the camera boundaries in the level
     // Uncomment if you need to edit some boundaries
 
     /*
