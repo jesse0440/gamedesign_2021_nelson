@@ -29,8 +29,30 @@ public class PlayerController : MonoBehaviour
         polygonCollider = GetComponent<PolygonCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Find out if double jump is unlocked or use default value
-        playerMaxJumpCounter = PlayerPrefs.GetInt("DoubleJumpUnlocked", 1);
+
+        /*
+         ___________________________________________________________________
+        |                       ABILITY TEMPLATE                            |
+        |                                                                   |
+        |           variable = PlayerPrefs.GetInt("Ability_X", 0);          |
+        |                                                                   |
+        |___________________________________________________________________|
+        */
+
+        // ----------ABILITIES----------
+
+        // ABILITY 0 - Find out if double jump is unlocked or use default value (1)
+        playerMaxJumpCounter = PlayerPrefs.GetInt("Ability_0", 1);
+
+        // ABILITY 1 - 
+        // code
+
+        // ABILITY 2 - 
+        // code
+        
+        // ABILITY 3 - 
+        // code
+
 
         // Import the coordinates to your location in the room or use default if unavailable, then warp to the location
         float tempXCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " X Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.x);
@@ -82,7 +104,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Resetting the jump counter when player hits the ground/enemy/wall
-        if (rigidBody.velocity.y == 0)
+        if (rigidBody.velocity.y == 0 && polygonCollider.IsTouchingLayers())
         {
             playerJumpCounter = 0;
         }

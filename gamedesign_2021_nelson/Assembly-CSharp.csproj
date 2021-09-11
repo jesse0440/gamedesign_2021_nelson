@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\PlayerFall.cs" />
      <Compile Include="Assets\Scripts\PlayerCamera.cs" />
+     <Compile Include="Assets\Scripts\PhasePlatform.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\GameManagerScript.cs" />
      <Compile Include="Assets\Scripts\HorizontalRoomWarp.cs" />
@@ -45,7 +46,6 @@
      <Compile Include="Assets\Scripts\VerticalRoomWarp.cs" />
      <Compile Include="Assets\Scripts\AbilityUnlock.cs" />
      <Compile Include="Assets\Scripts\EnemyTop.cs" />
-     <Compile Include="Assets\Scripts\PhasePlatformDown.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/unity addons/2020.3.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

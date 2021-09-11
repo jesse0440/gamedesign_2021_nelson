@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 945730740384811836}
   - component: {fileID: 945730740384811834}
   m_Layer: 0
-  m_Name: Ability
+  m_Name: DoubleJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,6 +428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d2dc1a195916b4bb62c76801880998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityID: 0
+  abilityValue: 2
 --- !u!70 &945730740384811836
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -565,8 +567,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3656999258690839917}
-  - component: {fileID: 3656999258690839918}
   - component: {fileID: 3656999258690839919}
+  - component: {fileID: 3656999258690839918}
   - component: {fileID: 3656999258690839907}
   m_Layer: 0
   m_Name: VerticalRoomWarpLeft

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2039135608979380173}
+  - component: {fileID: 4943952671885749118}
   - component: {fileID: 2039135608979380174}
   - component: {fileID: 2039135608979380163}
-  - component: {fileID: 4943952671885749118}
   m_Layer: 0
   m_Name: HorizontalRoomWarpDown
   m_TagString: Untagged
@@ -33,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4943952671885749118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039135608979380160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88087ac4efc11b947a1c07c5cbf18e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextRoomId: 0
 --- !u!61 &2039135608979380174
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -88,16 +101,3 @@ PolygonCollider2D:
       - {x: 0.25, y: -0.4}
       - {x: -0.5, y: -0.4}
       - {x: -0.5, y: 1.5}
---- !u!114 &4943952671885749118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2039135608979380160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88087ac4efc11b947a1c07c5cbf18e32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextRoomId: 0
