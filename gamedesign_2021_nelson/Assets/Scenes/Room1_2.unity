@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1847222316}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 3065511300977427718}
   - component: {fileID: 3065511300977427719}
   - component: {fileID: 3065511300977427716}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FallZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5587945047603980246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPointLocation
   m_TagString: SpawnPointLocation
   m_Icon: {fileID: 0}
@@ -924,9 +924,9 @@ GameObject:
   - component: {fileID: 7646293141621760652}
   - component: {fileID: 7646293141621760659}
   - component: {fileID: 7646293141621760658}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PhasePlatform
-  m_TagString: PhasePlatformDown
+  m_TagString: PhasePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 3122389602597329861}
   - component: {fileID: 8324043021325231989}
   - component: {fileID: 8324043021325231992}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HorizontalRoomWarpDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1160,7 +1160,7 @@ GameObject:
   - component: {fileID: 8709473790409859807}
   - component: {fileID: 8709473790409859776}
   - component: {fileID: 6129727899364186908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3486,7 +3486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8709473791020622002}
   - component: {fileID: 8709473791020622003}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TileGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

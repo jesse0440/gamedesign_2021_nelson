@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6942938235061517267}
   - component: {fileID: 4074139458718828387}
   - component: {fileID: 4074139458718828398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HorizontalRoomWarpUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

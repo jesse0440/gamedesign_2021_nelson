@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1411781882579376832}
   - component: {fileID: 1411781882579376863}
   - component: {fileID: 1411781882579376862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PhasePlatform
-  m_TagString: PhasePlatformDown
+  m_TagString: PhasePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

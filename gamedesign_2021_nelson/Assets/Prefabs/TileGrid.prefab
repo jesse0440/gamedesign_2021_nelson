@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6724550555018172674}
   - component: {fileID: 6724550555018172675}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TileGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 6724550555616418671}
   - component: {fileID: 6724550555616418672}
   - component: {fileID: 8114651254543557292}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

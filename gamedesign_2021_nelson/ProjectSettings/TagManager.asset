@@ -4,13 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - SpawnPointLocation
   - GameManager
   - BoundaryManager
   - Boundary
-  - PhasePlatformDown
-  - PhasePlatformUp
+  - Enemy
+  - PhasePlatform
   layers:
   - Default
   - TransparentFX
@@ -20,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Terrain
   - 
   - 
   - 

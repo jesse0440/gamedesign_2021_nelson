@@ -18,6 +18,7 @@ public class GameManagerScript : MonoBehaviour
         {
             gameManagerInstance = gameObject;
         } 
+        
         else 
         {
             Destroy(gameObject);
