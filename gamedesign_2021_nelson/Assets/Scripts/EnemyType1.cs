@@ -47,7 +47,7 @@ public class EnemyType1 : MonoBehaviour
         // Default direction the enemy faces
         enemyFacingDirection = RIGHT;
         // Assign the current time
-        enemyAttackTimer = Time.deltaTime;
+        enemyAttackTimer = Time.time;
         // Assign max health
         enemyMaxHealth = enemyHealth;
         // Assign the rigidbody, the cast position and the base scale of the enemy
@@ -65,7 +65,7 @@ public class EnemyType1 : MonoBehaviour
         }
 
         // Check if an interval has passed since this enemy last caused damage
-        if (Time.deltaTime > enemyAttackTimer + enemyAttackInterval)
+        if (Time.time > enemyAttackTimer + enemyAttackInterval)
         {
             // Allow the enemy to cause damage again
             alreadyAttacked = false;
@@ -76,14 +76,24 @@ public class EnemyType1 : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // If the collided object is a player
-        if (collision.gameObject.tag == "Player" && alreadyAttacked == false)
+        if (collision.gameObject.tag == "Player")
         {
-            // Substract the enemy damage from the player's health
-            collision.gameObject.GetComponent<PlayerController>().playerHealth -= enemyDamage;
+            // If the enemy's attack interval time has ran out
+            if (alreadyAttacked == false)
+            {
+                // Substract the enemy damage from the player's health
+                collision.gameObject.GetComponent<PlayerController>().playerHealth -= enemyDamage;
 
-            // Delay the next possible attack with the interval
-            alreadyAttacked = true;
-            enemyAttackTimer = Time.deltaTime;
+                // Reset the player's jump counter (Damage boosting)
+                collision.gameObject.GetComponent<PlayerController>().playerJumpCounter = 0;
+
+                // Improve the player's jumping height until they touch the ground again
+                collision.gameObject.GetComponent<PlayerController>().playerCurrentJumpHeight *= (1f + (1f / 6f));
+
+                // Delay the next possible attack with the interval
+                alreadyAttacked = true;
+                enemyAttackTimer = Time.time;
+            }
         }
 
         // Not in use yet

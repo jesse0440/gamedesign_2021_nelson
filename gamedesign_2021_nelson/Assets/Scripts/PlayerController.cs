@@ -11,11 +11,12 @@ public class PlayerController : MonoBehaviour
     public float playerHealth = 100f;
     public float playerMaxJumpCounter = 1;
     public float playerJumpCounter = 0;
+    public float playerCurrentJumpHeight;
 
     // Player statistics which are only needed in this script
     float playerMaxHealth = 100f;
     float playerSpeed = 7f;
-    float playerJumpHeight = 12f;
+    float playerBaseJumpHeight = 12f;
     
     // Player components
     Rigidbody2D rigidBody;
@@ -26,6 +27,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Assign the player's current jump height as the base jump height
+        playerCurrentJumpHeight = playerBaseJumpHeight;
+
         // Find the necessary components of the player object
         rigidBody = GetComponent<Rigidbody2D>();
         polygonCollider = GetComponent<PolygonCollider2D>();
@@ -114,21 +118,22 @@ public class PlayerController : MonoBehaviour
         // Jumping up with W or Up Arrow if your jump counter is not maxed
         if (Input.GetButtonDown("Jump") && playerJumpCounter < playerMaxJumpCounter)
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, playerJumpHeight);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, playerCurrentJumpHeight);
             playerJumpCounter++;
         }
 
         // Jumping up with Spacebar if your jump counter is not maxed
         if (Input.GetButtonDown("Jump2") && playerJumpCounter < playerMaxJumpCounter)
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, playerJumpHeight);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, playerCurrentJumpHeight);
             playerJumpCounter++;
         }
 
-        // Resetting the jump counter when player hits the ground/enemy/wall
+        // Resetting the jump counter & jump height damage boost when player hits the ground/a wall
         if (rigidBody.velocity.y == 0 && polygonCollider.IsTouchingLayers())
         {
             playerJumpCounter = 0;
+            playerCurrentJumpHeight = playerBaseJumpHeight;
         }
     }
 }
