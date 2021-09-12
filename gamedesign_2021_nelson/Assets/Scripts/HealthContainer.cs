@@ -47,8 +47,8 @@ public class HealthContainer : MonoBehaviour
     // When an object enters the trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // If the object is the player
-        if (collision.gameObject.tag == "Player")
+        // If the object is the player and the container has not been consumed
+        if (collision.gameObject.tag == "Player" && hasThisContainerBeenUsedAlready == 0)
         {
             // Assign PlayerController and increase the health
             playerController = collision.gameObject.GetComponent<PlayerController>();
@@ -56,6 +56,9 @@ public class HealthContainer : MonoBehaviour
 
             // Make the game remember that this container by ID, in this room by ID, has been consumed
             PlayerPrefs.SetInt("HealthContainer" + roomID + "_" + healthContainerIDInRoom, 1);
+
+            // Assign the check so the health container can't be consumed multiple times in a few frames before it disappears
+            hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("HealthContainer" + roomID + "_" + healthContainerIDInRoom, 0);
 
             // Disable the container
             healthParentObject.SetActive(false);

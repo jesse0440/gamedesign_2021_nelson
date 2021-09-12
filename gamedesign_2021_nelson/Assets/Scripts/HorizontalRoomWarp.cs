@@ -21,6 +21,7 @@ public class HorizontalRoomWarp : MonoBehaviour
             int temp = SceneManager.GetActiveScene().buildIndex;
             PlayerPrefs.SetFloat("Room " + temp + " X Coordinate", collision.gameObject.transform.position.x);
             PlayerPrefs.SetFloat("Room " + temp + " Y Coordinate", collision.gameObject.transform.position.y);
+            PlayerPrefs.SetFloat("PlayerHealth", collision.gameObject.GetComponent<PlayerController>().playerHealth);
         }
     }
 

@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
         polygonCollider = GetComponent<PolygonCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        // Find if there is a saved amount of health for the player or use default (100f)
+        playerHealth = PlayerPrefs.GetFloat("PlayerHealth", 100f);
+
 
         /*
          ___________________________________________________________________
