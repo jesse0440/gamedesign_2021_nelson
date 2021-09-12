@@ -20,7 +20,7 @@ public class AbilityUnlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Assign the parent variable
+        // Assign the parent object variable
         abilityUnlockObject = transform.parent.gameObject;
     }
 

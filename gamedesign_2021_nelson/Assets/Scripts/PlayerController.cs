@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidBody;
     PolygonCollider2D polygonCollider;
     SpriteRenderer spriteRenderer;
+    Slider playerHealthBarSlider;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +56,10 @@ public class PlayerController : MonoBehaviour
         // code
 
 
+        // Assign the health bar HUD element to the variable
+        playerHealthBarSlider = GameObject.FindWithTag("PlayerHealthBar").GetComponent<Slider>();
+        playerHealthBarSlider.maxValue = playerMaxHealth;
+
         // Import the coordinates to your location in the room or use default if unavailable, then warp to the location
         float tempXCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " X Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.x);
         float tempYCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " Y Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.y);
@@ -63,12 +69,23 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If the player's health drops to zero or bugs out otherwise
-        if (playerHealth > playerMaxHealth || playerHealth <= 0) 
+        // If the player's health drops to zero or bugs out to negative
+        if (playerHealth <= 0) 
         {
             // Respawn the player
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
+        // If an health container would overheal the player or the player's health bugs out to over max
+        else if (playerHealth > playerMaxHealth)
+        {
+            // Reduce the player's health to the maximum
+            playerHealth = playerMaxHealth;
+        }
+
+        // Update the health bar in the HUD if player health changes
+        playerHealthBarSlider.value = playerHealth;
+        
         // Get the Horizontal input of Input manager
         float horizontalDirection = Input.GetAxis("Horizontal");
 
@@ -78,15 +95,17 @@ public class PlayerController : MonoBehaviour
         // While moving right
         if (horizontalDirection > 0) 
         {
-            // Flip sprite to face right
-            spriteRenderer.flipX = false;
+            // Make the local scale's X positive to make the player face right
+            Vector3 newScale = new Vector3(1, 1, 1);
+            transform.localScale = newScale;
         }
 
         // While moving left
         if (horizontalDirection < 0)
         {
-            // Flip sprite to face left
-            spriteRenderer.flipX = true;
+            // Make the local scale's X negative to make the player face left
+            Vector3 newScale = new Vector3(-1, 1, 1);
+            transform.localScale = newScale;
         }
 
         // Jumping up with W or Up Arrow if your jump counter is not maxed

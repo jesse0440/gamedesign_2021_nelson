@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197333831}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.547348, y: -2.962004, z: 0}
+  m_LocalPosition: {x: -28.75, y: -2.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1402433302}
@@ -6584,7 +6584,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
-  m_Sprite: {fileID: 21300000, guid: 8bc3c2c2a565342aab778fd8e874313a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 764eb0f93982cd243913ee04cc9dd835, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6604,7 +6604,7 @@ Transform:
   m_GameObject: {fileID: 2424160667446639643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.3263, y: 22.13, z: 0}
-  m_LocalScale: {x: 1, y: 0.98740005, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -6663,18 +6663,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -0.122501135, y: -0.32899374}
+  m_Offset: {x: -0.028084755, y: -0.06815648}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.0625, y: 2}
+    oldSize: {x: 1.8134716, y: 2.1373057}
     newSize: {x: 0.33, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2108274, y: 1.3046436}
+  m_Size: {x: 1.3996601, y: 1.826318}
   m_EdgeRadius: 0
 --- !u!19719996 &3300979410203768819
 TilemapCollider2D:
@@ -7125,7 +7125,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.0625, y: 2}
+    oldSize: {x: 1.8134716, y: 2.1373057}
     newSize: {x: 0.33, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7133,10 +7133,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.4809126, y: 0.01868445}
-      - {x: -0.7299148, y: 0.01868445}
-      - {x: -0.7299148, y: 0}
-      - {x: 0.4809126, y: 0}
+    - - {x: 0.6697455, y: -0.049999952}
+      - {x: 0.6697455, y: 0.018684447}
+      - {x: -0.7299148, y: 0.018684447}
+      - {x: -0.7299148, y: -0.049999952}
 --- !u!1 &7193495403007387020
 GameObject:
   m_ObjectHideFlags: 0

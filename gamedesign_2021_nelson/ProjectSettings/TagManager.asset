@@ -10,6 +10,7 @@ TagManager:
   - Boundary
   - Enemy
   - PhasePlatform
+  - PlayerHealthBar
   layers:
   - Default
   - TransparentFX
