@@ -9,11 +9,13 @@ public class HealthContainer : MonoBehaviour
     GameObject healthParentObject;
     
     // The amount of health this object replenishes
+    // Needs to be entered manually in the editor!
     [SerializeField]
     float amountOfHealthGiven;
 
     // The ID of the container
     // Used to differentiate multiple containers in a room
+    // Needs to be entered manually in the editor!
     [SerializeField]
     int healthContainerIDInRoom;
 

@@ -8,7 +8,7 @@ public class PlayerCamera : MonoBehaviour
     Transform playerLocation;
 
     // Camera boundaries
-    // Needs to be entered manually in the editor for each individual room!!
+    // Need to be entered manually in the editor for each individual room!!
     [SerializeField]
     float leftLimit;
 

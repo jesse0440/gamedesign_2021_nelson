@@ -8,22 +8,27 @@ public class EnemyType1 : MonoBehaviour
     public float enemyHealth;
 
     // Seconds between possible attacks
+    // Needs to be entered manually in the editor!
     [SerializeField]
     float enemyAttackInterval;
 
     // Damage enemy does per hit
+    // Needs to be entered manually in the editor!
     [SerializeField]
     float enemyDamage;
 
     // The speed of the enemy
+    // Needs to be entered manually in the editor!
     [SerializeField]
     float enemyMoveSpeed;
 
     // The distance an enemy can cast a ray to check for walls for pathing purposes
+    // Needs to be entered manually in the editor!
     [SerializeField]
     float baseWallCastingDistance;
 
     // The distance an enemy can cast a ray to check for edges for pathing purposes
+    // Needs to be entered manually in the editor!
     [SerializeField]
     float baseEdgeCastingDistance;
 

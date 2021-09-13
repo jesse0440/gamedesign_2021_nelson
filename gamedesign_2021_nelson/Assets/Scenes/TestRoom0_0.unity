@@ -4829,6 +4829,7 @@ MonoBehaviour:
   playerHealth: 100
   playerMaxJumpCounter: 1
   playerJumpCounter: 0
+  playerCurrentJumpHeight: 0
 --- !u!1 &8009363959586849171
 GameObject:
   m_ObjectHideFlags: 0

@@ -6919,6 +6919,7 @@ MonoBehaviour:
   playerHealth: 100
   playerMaxJumpCounter: 1
   playerJumpCounter: 0
+  playerCurrentJumpHeight: 0
 --- !u!61 &5017475221894132724
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7001,7 +7002,7 @@ GameObject:
   - component: {fileID: 5017475221894132724}
   - component: {fileID: 5017475221894132729}
   m_Layer: 8
-  m_Name: HorizontalRoomWarpUp
+  m_Name: RoomWarp1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7046,10 +7047,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.4}
+    - - {x: -1.2, y: 0.4}
       - {x: -2.5, y: 0.4}
       - {x: -2.5, y: -0.4}
-      - {x: 0, y: -0.4}
+      - {x: -1.2, y: -0.4}
 --- !u!114 &6338313527081637670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7059,7 +7060,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6338313527081637673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae9e69c79b94cbe418355fe85c97d284, type: 3}
+  m_Script: {fileID: 11500000, guid: 88087ac4efc11b947a1c07c5cbf18e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nextRoomId: 1
@@ -7102,7 +7103,7 @@ GameObject:
   - component: {fileID: 6338313527081637671}
   - component: {fileID: 6338313527081637669}
   m_Layer: 8
-  m_Name: VerticalRoomWarpRight
+  m_Name: RoomWarp1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

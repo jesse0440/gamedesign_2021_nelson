@@ -42,9 +42,8 @@
      <Compile Include="Assets\Scripts\HealthContainer.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\GameManagerScript.cs" />
-     <Compile Include="Assets\Scripts\HorizontalRoomWarp.cs" />
+     <Compile Include="Assets\Scripts\RoomWarp.cs" />
      <Compile Include="Assets\Scripts\EnemyType1.cs" />
-     <Compile Include="Assets\Scripts\VerticalRoomWarp.cs" />
      <Compile Include="Assets\Scripts\AbilityUnlock.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/unity addons/2020.3.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

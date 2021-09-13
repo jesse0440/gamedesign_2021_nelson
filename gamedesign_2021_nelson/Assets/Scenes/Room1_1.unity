@@ -249,6 +249,7 @@ MonoBehaviour:
   playerHealth: 100
   playerMaxJumpCounter: 1
   playerJumpCounter: 0
+  playerCurrentJumpHeight: 0
 --- !u!4 &535415176396624964
 Transform:
   m_ObjectHideFlags: 0
@@ -907,7 +908,7 @@ GameObject:
   - component: {fileID: 3656999258690839918}
   - component: {fileID: 3656999258690839907}
   m_Layer: 8
-  m_Name: VerticalRoomWarpLeft
+  m_Name: RoomWarp1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -940,8 +941,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 2, y: 0.4}
       - {x: 2, y: -0.4}
-      - {x: -0.5, y: -0.4}
-      - {x: -0.5, y: 0.4}
+      - {x: 0.8, y: -0.4}
+      - {x: 0.8, y: 0.4}
 --- !u!4 &3656999258690839917
 Transform:
   m_ObjectHideFlags: 0
@@ -991,7 +992,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3656999258690839904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae9e69c79b94cbe418355fe85c97d284, type: 3}
+  m_Script: {fileID: 11500000, guid: 88087ac4efc11b947a1c07c5cbf18e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nextRoomId: 0
