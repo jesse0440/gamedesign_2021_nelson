@@ -6,15 +6,15 @@ public class PhasePlatform : MonoBehaviour
 {
     // The collider variables
     GameObject player;
-    PolygonCollider2D playerPolygonCollider;
+    EdgeCollider2D playerEdgeCollider;
     BoxCollider2D boxCollider;
 
     // Start is called before the first frame update
     void Awake()
     {
-        // Assign the player, the player's polygon collider and the platform's collider
+        // Assign the player, the player's edge collider and the platform's collider
         player = GameObject.FindWithTag("Player");
-        playerPolygonCollider = player.GetComponent<PolygonCollider2D>();
+        playerEdgeCollider = player.GetComponent<EdgeCollider2D>();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
     }
 
@@ -37,7 +37,7 @@ public class PhasePlatform : MonoBehaviour
 
         // If the player is standing on the platform and they press any Vertical keys
         // Unsolidify the platform
-        if (boxCollider.IsTouching(playerPolygonCollider) && Input.GetButtonDown("Vertical"))
+        if (boxCollider.IsTouching(playerEdgeCollider) && Input.GetButtonDown("Vertical"))
         {
             boxCollider.enabled = false;
         }

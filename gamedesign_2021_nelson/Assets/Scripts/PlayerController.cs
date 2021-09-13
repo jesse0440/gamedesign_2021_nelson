@@ -12,17 +12,21 @@ public class PlayerController : MonoBehaviour
     public float playerMaxJumpCounter = 1;
     public float playerJumpCounter = 0;
     public float playerCurrentJumpHeight;
+    public float wallClimbValue = 0f;
 
     // Player statistics which are only needed in this script
     float playerMaxHealth = 100f;
     float playerSpeed = 7f;
     float playerBaseJumpHeight = 12f;
+    float groundedCheckRayLength = 0.15f;
     
     // Player components
     Rigidbody2D rigidBody;
-    PolygonCollider2D polygonCollider;
+    EdgeCollider2D edgeCollider;
     SpriteRenderer spriteRenderer;
+    LayerMask terrainLayerMask;
     Slider playerHealthBarSlider;
+    Color rayColor;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +36,9 @@ public class PlayerController : MonoBehaviour
 
         // Find the necessary components of the player object
         rigidBody = GetComponent<Rigidbody2D>();
-        polygonCollider = GetComponent<PolygonCollider2D>();
+        edgeCollider = GetComponent<EdgeCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        terrainLayerMask = LayerMask.GetMask("Terrain");
 
         // Find if there is a saved amount of health for the player or use default (100f)
         playerHealth = PlayerPrefs.GetFloat("PlayerHealth", 100f);
@@ -50,11 +55,11 @@ public class PlayerController : MonoBehaviour
 
         // ----------ABILITIES----------
 
-        // ABILITY 0 - Find out if double jump is unlocked or use default value (1)
+        // ABILITY 0 - Find out if double jump is unlocked (2) or use default value (1)
         playerMaxJumpCounter = PlayerPrefs.GetInt("Ability_0", 1);
 
-        // ABILITY 1 - 
-        // code
+        // ABILITY 1 - Find out if wall climb is unlocked (0.02f) or use default value (0)
+        wallClimbValue = PlayerPrefs.GetInt("Ability_1", 0);
 
         // ABILITY 2 - 
         // code
@@ -129,11 +134,52 @@ public class PlayerController : MonoBehaviour
             playerJumpCounter++;
         }
 
-        // Resetting the jump counter & jump height damage boost when player hits the ground/a wall
-        if (rigidBody.velocity.y == 0 && polygonCollider.IsTouchingLayers())
+        // Check if the player is grounded
+        IsGrounded();
+
+        // Resetting the jump counter & jump height damage boost when player hits the ground
+        if (rigidBody.velocity.y == 0 && IsGrounded())
         {
             playerJumpCounter = 0;
             playerCurrentJumpHeight = playerBaseJumpHeight;
         }
+    }
+
+    // The function which checks if the player is grounded
+    private bool IsGrounded() 
+    {
+        // Assign the vector with possible ability and cast the ray collider
+        Vector3 wallClimbVector = new Vector3(wallClimbValue, 0, 0);
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(edgeCollider.bounds.center, edgeCollider.bounds.size + wallClimbVector, 0f, Vector2.down, groundedCheckRayLength, terrainLayerMask);
+
+        // This code block is only for debugging purposes
+        // It allows you to see the area of the ray in color as you jump up and down
+        
+        /*
+        // If grounded
+        if (rayCastHit.collider != null)
+        {
+            // Green gizmo color
+            rayColor = Color.green;
+        }
+
+        // If not grounded
+        else
+        {
+            // Red gizmo color
+            rayColor = Color.red;
+        }
+
+        // Visualize the ray collider area
+        Debug.DrawRay(edgeCollider.bounds.center + new Vector3(edgeCollider.bounds.extents.x, 0), Vector2.down * (edgeCollider.bounds.extents.y + groundedCheckRayLength), rayColor);
+        Debug.DrawRay(edgeCollider.bounds.center - new Vector3(edgeCollider.bounds.extents.x, 0), Vector2.down * (edgeCollider.bounds.extents.y + groundedCheckRayLength), rayColor);
+        Debug.DrawRay(edgeCollider.bounds.center - new Vector3(edgeCollider.bounds.extents.x, edgeCollider.bounds.extents.y + groundedCheckRayLength), 2f * Vector2.right * (edgeCollider.bounds.extents.x), rayColor);
+        
+        // Use this to check for hit timings if needed
+        // Debug.Log(rayCastHit.collider);
+        */
+
+        // Return the value so script knows whether the player's jump counter is reset or not
+        return rayCastHit.collider != null;
     }
 }
