@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1110763782113496395}
   - component: {fileID: 6321431052597965307}
   - component: {fileID: 6321431052597965302}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RoomWarp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

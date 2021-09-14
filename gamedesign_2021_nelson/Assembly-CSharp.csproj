@@ -36,7 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\PlayerFall.cs" />
+     <Compile Include="Assets\Scripts\FallZone.cs" />
      <Compile Include="Assets\Scripts\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\PhasePlatform.cs" />
      <Compile Include="Assets\Scripts\HealthContainer.cs" />

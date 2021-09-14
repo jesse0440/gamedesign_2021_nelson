@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5992109048307723637}
   - component: {fileID: 5992109048307723636}
   - component: {fileID: 5889132686462113991}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: HealthContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfHealthGiven: 25
+  healthContainerIDInRoom: 0
 --- !u!1 &5992109048396307417
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5992109048396307422}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: HealthObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

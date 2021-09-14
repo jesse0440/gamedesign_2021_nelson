@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyType1 : MonoBehaviour
 {
@@ -22,21 +23,77 @@ public class EnemyType1 : MonoBehaviour
     [SerializeField]
     float enemyMoveSpeed;
 
+    // Bool to determine if this enemy can detect walls
+    [SerializeField]
+    bool canEnemyDetectWalls;
+    
     // The distance an enemy can cast a ray to check for walls for pathing purposes
     // Needs to be entered manually in the editor!
     [SerializeField]
     float baseWallCastingDistance;
 
+    // Bool to determine if this enemy can detect edges
+    [SerializeField]
+    bool canEnemyDetectEdges;
+    
     // The distance an enemy can cast a ray to check for edges for pathing purposes
     // Needs to be entered manually in the editor!
     [SerializeField]
     float baseEdgeCastingDistance;
+
+    // Bool to determine if this enemy type can jump
+    [SerializeField]
+    bool enemyJumpingAllowed;
+
+    // Float to determine this enemy type's jump height
+    [SerializeField]
+    float enemyJumpHeight;
+
+    // Float to determine this enemy type's interval between jumps
+    [SerializeField]
+    float enemyJumpInterval;
+
+    // Bool to determine if this enemy type's jump interval should have some RNG
+    [SerializeField]
+    bool randomJumpIntervalExtender;
+
+    // Bool to determine if this enemy can detect and charge at the player
+    [SerializeField]
+    bool canEnemyDetectPlayer;
+
+    // The range in which the enemy can detect the player
+    [SerializeField]
+    float playerDetectionRange;
+
+    // The speed the enemy uses when charging at a player
+    [SerializeField]
+    float enemyChargingSpeed;
+
+    // Bool to determine if this enemy can drop heart containers on death
+    [SerializeField]
+    bool canEnemyDropHearts;
+
+    // The chance of a heart container dropping when this enemy dies
+    [SerializeField]
+    float enemyDropChance;
+
+    // Heart container prefab
+    [SerializeField]
+    GameObject heartContainer;
+
 
     // Enemy variables only required within this script
     bool alreadyAttacked = false;
     float enemyAttackTimer;
     float enemyMaxHealth;
     string enemyFacingDirection;
+    bool alreadyJumped = false;
+    float enemyJumpTimer;
+    float randomJumpIntervalExtenderValue;
+    bool chargeDirectionCheck;
+    bool chargeInstanceCheck;
+    bool wallPatrolCheck;
+    bool edgePatrolCheck;
 
     // Easy way to make less writing mistakes
     const string LEFT = "left";
@@ -47,25 +104,153 @@ public class EnemyType1 : MonoBehaviour
     Transform castingPosition;
     Vector3 baseScale;
 
+    // Transform of the player
+    Transform playerTransform;
+
     void Start() 
     {
         // Default direction the enemy faces
         enemyFacingDirection = RIGHT;
         // Assign the current time
         enemyAttackTimer = Time.time;
+        // Assign the current time
+        enemyJumpTimer = Time.time;
         // Assign max health
         enemyMaxHealth = enemyHealth;
         // Assign the rigidbody, the cast position and the base scale of the enemy
         rigidBody = GetComponent<Rigidbody2D>();
         castingPosition = gameObject.transform.Find("CastPosition");
         baseScale = transform.localScale;
+
+        // If jumping is allowed and RNG is turned on for jump intervals
+        if (enemyJumpingAllowed && randomJumpIntervalExtender)
+        {
+            // Increase jump interval with 0-1 seconds
+            randomJumpIntervalExtenderValue = Random.value;
+        }
+        
+        // If jumping is not allowed
+        else if (!enemyJumpingAllowed)
+        {
+            // No need for an RNG interval increase
+            randomJumpIntervalExtenderValue = 0f;
+        }
+
+        // If the enemy has edge detection
+        if (canEnemyDetectEdges)
+        {
+            // Assign this variable for later
+            edgePatrolCheck = true;
+        }
+
+        // Otherwise do not assign
+        else 
+        {
+            edgePatrolCheck = false;
+        }
+
+        // If the enemy has wall detection
+        if (canEnemyDetectWalls)
+        {
+            // Assign this variable for later
+            wallPatrolCheck = true;
+        }
+
+        // Otherwise do not assign
+        else
+        {
+            wallPatrolCheck = false;
+        }
+
+
+        // Checks for variables that should not be 0f
+        // Add as needed!
+
+        if (canEnemyDropHearts)
+        {
+            if (enemyDropChance == 0f)
+            {
+                enemyDropChance = 5f;
+            }
+        }
+
+        if (enemyAttackInterval == 0f)
+        {
+            enemyAttackInterval = 2f;
+        }
+
+        if (enemyDamage == 0f)
+        {
+            enemyDamage = 10f;
+        }
+
+        if (enemyMoveSpeed == 0f)
+        {
+            enemyMoveSpeed = 1.25f;
+        }
+
+        if (canEnemyDetectWalls)
+        {
+            if (baseWallCastingDistance == 0f)
+            {
+                baseWallCastingDistance = 0.01f;
+            }
+        }
+
+        if (canEnemyDetectEdges)
+        {
+            if (baseEdgeCastingDistance == 0f)
+            {
+                baseEdgeCastingDistance = 0.5f;
+            }
+        }
+
+        if (enemyJumpingAllowed)
+        {
+            if (enemyJumpHeight == 0f)
+            {
+                enemyJumpHeight = 6f;
+            }
+        }
+
+        if (enemyJumpingAllowed)
+        {
+            if (enemyJumpInterval == 0f) 
+            {
+                enemyJumpInterval = 5f;
+            }
+        }
+
+        if (canEnemyDetectPlayer)
+        {
+            if (playerDetectionRange == 0f)
+            {
+                playerDetectionRange = 2f;
+            } 
+        }
+
+        if (canEnemyDetectPlayer)
+        {
+            if (enemyChargingSpeed == 0f)
+            {
+                enemyChargingSpeed = 2.5f;
+            }
+        }
     }
     
     void Update() 
     {
-        // If the health bugs out over max health or is reduced to 0 or lower, destroy this enemy object
+        // If the health bugs out over max health or is reduced to 0 or lower
+        // Try to spawn a heart container and destroy this enemy object
         if (enemyHealth <= 0 || enemyHealth > enemyMaxHealth)
         {
+            float dropRandomValue = Random.value;
+
+            if (dropRandomValue * 100 < enemyDropChance)
+            {
+                GameObject.Instantiate(heartContainer, transform.position, transform.rotation);
+            }
+
             Destroy(gameObject);
         }
 
@@ -74,6 +259,14 @@ public class EnemyType1 : MonoBehaviour
         {
             // Allow the enemy to cause damage again
             alreadyAttacked = false;
+        }
+
+        // Check if an interval has passed since this enemy last jumped
+        if (enemyJumpingAllowed == true && Time.time > enemyJumpTimer + enemyJumpInterval + randomJumpIntervalExtenderValue)
+        {
+            // Redo the interval RNG and allow the enemy to jump again
+            randomJumpIntervalExtenderValue = Random.value;
+            alreadyJumped = false;
         }
     }
     
@@ -132,21 +325,66 @@ public class EnemyType1 : MonoBehaviour
         // Move the enemy based on the assigned speed
         rigidBody.velocity = new Vector2(newSpeed, rigidBody.velocity.y);
 
-        // Determine if the enemy is hitting a wall or located near an edge
-        if (IsHittingWall() || IsNearEdge())
+        // Determine if the enemy is hitting a wall
+        if (canEnemyDetectWalls && IsHittingWall() || canEnemyDetectEdges && IsNearEdge() && rigidBody.velocity.y == 0)
         {
-            // If going left before hitting a wall
-            if (enemyFacingDirection == LEFT)
+            // If going left before hitting a wall/nearing an edge
+            if (enemyFacingDirection == LEFT )
             {
                 // Change direction to right
                 ChangeFacingDirection(RIGHT);
             }
 
-            // If going right before hitting a wall
+            // If going right before hitting a wall/nearing an edge
             else if (enemyFacingDirection == RIGHT)
             {
                 // Change direction to left
                 ChangeFacingDirection(LEFT);
+            }
+        }
+
+        // If jumping is allowed and enemy has not jumped in an interval
+        if (enemyJumpingAllowed == true && alreadyJumped == false)
+        {
+            // Jump using the enemy's jump height, reset the jump timer and make the enemy unable to jump for the next interval
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, enemyJumpHeight);
+            alreadyJumped = true;
+            enemyJumpTimer = Time.time;
+        }
+
+        // If player detection is turned on
+        if (canEnemyDetectPlayer)
+        {
+            // Find the player's transform and the distance between the enemy and the player
+            playerTransform = GameObject.FindWithTag("Player").transform;
+            float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+
+            // If the player is inside the detection range
+            if (distanceToPlayer <= playerDetectionRange)
+            {
+                //  If either of these detections is true, disable both (saves time & space)
+                if (wallPatrolCheck || edgePatrolCheck)
+                {
+                    // Disable both patrols
+                    canEnemyDetectEdges = false;
+                    canEnemyDetectWalls = false;
+                }
+
+                // This charge instance at player has started
+                chargeInstanceCheck = true;
+
+                // Charge at player
+                ChargeAtPlayer();
+            }
+
+            // If the player is outside the detection range
+            else if (distanceToPlayer > playerDetectionRange && chargeInstanceCheck == true)
+            {
+                // This charge instance at player has ended
+                chargeInstanceCheck = false;
+
+                // Leave the player alone
+                StopChargingAtPlayer();
             }
         }
     }
@@ -191,6 +429,7 @@ public class EnemyType1 : MonoBehaviour
             castingDistance = -baseWallCastingDistance;
         } 
 
+        // If the enemy is looking to the right, make the cast distance positive
         else if (enemyFacingDirection == RIGHT)
         {
             castingDistance = baseWallCastingDistance;
@@ -249,5 +488,71 @@ public class EnemyType1 : MonoBehaviour
 
         // Return whether the enemy is near an edge or not
         return value;
+    }
+
+    // Charge at the player when called
+    private void ChargeAtPlayer()
+    {
+        // Clone the rigidbody's velocity
+        Vector2 newVelocity = rigidBody.velocity;
+
+        // If the player is exactly at the same x coordinate
+        if (transform.position.x + 0.1f >= playerTransform.position.x && transform.position.x - 0.1f <= playerTransform.position.x)
+        {
+            // Stop moving, look right
+            newVelocity.x = 0;
+            transform.localScale = new Vector2(1, 1);
+        }
+
+        // If the player is to the right of the enemy
+        else if (transform.position.x + 0.1f < playerTransform.position.x)
+        {
+            // Move right, look right
+            newVelocity.x = enemyChargingSpeed;
+            transform.localScale = new Vector2(1, 1);
+        }
+
+        // If the player is to the left of the enemy
+        else if (transform.position.x - 0.1f > playerTransform.position.x)
+        {
+            // Moveleft, look left
+            newVelocity.x = -enemyChargingSpeed;
+            transform.localScale = new Vector2(-1, 1);
+        }
+
+        // Assign the rigidbody's new velocity
+        rigidBody.velocity = newVelocity;
+    }
+
+    // Stop charging at player when called
+    private void StopChargingAtPlayer()
+    {
+        // Stop the enemy chase and resume patrol
+        rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
+
+        // If the enemy has wall and edge patrol
+        if (wallPatrolCheck && edgePatrolCheck)
+        {
+            // Enable both modes and start patrol
+            canEnemyDetectWalls = true;
+            canEnemyDetectEdges = true;
+            ChangeFacingDirection(RIGHT);
+        }
+        
+        // If the enemy has wall patrol only
+        else if (wallPatrolCheck)
+        {
+            // Enable wall mode and start patrol
+            canEnemyDetectWalls = true;
+            ChangeFacingDirection(RIGHT);
+        }
+        
+        // If the enemy has edge patrol only
+        else if (edgePatrolCheck)
+        {
+            // Enable edge mode and start patrol
+            canEnemyDetectEdges = true;
+            ChangeFacingDirection(RIGHT);
+        }
     }
 }

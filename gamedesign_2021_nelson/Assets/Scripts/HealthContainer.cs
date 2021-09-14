@@ -44,6 +44,14 @@ public class HealthContainer : MonoBehaviour
             // Disable this container when re-entering the room
             healthParentObject.SetActive(false);
         }
+
+        // Checking variables that should not be 0
+        // Add as needed
+
+        if (amountOfHealthGiven == 0f)
+        {
+            amountOfHealthGiven = 25f;
+        }
     }
 
     // When an object enters the trigger

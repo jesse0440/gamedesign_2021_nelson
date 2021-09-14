@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3869959064107312646}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: AbilityUnlockObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3869959064275583674}
   - component: {fileID: 3869959064275583675}
   - component: {fileID: 7928227619539554148}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Ability
   m_TagString: Untagged
   m_Icon: {fileID: 0}
