@@ -407,8 +407,8 @@ GameObject:
   m_Component:
   - component: {fileID: 668722737}
   - component: {fileID: 668722736}
-  - component: {fileID: 668722735}
   - component: {fileID: 668722734}
+  - component: {fileID: 668722735}
   m_Layer: 8
   m_Name: PhasePlatform
   m_TagString: PhasePlatform
@@ -513,7 +513,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668722733}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.616047, y: -1.84, z: 0}
+  m_LocalPosition: {x: -13.616047, y: -3.85, z: 0}
   m_LocalScale: {x: 3, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 462194521}
@@ -1009,6 +1009,9 @@ MonoBehaviour:
   canEnemyDetectPlayer: 0
   playerDetectionRange: 0
   enemyChargingSpeed: 0
+  canEnemyDropHearts: 0
+  enemyDropChance: 0
+  heartContainer: {fileID: 0}
 --- !u!4 &1551716840
 Transform:
   m_ObjectHideFlags: 0
@@ -1487,6 +1490,9 @@ MonoBehaviour:
   canEnemyDetectPlayer: 1
   playerDetectionRange: 4.5
   enemyChargingSpeed: 4
+  canEnemyDropHearts: 0
+  enemyDropChance: 0
+  heartContainer: {fileID: 0}
 --- !u!4 &2069785188
 Transform:
   m_ObjectHideFlags: 0
@@ -1742,6 +1748,9 @@ MonoBehaviour:
   canEnemyDetectPlayer: 0
   playerDetectionRange: 0
   enemyChargingSpeed: 0
+  canEnemyDropHearts: 0
+  enemyDropChance: 0
+  heartContainer: {fileID: 0}
 --- !u!4 &3589594721061104409
 Transform:
   m_ObjectHideFlags: 0
@@ -5119,7 +5128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5754208166616480484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.63, y: 3.46, z: 0}
+  m_LocalPosition: {x: 2.63, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5754208166783737436}
@@ -5388,10 +5397,10 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: 0.71, y: 0.85}
-  - {x: 0.71, y: -1.045}
+  - {x: 0.71, y: -1.04}
   - {x: 0.61, y: -1.05}
   - {x: -0.65, y: -1.05}
-  - {x: -0.75, y: -1.045}
+  - {x: -0.75, y: -1.04}
   - {x: -0.75, y: 0.85}
   - {x: 0.71, y: 0.85}
   m_AdjacentStartPoint: {x: 0, y: 0}

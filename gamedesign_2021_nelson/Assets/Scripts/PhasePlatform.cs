@@ -30,7 +30,7 @@ public class PhasePlatform : MonoBehaviour
 
         // If the player's Y position - the player's height / 2 is higher than the platform's Y position
         // Solidify the platform
-        if (player.transform.position.y - 1.365f> boxCollider.transform.position.y)
+        if (player.transform.position.y - 1.365f > boxCollider.transform.position.y)
         {
             boxCollider.enabled = true;
         }
