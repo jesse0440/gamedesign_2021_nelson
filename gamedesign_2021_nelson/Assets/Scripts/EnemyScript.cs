@@ -300,14 +300,28 @@ public class EnemyScript : MonoBehaviour
             }
         }
 
-        // Not in use yet
-        // If an enemy is hit by a weapon, substract that damage from health
-        /*
-        if (collision.gameObject.tag == "Weapon")
+
+    
+    }
+
+    public void takeDamage(int damage)
+    {
+
+        //TODO: play hurt animation
+
+        enemyHealth -= damage;
+
+        //if enemy dies
+        if (enemyHealth <= 0)
         {
-            enemyHealth -= collision.gameObject.GetComponent<WeaponScript>().weaponDamage;
+            //TODO: play death animation
+
+            
+            //GetComponent<Collider2D>().enabled = false;
+            //this.enabled = false;
+            gameObject.SetActive(false);
+            
         }
-        */
     }
 
     // Framerate independent Update(), works better for physics

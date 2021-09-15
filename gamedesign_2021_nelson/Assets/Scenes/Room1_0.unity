@@ -153,6 +153,36 @@ Transform:
   m_Father: {fileID: 1402433302}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1007344624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1007344625}
+  m_Layer: 0
+  m_Name: attackPoint
+  m_TagString: Weapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1007344625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007344624}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.84, y: -0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2505789740179995427}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1402433301
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +219,7 @@ Transform:
   - {fileID: 1544617808}
   - {fileID: 3228680126554089519}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1496206427
 GameObject:
@@ -6421,7 +6451,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2098217939024833936}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CastPosition
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -6516,7 +6546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2222958898702333652}
   - component: {fileID: 2220148121415973582}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6608,6 +6638,7 @@ GameObject:
   - component: {fileID: 3904186970533087544}
   - component: {fileID: 2505789740179995425}
   - component: {fileID: 2505789740179995430}
+  - component: {fileID: 2505789740179995428}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6625,10 +6656,30 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.3263, y: 22.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1007344625}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2505789740179995428
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2505789740179995426}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!68 &2505789740179995430
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -6873,7 +6924,7 @@ GameObject:
   - component: {fileID: 3686648353810587943}
   - component: {fileID: 3686648353810587942}
   - component: {fileID: 3686648353810587961}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyType1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -6908,6 +6959,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452ddd34a5dfaa54a87756289181457c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 2505789740179995428}
+  attackPoint: {fileID: 1007344625}
+  attackRange: 0.84
+  meleeDamage: 25
+  meleeAttackRate: 2
+  nextMeleeTime: 0
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
   playerHealth: 100
   playerMaxJumpCounter: 1
   playerJumpCounter: 0

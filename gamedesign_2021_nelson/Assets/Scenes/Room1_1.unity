@@ -160,6 +160,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1404359894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1404359895}
+  m_Layer: 0
+  m_Name: attackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1404359895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404359894}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3, y: 0.53, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3103377673863636661}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &535415176396624964
 Transform:
   m_ObjectHideFlags: 0
@@ -474,6 +504,7 @@ GameObject:
   - component: {fileID: 4609793407079896238}
   - component: {fileID: 3103377673863636663}
   - component: {fileID: 3103377673863636656}
+  - component: {fileID: 3103377673863636664}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -491,7 +522,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.3263, y: 22.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1404359895}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -540,7 +572,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.33, y: 0.32}
+  m_Size: {x: 1.8134716, y: 2.1373057}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -567,6 +599,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!95 &3103377673863636664
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103377673863636660}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3656999258690839904
 GameObject:
   m_ObjectHideFlags: 0
@@ -4603,6 +4654,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452ddd34a5dfaa54a87756289181457c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 3103377673863636664}
+  attackPoint: {fileID: 1404359895}
+  attackRange: 1.28
+  meleeDamage: 25
+  meleeAttackRate: 2
+  nextMeleeTime: 0
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
   playerHealth: 100
   playerMaxJumpCounter: 1
   playerJumpCounter: 0
@@ -4617,7 +4677,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4994748274251092047}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CastPosition
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -4713,7 +4773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5086602859913677579}
   - component: {fileID: 5080407803007977233}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4759,7 +4819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5570155432409052635}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CastPosition
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -4855,7 +4915,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5659614697665293983}
   - component: {fileID: 5664675349873992325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4941,7 +5001,7 @@ GameObject:
   - component: {fileID: 7168305532131998060}
   - component: {fileID: 7168305532131998061}
   - component: {fileID: 7168305532131998066}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyType1 (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4976,7 +5036,7 @@ GameObject:
   - component: {fileID: 7739203051973418232}
   - component: {fileID: 7739203051973418233}
   - component: {fileID: 7739203051973418214}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyType1
   m_TagString: Enemy
   m_Icon: {fileID: 0}

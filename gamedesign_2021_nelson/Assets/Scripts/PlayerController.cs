@@ -7,6 +7,16 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+    //Combat variables and components
+    public Animator playerAnimator;
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public int meleeDamage = 10;
+    public float meleeAttackRate = 2f;
+    public float nextMeleeTime = 0f;
+    public LayerMask enemyLayers;
+
     // Player statistics which are accessed from elsewhere
     public float playerHealth = 100f;
     public float playerMaxJumpCounter = 1;
@@ -143,6 +153,14 @@ public class PlayerController : MonoBehaviour
             playerJumpCounter = 0;
             playerCurrentJumpHeight = playerBaseJumpHeight;
         }
+
+        //Check for melee attack input
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextMeleeTime )
+        {
+            MeleeAttack();
+            //Set attack timer
+            nextMeleeTime = Time.time + 1f / meleeAttackRate;
+        }
     }
 
     // The function which checks if the player is grounded
@@ -182,4 +200,27 @@ public class PlayerController : MonoBehaviour
         // Return the value so script knows whether the player's jump counter is reset or not
         return rayCastHit.collider != null;
     }
+
+    // Jumping up with Spacebar if your jump counter is not maxed
+    
+
+    public void MeleeAttack()
+    {
+        playerAnimator.SetTrigger("useMelee");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<EnemyScript>().takeDamage(meleeDamage);
+        }
+    }
+
+    private void OnDrawGizmosSelected() {
+
+        if (attackPoint == null) return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+
 }
