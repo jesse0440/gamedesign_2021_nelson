@@ -64,9 +64,9 @@ MonoBehaviour:
   chargePlayer: 1
   enemyChargingSpeed: 2
   chargePlayerY: 1
-  canEnemyDropHearts: 0
-  enemyDropChance: 0
-  heartContainer: {fileID: 0}
+  canEnemyDropHearts: 1
+  enemyDropChance: 5
+  heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
 --- !u!50 &7206657533525355275
 Rigidbody2D:
   serializedVersion: 4

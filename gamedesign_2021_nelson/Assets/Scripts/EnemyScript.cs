@@ -73,6 +73,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     float enemyChargingSpeed;
 
+    // Charge at player vertically if can detect player is checked
     [SerializeField]
     bool chargePlayerY;
 
@@ -285,7 +286,7 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    // If enemy is hit from the side or falls on you
+    // If enemy is collided with
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // If the collided object is a player
@@ -308,29 +309,13 @@ public class EnemyScript : MonoBehaviour
                 enemyAttackTimer = Time.time;
             }
         }
-
-
-
     }
 
-    public void takeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-
         //TODO: play hurt animation
 
         enemyHealth -= damage;
-
-        //if enemy dies
-        if (enemyHealth <= 0)
-        {
-            //TODO: play death animation
-
-
-            //GetComponent<Collider2D>().enabled = false;
-            //this.enabled = false;
-            gameObject.SetActive(false);
-
-        }
     }
 
     // Framerate independent Update(), works better for physics
@@ -388,7 +373,7 @@ public class EnemyScript : MonoBehaviour
             playerTransform = GameObject.FindWithTag("Player").transform;
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
-            //If charging is enabled
+            // If charging is enabled
             if (chargePlayer)
             {
                 // If the player is inside the detection range
@@ -553,29 +538,30 @@ public class EnemyScript : MonoBehaviour
             transform.localScale = new Vector2(-1, 1);
         }
 
+        // Charging vertically
         if (chargePlayerY)
         {
             if (transform.position.y + 0.1f >= playerTransform.position.y && transform.position.y - 0.1f <= playerTransform.position.y)
             {
-                // Stop moving, look right
+                // Stop going up and down
                 newVelocity.y = 0;
-                transform.localScale = new Vector2(1, 1);
+                //transform.localScale = new Vector2(1, 1);
             }
 
-            // If the player is to the right of the enemy
+            // If the player is above the enemy
             else if (transform.position.y + 0.1f < playerTransform.position.y)
             {
-                // Move right, look right
+                // Move up
                 newVelocity.y = enemyChargingSpeed;
-                transform.localScale = new Vector2(1, 1);
+                //transform.localScale = new Vector2(1, 1);
             }
 
-            // If the player is to the left of the enemy
+            // If the player is berlow the enemy
             else if (transform.position.y - 0.1f > playerTransform.position.y)
             {
-                // Moveleft, look left
+                // Move down
                 newVelocity.y = -enemyChargingSpeed;
-                transform.localScale = new Vector2(-1, 1);
+                //transform.localScale = new Vector2(-1, 1);
             }
         }
 
@@ -587,7 +573,16 @@ public class EnemyScript : MonoBehaviour
     private void StopChargingAtPlayer()
     {
         // Stop the enemy chase and resume patrol
-        rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
+        if (chargePlayerY)
+        {
+            rigidBody.velocity = new Vector2(0, 0);
+        }
+
+        else
+        {
+            rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
+        }
+        
 
         // If the enemy has wall and edge patrol
         if (wallPatrolCheck && edgePatrolCheck)

@@ -4928,7 +4928,7 @@ MonoBehaviour:
   chargePlayerY: 0
   canEnemyDropHearts: 0
   enemyDropChance: 0
-  heartContainer: {fileID: 0}
+  heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
 --- !u!50 &7168305532131998061
 Rigidbody2D:
   serializedVersion: 4
@@ -5051,7 +5051,7 @@ MonoBehaviour:
   chargePlayerY: 0
   canEnemyDropHearts: 0
   enemyDropChance: 0
-  heartContainer: {fileID: 0}
+  heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
 --- !u!50 &7739203051973418233
 Rigidbody2D:
   serializedVersion: 4
@@ -5085,15 +5085,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452ddd34a5dfaa54a87756289181457c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 8783549745276043193}
-  attackPoint: {fileID: 507359214364061017}
-  attackRange: 0.84
-  meleeDamage: 10
-  meleeAttackRate: 2
-  nextMeleeTime: 0
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 64
   playerHealth: 100
   playerMaxJumpCounter: 1
   playerJumpCounter: 0
@@ -5102,6 +5093,9 @@ MonoBehaviour:
   dashUnlockedCheck: 0
   dashDistance: 6
   dashInterval: 2
+  attackRange: 0.84
+  meleeDamage: 10
+  meleeAttackInterval: 2
 --- !u!4 &8394749798221649392
 Transform:
   m_ObjectHideFlags: 0

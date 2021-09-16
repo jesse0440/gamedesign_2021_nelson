@@ -93,8 +93,9 @@ MonoBehaviour:
   playerDetectionRange: 4.5
   chargePlayer: 1
   enemyChargingSpeed: 4
-  canEnemyDropHearts: 0
-  enemyDropChance: 0
+  chargePlayerY: 0
+  canEnemyDropHearts: 1
+  enemyDropChance: 2
   heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
 --- !u!50 &3974522232527720155
 Rigidbody2D:
