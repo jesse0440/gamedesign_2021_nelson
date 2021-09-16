@@ -26,7 +26,7 @@ public class EnemyScript : MonoBehaviour
     // Bool to determine if this enemy can detect walls
     [SerializeField]
     bool canEnemyDetectWalls;
-    
+
     // The distance an enemy can cast a ray to check for walls for pathing purposes
     // Needs to be entered manually in the editor!
     [SerializeField]
@@ -35,7 +35,7 @@ public class EnemyScript : MonoBehaviour
     // Bool to determine if this enemy can detect edges
     [SerializeField]
     bool canEnemyDetectEdges;
-    
+
     // The distance an enemy can cast a ray to check for edges for pathing purposes
     // Needs to be entered manually in the editor!
     [SerializeField]
@@ -65,9 +65,16 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     float playerDetectionRange;
 
+    // Charge at player if can detect player is checked
+    [SerializeField]
+    bool chargePlayer;
+
     // The speed the enemy uses when charging at a player
     [SerializeField]
     float enemyChargingSpeed;
+
+    [SerializeField]
+    bool chargePlayerY;
 
     // Bool to determine if this enemy can drop heart containers on death
     [SerializeField]
@@ -80,7 +87,6 @@ public class EnemyScript : MonoBehaviour
     // Heart container prefab
     [SerializeField]
     GameObject heartContainer;
-
 
     // Enemy variables only required within this script
     bool alreadyAttacked = false;
@@ -107,7 +113,7 @@ public class EnemyScript : MonoBehaviour
     // Transform of the player
     Transform playerTransform;
 
-    void Start() 
+    void Start()
     {
         // Check that health is not 0f
         if (enemyHealth == 0f)
@@ -134,7 +140,7 @@ public class EnemyScript : MonoBehaviour
             // Increase jump interval with 0-1 seconds
             randomJumpIntervalExtenderValue = Random.value;
         }
-        
+
         // If jumping is not allowed
         else if (!enemyJumpingAllowed)
         {
@@ -150,7 +156,7 @@ public class EnemyScript : MonoBehaviour
         }
 
         // Otherwise do not assign
-        else 
+        else
         {
             edgePatrolCheck = false;
         }
@@ -185,9 +191,9 @@ public class EnemyScript : MonoBehaviour
             enemyAttackInterval = 2f;
         }
 
-        if (enemyDamage == 0f)
+        if (enemyDamage < 0f)
         {
-            enemyDamage = 10f;
+            enemyDamage = 0f;
         }
 
         if (enemyMoveSpeed == 0f)
@@ -221,7 +227,7 @@ public class EnemyScript : MonoBehaviour
 
         if (enemyJumpingAllowed)
         {
-            if (enemyJumpInterval == 0f) 
+            if (enemyJumpInterval == 0f)
             {
                 enemyJumpInterval = 5f;
             }
@@ -232,19 +238,22 @@ public class EnemyScript : MonoBehaviour
             if (playerDetectionRange == 0f)
             {
                 playerDetectionRange = 2f;
-            } 
+            }
         }
 
         if (canEnemyDetectPlayer)
         {
-            if (enemyChargingSpeed == 0f)
+            if (chargePlayer)
             {
-                enemyChargingSpeed = 2.5f;
+                if (enemyChargingSpeed == 0f)
+                {
+                    enemyChargingSpeed = 2.5f;
+                }
             }
         }
     }
-    
-    void Update() 
+
+    void Update()
     {
         // If the health bugs out over max health or is reduced to 0 or lower
         // Try to spawn a heart container and destroy this enemy object
@@ -275,7 +284,7 @@ public class EnemyScript : MonoBehaviour
             alreadyJumped = false;
         }
     }
-    
+
     // If enemy is hit from the side or falls on you
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -301,7 +310,7 @@ public class EnemyScript : MonoBehaviour
         }
 
 
-    
+
     }
 
     public void takeDamage(int damage)
@@ -316,11 +325,11 @@ public class EnemyScript : MonoBehaviour
         {
             //TODO: play death animation
 
-            
+
             //GetComponent<Collider2D>().enabled = false;
             //this.enabled = false;
             gameObject.SetActive(false);
-            
+
         }
     }
 
@@ -349,7 +358,7 @@ public class EnemyScript : MonoBehaviour
         if (canEnemyDetectWalls && IsHittingWall() || canEnemyDetectEdges && IsNearEdge() && rigidBody.velocity.y == 0)
         {
             // If going left before hitting a wall/nearing an edge
-            if (enemyFacingDirection == LEFT )
+            if (enemyFacingDirection == LEFT)
             {
                 // Change direction to right
                 ChangeFacingDirection(RIGHT);
@@ -379,32 +388,36 @@ public class EnemyScript : MonoBehaviour
             playerTransform = GameObject.FindWithTag("Player").transform;
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
-            // If the player is inside the detection range
-            if (distanceToPlayer <= playerDetectionRange)
+            //If charging is enabled
+            if (chargePlayer)
             {
-                //  If either of these detections is true, disable both (saves time & space)
-                if (wallPatrolCheck || edgePatrolCheck)
+                // If the player is inside the detection range
+                if (distanceToPlayer <= playerDetectionRange)
                 {
-                    // Disable both patrols
-                    canEnemyDetectEdges = false;
-                    canEnemyDetectWalls = false;
+                    //  If either of these detections is true, disable both (saves time & space)
+                    if (wallPatrolCheck || edgePatrolCheck)
+                    {
+                        // Disable both patrols
+                        canEnemyDetectEdges = false;
+                        canEnemyDetectWalls = false;
+                    }
+
+                    // This charge instance at player has started
+                    chargeInstanceCheck = true;
+
+                    // Charge at player
+                    ChargeAtPlayer();
                 }
 
-                // This charge instance at player has started
-                chargeInstanceCheck = true;
+                // If the player is outside the detection range
+                else if (distanceToPlayer > playerDetectionRange && chargeInstanceCheck == true)
+                {
+                    // This charge instance at player has ended
+                    chargeInstanceCheck = false;
 
-                // Charge at player
-                ChargeAtPlayer();
-            }
-
-            // If the player is outside the detection range
-            else if (distanceToPlayer > playerDetectionRange && chargeInstanceCheck == true)
-            {
-                // This charge instance at player has ended
-                chargeInstanceCheck = false;
-
-                // Leave the player alone
-                StopChargingAtPlayer();
+                    // Leave the player alone
+                    StopChargingAtPlayer();
+                }
             }
         }
     }
@@ -447,7 +460,7 @@ public class EnemyScript : MonoBehaviour
         if (enemyFacingDirection == LEFT)
         {
             castingDistance = -baseWallCastingDistance;
-        } 
+        }
 
         // If the enemy is looking to the right, make the cast distance positive
         else if (enemyFacingDirection == RIGHT)
@@ -540,6 +553,32 @@ public class EnemyScript : MonoBehaviour
             transform.localScale = new Vector2(-1, 1);
         }
 
+        if (chargePlayerY)
+        {
+            if (transform.position.y + 0.1f >= playerTransform.position.y && transform.position.y - 0.1f <= playerTransform.position.y)
+            {
+                // Stop moving, look right
+                newVelocity.y = 0;
+                transform.localScale = new Vector2(1, 1);
+            }
+
+            // If the player is to the right of the enemy
+            else if (transform.position.y + 0.1f < playerTransform.position.y)
+            {
+                // Move right, look right
+                newVelocity.y = enemyChargingSpeed;
+                transform.localScale = new Vector2(1, 1);
+            }
+
+            // If the player is to the left of the enemy
+            else if (transform.position.y - 0.1f > playerTransform.position.y)
+            {
+                // Moveleft, look left
+                newVelocity.y = -enemyChargingSpeed;
+                transform.localScale = new Vector2(-1, 1);
+            }
+        }
+
         // Assign the rigidbody's new velocity
         rigidBody.velocity = newVelocity;
     }
@@ -558,7 +597,7 @@ public class EnemyScript : MonoBehaviour
             canEnemyDetectEdges = true;
             ChangeFacingDirection(RIGHT);
         }
-        
+
         // If the enemy has wall patrol only
         else if (wallPatrolCheck)
         {
@@ -566,7 +605,7 @@ public class EnemyScript : MonoBehaviour
             canEnemyDetectWalls = true;
             ChangeFacingDirection(RIGHT);
         }
-        
+
         // If the enemy has edge patrol only
         else if (edgePatrolCheck)
         {
