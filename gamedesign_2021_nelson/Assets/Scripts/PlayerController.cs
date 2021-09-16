@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     public float playerCurrentJumpHeight;
     public float wallClimbValue = 0f;
     public float dashUnlockedCheck = 0f;
-    public float dashDistance = 5f;
-    public float dashInterval = 4f;
+    public float dashDistance = 6f;
+    public float dashInterval = 2f;
 
     // Player statistics which are only needed in this script
     float playerMaxHealth = 100f;
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     float groundedCheckRayLength = 0.15f;
     float dashIntervalTimer;
     bool dashIntervalPassed;
+    bool dashUsed;
     
     // Player components
     Rigidbody2D rigidBody;
@@ -161,20 +162,8 @@ public class PlayerController : MonoBehaviour
         // Dashing with Left Shift if it is unlocked
         if (Input.GetButtonDown("Dash") && dashUnlockedCheck == 1 && dashIntervalPassed)
         {
-            // Check if something is blocking the way
-            RaycastHit2D dashTerrainDetection = Physics2D.Raycast(transform.position, new Vector2(Input.GetAxis("Horizontal"), 0), dashDistance, terrainLayerMask);
-
-            // If moving right, dash right
-            if (dashTerrainDetection.collider == null && rigidBody.velocity.x > 0)
-            {
-                gameObject.transform.position = new Vector3(gameObject.transform.position.x + dashDistance, gameObject.transform.position.y, gameObject.transform.position.z);
-            }
-
-            // If moving left dash left
-            else if (dashTerrainDetection.collider == null && rigidBody.velocity.x < 0)
-            {
-                gameObject.transform.position = new Vector3(gameObject.transform.position.x - dashDistance, gameObject.transform.position.y, gameObject.transform.position.z);
-            }
+            // Mark that Dash was used
+            dashUsed = true;
 
             // Reset Dash timer
             dashIntervalPassed = false;
@@ -198,12 +187,18 @@ public class PlayerController : MonoBehaviour
             //Set attack timer
             nextMeleeTime = Time.time + 1f / meleeAttackRate;
         }
+    }
 
-        /*
-        // Debug for dash distance
-        Debug.DrawRay(transform.position, new Vector3(dashDistance, 0, 0), Color.blue);
-        Debug.DrawRay(transform.position, new Vector3(-dashDistance, 0, 0), Color.blue);
-        */
+    // Fixed update occurs at the same timr regardless of framerate
+    private void FixedUpdate()
+    {
+        // If the dash was used
+        if (dashUsed)
+        {
+            // Move the player for dash distance and set the ability on cooldown
+            rigidBody.MovePosition(transform.position + new Vector3(Input.GetAxis("Horizontal"), 0) * dashDistance);
+            dashUsed = false;
+        }
     }
 
     // The function which checks if the player is grounded
