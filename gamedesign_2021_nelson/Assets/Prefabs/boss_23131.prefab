@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8066569777667651963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 823.2149}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8066569777714300897}
@@ -140,7 +140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8066569777714300829}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.661232, y: -0.42000008, z: -823.2149}
+  m_LocalPosition: {x: 14.661232, y: -0.42000008, z: 0}
   m_LocalScale: {x: 7, y: 3.5, z: 1}
   m_Children:
   - {fileID: 8066569777667651960}
@@ -176,6 +176,7 @@ MonoBehaviour:
   playerDetectionRange: 0
   chargePlayer: 0
   enemyChargingSpeed: 0
+  chargePlayerY: 0
   canEnemyDropHearts: 0
   enemyDropChance: 0
   heartContainer: {fileID: 0}
