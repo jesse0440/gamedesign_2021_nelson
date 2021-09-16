@@ -23,12 +23,17 @@ public class PlayerController : MonoBehaviour
     public float playerJumpCounter = 0;
     public float playerCurrentJumpHeight;
     public float wallClimbValue = 0f;
+    public float dashUnlockedCheck = 0f;
+    public float dashDistance = 5f;
+    public float dashInterval = 4f;
 
     // Player statistics which are only needed in this script
     float playerMaxHealth = 100f;
     float playerSpeed = 7f;
     float playerBaseJumpHeight = 12f;
     float groundedCheckRayLength = 0.15f;
+    float dashIntervalTimer;
+    bool dashIntervalPassed;
     
     // Player components
     Rigidbody2D rigidBody;
@@ -53,6 +58,9 @@ public class PlayerController : MonoBehaviour
         // Find if there is a saved amount of health for the player or use default (100f)
         playerHealth = PlayerPrefs.GetFloat("PlayerHealth", 100f);
 
+        // Set the interval comparison time for dashing
+        dashIntervalTimer = Time.time;
+
 
         /*
          ___________________________________________________________________
@@ -66,13 +74,13 @@ public class PlayerController : MonoBehaviour
         // ----------ABILITIES----------
 
         // ABILITY 0 - Find out if double jump is unlocked (2) or use default value (1)
-        playerMaxJumpCounter = PlayerPrefs.GetInt("Ability_0", 1);
+        playerMaxJumpCounter = PlayerPrefs.GetFloat("Ability_0", 1);
 
         // ABILITY 1 - Find out if wall climb is unlocked (0.02f) or use default value (0)
-        wallClimbValue = PlayerPrefs.GetInt("Ability_1", 0);
+        wallClimbValue = PlayerPrefs.GetFloat("Ability_1", 0);
 
-        // ABILITY 2 - 
-        // code
+        // ABILITY 2 - Find out if dash is unlocked (1) or use default value (0)
+        dashUnlockedCheck = PlayerPrefs.GetFloat("Ability_2", 0);
         
         // ABILITY 3 - 
         // code
@@ -107,6 +115,12 @@ public class PlayerController : MonoBehaviour
 
         // Update the health bar in the HUD if player health changes
         playerHealthBarSlider.value = playerHealth;
+
+        // Check if enough time has passed since last use of Dash
+        if (dashUnlockedCheck == 1 && Time.time > dashIntervalTimer + dashInterval)
+        {
+            dashIntervalPassed = true;
+        }
         
         // Get the Horizontal input of Input manager
         float horizontalDirection = Input.GetAxis("Horizontal");
@@ -144,11 +158,34 @@ public class PlayerController : MonoBehaviour
             playerJumpCounter++;
         }
 
+        // Dashing with Left Shift if it is unlocked
+        if (Input.GetButtonDown("Dash") && dashUnlockedCheck == 1 && dashIntervalPassed)
+        {
+            // Check if something is blocking the way
+            RaycastHit2D dashTerrainDetection = Physics2D.Raycast(transform.position, new Vector2(Input.GetAxis("Horizontal"), 0), dashDistance, terrainLayerMask);
+
+            // If moving right, dash right
+            if (dashTerrainDetection.collider == null && rigidBody.velocity.x > 0)
+            {
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x + dashDistance, gameObject.transform.position.y, gameObject.transform.position.z);
+            }
+
+            // If moving left dash left
+            else if (dashTerrainDetection.collider == null && rigidBody.velocity.x < 0)
+            {
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x - dashDistance, gameObject.transform.position.y, gameObject.transform.position.z);
+            }
+
+            // Reset Dash timer
+            dashIntervalPassed = false;
+            dashIntervalTimer = Time.time;
+        }
+
         // Check if the player is grounded
         IsGrounded();
 
         // Resetting the jump counter & jump height damage boost when player hits the ground
-        if (rigidBody.velocity.y == 0 && IsGrounded())
+        if (IsGrounded())
         {
             playerJumpCounter = 0;
             playerCurrentJumpHeight = playerBaseJumpHeight;
@@ -161,6 +198,12 @@ public class PlayerController : MonoBehaviour
             //Set attack timer
             nextMeleeTime = Time.time + 1f / meleeAttackRate;
         }
+
+        /*
+        // Debug for dash distance
+        Debug.DrawRay(transform.position, new Vector3(dashDistance, 0, 0), Color.blue);
+        Debug.DrawRay(transform.position, new Vector3(-dashDistance, 0, 0), Color.blue);
+        */
     }
 
     // The function which checks if the player is grounded
@@ -198,7 +241,7 @@ public class PlayerController : MonoBehaviour
         */
 
         // Return the value so script knows whether the player's jump counter is reset or not
-        return rayCastHit.collider != null;
+        return rayCastHit.collider;
     }
 
     // Jumping up with Spacebar if your jump counter is not maxed
@@ -221,6 +264,4 @@ public class PlayerController : MonoBehaviour
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-
-
 }

@@ -16,7 +16,7 @@ public class AbilityUnlock : MonoBehaviour
     // The value this ability adds to the player
     // Must be entered manually in editor!!
     [SerializeField]
-    int abilityValue;
+    float abilityValue;
 
     // The ID of the room the ability unlock is located in
     int roomID;
@@ -55,8 +55,10 @@ public class AbilityUnlock : MonoBehaviour
                     collision.gameObject.GetComponent<PlayerController>().playerMaxJumpCounter = 2;
                     break;
                 case 1:
+                    collision.gameObject.GetComponent<PlayerController>().wallClimbValue = 0.02f;
                     break;
                 case 2:
+                    collision.gameObject.GetComponent<PlayerController>().dashUnlockedCheck = 1;
                     break;
                 case 3:
                     break;
@@ -69,7 +71,7 @@ public class AbilityUnlock : MonoBehaviour
             hasThisAbilityUnlockBeenUsedAlready = PlayerPrefs.GetInt("AbilityUnlock" + roomID + "_" + abilityID, 0);
 
             // Enable ability and save it in PlayerPrefs
-            PlayerPrefs.SetInt("Ability_" + abilityID, abilityValue);
+            PlayerPrefs.SetFloat("Ability_" + abilityID, abilityValue);
 
             // Disable this ability unlock object
             abilityUnlockObject.SetActive(false);

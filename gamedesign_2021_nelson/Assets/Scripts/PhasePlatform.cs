@@ -37,7 +37,7 @@ public class PhasePlatform : MonoBehaviour
 
         // If the player is standing on the platform and they press any Vertical keys
         // Unsolidify the platform
-        if (boxCollider.IsTouching(playerEdgeCollider) && Input.GetButtonDown("Vertical"))
+        if (boxCollider.IsTouching(playerEdgeCollider) && Input.GetButtonDown("Vertical2"))
         {
             boxCollider.enabled = false;
         }
