@@ -424,7 +424,7 @@ MonoBehaviour:
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
+  m_RepeatDelay: 0.1
   m_ForceModuleActive: 0
 --- !u!114 &242928679619832794
 MonoBehaviour:
@@ -1547,16 +1547,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452ddd34a5dfaa54a87756289181457c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 8467882799229457220}
-  attackPoint: {fileID: 823061394308989348}
+  playerHealth: 100
   attackRange: 0.84
   meleeDamage: 10
-  meleeAttackRate: 2
-  nextMeleeTime: 0
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  playerHealth: 100
+  meleeAttackInterval: 2
   playerMaxJumpCounter: 1
   playerJumpCounter: 0
   playerCurrentJumpHeight: 0
