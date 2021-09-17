@@ -7,23 +7,28 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    // Player statistics which are accessed from elsewhere
+    // Public variables in categories
+    [Header("Combat Settings")]
     public float playerHealth = 100f;
-    public float playerMaxJumpCounter = 1;
-    public float playerJumpCounter = 0;
-    public float playerCurrentJumpHeight;
-    public float wallClimbValue = 0f;
-    public float dashUnlockedCheck = 0f;
-    public float dashDistance = 4f;
-    public float dashInterval = 2f;
-
-    //Combat variables and components
     [SerializeField]
     float attackRange = 0.5f;
     [SerializeField]
     float meleeDamage = 10f;
     [SerializeField]
     float meleeAttackInterval = 2f;
+
+    [Header("Jump Settings")]
+    public float playerMaxJumpCounter = 1;
+    public float playerJumpCounter = 0;
+    public float playerCurrentJumpHeight;
+
+    [Header("Ability Settings")]
+    public float wallClimbValue = 0f;
+    public float dashUnlockedCheck = 0f;
+    public float dashDistance = 4f;
+    public float dashInterval = 2f;
+
+    
 
     // Player statistics which are only needed in this script
     float playerMaxHealth = 100f;
@@ -38,6 +43,8 @@ public class PlayerController : MonoBehaviour
     bool dashIntervalPassed;
     bool dashUsed;
     
+
+    
     // Player components
     Animator playerAnimator;
     Rigidbody2D rigidBody;
@@ -48,6 +55,8 @@ public class PlayerController : MonoBehaviour
     LayerMask enemyLayers;
     Slider playerHealthBarSlider;
     Color rayColor;
+
+
 
     // Start is called before the first frame update
     void Start()

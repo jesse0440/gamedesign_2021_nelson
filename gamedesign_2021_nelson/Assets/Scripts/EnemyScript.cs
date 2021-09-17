@@ -5,21 +5,22 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
+    [Header("Combat Settings")]
     // Enemy variables which are needed elsewhere
     public float enemyHealth;
 
     // Seconds between possible attacks
-    // Needs to be entered manually in the editor!
     [SerializeField]
     float enemyAttackInterval;
 
     // Damage enemy does per hit
-    // Needs to be entered manually in the editor!
     [SerializeField]
     float enemyDamage;
 
+    
+    
+    [Header("Movement Settings")]
     // The speed of the enemy
-    // Needs to be entered manually in the editor!
     [SerializeField]
     float enemyMoveSpeed;
 
@@ -28,7 +29,6 @@ public class EnemyScript : MonoBehaviour
     bool canEnemyDetectWalls;
 
     // The distance an enemy can cast a ray to check for walls for pathing purposes
-    // Needs to be entered manually in the editor!
     [SerializeField]
     float baseWallCastingDistance;
 
@@ -37,10 +37,12 @@ public class EnemyScript : MonoBehaviour
     bool canEnemyDetectEdges;
 
     // The distance an enemy can cast a ray to check for edges for pathing purposes
-    // Needs to be entered manually in the editor!
     [SerializeField]
     float baseEdgeCastingDistance;
 
+    
+    
+    [Header("Jumping Settings")]
     // Bool to determine if this enemy type can jump
     [SerializeField]
     bool enemyJumpingAllowed;
@@ -57,6 +59,9 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     bool randomJumpIntervalExtender;
 
+    
+    
+    [Header("Detection & Charging Settings")]
     // Bool to determine if this enemy can detect and charge at the player
     [SerializeField]
     bool canEnemyDetectPlayer;
@@ -77,6 +82,9 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     bool chargePlayerY;
 
+    
+    
+    [Header("Drop Settings")]
     // Bool to determine if this enemy can drop heart containers on death
     [SerializeField]
     bool canEnemyDropHearts;
@@ -89,18 +97,23 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     GameObject heartContainer;
 
+    
+    
     // Enemy variables only required within this script
-    bool alreadyAttacked = false;
-    float enemyAttackTimer;
-    float enemyMaxHealth;
     string enemyFacingDirection;
-    bool alreadyJumped = false;
+
+    float enemyMaxHealth;
+    float enemyAttackTimer;
     float enemyJumpTimer;
     float randomJumpIntervalExtenderValue;
-    bool chargeDirectionCheck;
-    bool chargeInstanceCheck;
-    bool wallPatrolCheck;
-    bool edgePatrolCheck;
+
+    bool alreadyJumped = false;
+    bool alreadyAttacked = false;
+    bool chargeInstanceCheck = false;
+    bool wallPatrolCheck = false;
+    bool edgePatrolCheck = false;
+
+
 
     // Easy way to make less writing mistakes
     const string LEFT = "left";
@@ -114,6 +127,8 @@ public class EnemyScript : MonoBehaviour
     // Transform of the player
     Transform playerTransform;
 
+    
+    
     void Start()
     {
         // Check that health is not 0f
@@ -458,7 +473,7 @@ public class EnemyScript : MonoBehaviour
         enemyTargetPosition.x += castingDistance;
 
         // A line to be drawn for debugging purposes
-        Debug.DrawLine(castingPosition.position, enemyTargetPosition, Color.red);
+        // Debug.DrawLine(castingPosition.position, enemyTargetPosition, Color.red);
 
         // Determine if the cast position casting a ray towards the enemy's target position hits anything within the layer "Terrain"
         if (Physics2D.Linecast(castingPosition.position, enemyTargetPosition, 1 << LayerMask.NameToLayer("Terrain")))
@@ -489,7 +504,7 @@ public class EnemyScript : MonoBehaviour
         enemyTargetPosition.y -= castingDistance;
 
         // A line to be drawn for debugging purposes
-        Debug.DrawLine(castingPosition.position, enemyTargetPosition, Color.blue);
+        // Debug.DrawLine(castingPosition.position, enemyTargetPosition, Color.blue);
 
         // Determine if the cast position casting a ray towards the enemy's target position hits anything within the layer "Terrain"
         if (Physics2D.Linecast(castingPosition.position, enemyTargetPosition, 1 << LayerMask.NameToLayer("Terrain")))
@@ -545,7 +560,6 @@ public class EnemyScript : MonoBehaviour
             {
                 // Stop going up and down
                 newVelocity.y = 0;
-                //transform.localScale = new Vector2(1, 1);
             }
 
             // If the player is above the enemy
@@ -553,7 +567,6 @@ public class EnemyScript : MonoBehaviour
             {
                 // Move up
                 newVelocity.y = enemyChargingSpeed;
-                //transform.localScale = new Vector2(1, 1);
             }
 
             // If the player is berlow the enemy
@@ -561,7 +574,6 @@ public class EnemyScript : MonoBehaviour
             {
                 // Move down
                 newVelocity.y = -enemyChargingSpeed;
-                //transform.localScale = new Vector2(-1, 1);
             }
         }
 

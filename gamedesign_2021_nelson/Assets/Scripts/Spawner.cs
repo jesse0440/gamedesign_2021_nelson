@@ -5,13 +5,12 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     // The GameObject to instantiate
-    public GameObject entityToSpawn;
+    [SerializeField]
+    GameObject entityToSpawn;
 
     // An instance of the ScriptableObject defined above
-    public SpawnManagerScriptableObject spawnManagerValues;
-
-    // This will be appended to the name of the created entities and increment when each is created
-    int instanceNumber = 0;
+    [SerializeField]
+    SpawnManagerScriptableObject spawnManagerValues;
 
     // Bool to determine if this enemy can detect and charge at the player
     [SerializeField]
@@ -21,18 +20,25 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     float playerDetectionRange;
 
-    // Transform of the player
-    Transform playerTransform;
-
-    // The ticker that determines if another enity can be spawned
-    double entitySpawnTicker;
-
     // The tipping point of the ticker
     [SerializeField]
     double entitySpawnTickerMax;
 
+
+
+    // This will be appended to the name of the created entities and increment when each is created
+    int instanceNumber = 0;
+
+    // Transform of the player
+    Transform playerTransform;
+
+    // The ticker that determines if another entity can be spawned
+    double entitySpawnTicker;
+
     // The distance between the spawner and the player
     float distanceToPlayer;
+
+
 
     // Fixed update is called at the same frame regardless of framerate
     void FixedUpdate()
