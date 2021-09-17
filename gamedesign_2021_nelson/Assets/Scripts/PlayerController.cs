@@ -297,7 +297,9 @@ public class PlayerController : MonoBehaviour
 
     private void Jump() 
     {
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x, playerCurrentJumpHeight);
+        //rigidBody.velocity = new Vector2(rigidBody.velocity.x, playerCurrentJumpHeight);
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
+        rigidBody.AddForce(Vector2.up * playerCurrentJumpHeight, ForceMode2D.Impulse);
         playerJumpCounter += 1;
     }
 }

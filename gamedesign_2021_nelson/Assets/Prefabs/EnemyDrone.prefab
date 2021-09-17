@@ -61,8 +61,8 @@ MonoBehaviour:
   randomJumpIntervalExtender: 0
   canEnemyDetectPlayer: 1
   playerDetectionRange: 20
+  enemyChargingSpeed: 1.5
   chargePlayer: 1
-  enemyChargingSpeed: 2
   chargePlayerY: 1
   canEnemyDropHearts: 1
   enemyDropChance: 5

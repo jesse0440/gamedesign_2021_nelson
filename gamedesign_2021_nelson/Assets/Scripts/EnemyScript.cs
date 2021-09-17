@@ -70,13 +70,13 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     float playerDetectionRange;
 
-    // Charge at player if can detect player is checked
-    [SerializeField]
-    bool chargePlayer;
-
     // The speed the enemy uses when charging at a player
     [SerializeField]
     float enemyChargingSpeed;
+    
+    // Charge at player if can detect player is checked
+    [SerializeField]
+    bool chargePlayer;
 
     // Charge at player vertically if can detect player is checked
     [SerializeField]
@@ -548,7 +548,7 @@ public class EnemyScript : MonoBehaviour
         // If the player is to the left of the enemy
         else if (transform.position.x - 0.1f > playerTransform.position.x)
         {
-            // Moveleft, look left
+            // Move left, look left
             newVelocity.x = -enemyChargingSpeed;
             transform.localScale = new Vector2(-1, 1);
         }
@@ -569,7 +569,7 @@ public class EnemyScript : MonoBehaviour
                 newVelocity.y = enemyChargingSpeed;
             }
 
-            // If the player is berlow the enemy
+            // If the player is below the enemy
             else if (transform.position.y - 0.1f > playerTransform.position.y)
             {
                 // Move down
