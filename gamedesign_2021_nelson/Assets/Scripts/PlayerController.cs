@@ -20,7 +20,13 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Settings")]
     public float playerMaxJumpCounter = 1;
     public float playerJumpCounter = 0;
+    [SerializeField]
+    float playerBaseJumpHeight = 12f;
     public float playerCurrentJumpHeight;
+    [SerializeField]
+    float playerGravity = 2.5f;
+    [SerializeField]
+    float fallingGravityMultiplier = 2f;
 
     [Header("Ability Settings")]
     public float wallClimbValue = 0f;
@@ -32,8 +38,8 @@ public class PlayerController : MonoBehaviour
 
     // Player statistics which are only needed in this script
     float playerMaxHealth = 100f;
-    float playerSpeed = 7f;
-    float playerBaseJumpHeight = 12f;
+    float playerSpeed = 10f;
+    float playerMaxSpeed = 8f;
     float groundedCheckRayLength = 0.01f;
     float dashIntervalTimer;
     float nextMeleeTimer;
@@ -50,6 +56,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidBody;
     EdgeCollider2D edgeCollider;
     SpriteRenderer spriteRenderer;
+    Vector2 playerDirection;
     Transform attackPoint;
     LayerMask terrainLayerMask;
     LayerMask enemyLayers;
@@ -84,6 +91,12 @@ public class PlayerController : MonoBehaviour
 
         // Setup your grounded timer comparison
         groundedIntervalTimer = Time.time;
+
+        // Set gravity to a default if not set in editor
+        if (playerGravity == 0)
+        {
+            playerGravity = 2.5f;
+        }
 
 
         /*
@@ -172,13 +185,10 @@ public class PlayerController : MonoBehaviour
         }
         
         // Get the Horizontal input of Input manager
-        float horizontalDirection = Input.GetAxis("Horizontal");
-
-        // The player movement
-        rigidBody.velocity = new Vector2(horizontalDirection * playerSpeed, rigidBody.velocity.y);
+        playerDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         // While moving right
-        if (horizontalDirection > 0) 
+        if (playerDirection.x > 0) 
         {
             // Make the local scale's X positive to make the player face right
             Vector3 newScale = new Vector3(1, 1, 1);
@@ -186,7 +196,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // While moving left
-        if (horizontalDirection < 0)
+        if (playerDirection.x < 0)
         {
             // Make the local scale's X negative to make the player face left
             Vector3 newScale = new Vector3(-1, 1, 1);
@@ -222,6 +232,13 @@ public class PlayerController : MonoBehaviour
             playerCurrentJumpHeight = playerBaseJumpHeight;
             playerJumpCounter = 0;
 
+            // If not wallclimbing
+            if (rigidBody.velocity.y == 0)
+            {
+                // Set gravity back to normal
+                rigidBody.gravityScale = playerGravity;
+            }
+
             groundedIntervalPassed = false;
             groundedIntervalTimer = Time.time;
         }
@@ -230,12 +247,36 @@ public class PlayerController : MonoBehaviour
     // Fixed update occurs at the same time regardless of framerate
     private void FixedUpdate()
     {
+        // Call movement
+        PlayerMovement(playerDirection.x);
+
+        // If falling
+        if (rigidBody.velocity.y < 0)
+        {
+            // Increase gravity by the multiplier
+            rigidBody.gravityScale = playerGravity * fallingGravityMultiplier;
+        }
+        
         // If the dash was used
         if (dashUsed)
         {
             // Move the player for dash distance and set the ability on cooldown
             rigidBody.MovePosition(transform.position + new Vector3(Input.GetAxis("Horizontal"), 0) * dashDistance);
             dashUsed = false;
+        }
+    }
+
+    // The player movement function
+    private void PlayerMovement(float direction)
+    {
+        // Set the speed and direction
+        rigidBody.velocity = new Vector2(direction * playerSpeed, rigidBody.velocity.y);
+
+        // If velocity exceeds the player's max speed
+        if (Mathf.Abs(rigidBody.velocity.x) > playerMaxSpeed)
+        {
+            // Limit velocity
+            rigidBody.velocity = new Vector2(Mathf.Sign(rigidBody.velocity.x) * playerMaxSpeed, rigidBody.velocity.y);
         }
     }
 
@@ -277,17 +318,22 @@ public class PlayerController : MonoBehaviour
         return rayCastHit.collider;
     }  
 
+    // Melee attack function
     private void MeleeAttack()
     {
+        // Create attack collider
         playerAnimator.SetTrigger("useMelee");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
+        // If enemy colliders are inside the collider
         foreach(Collider2D enemy in hitEnemies)
         {
+            // Damage enemies
             enemy.GetComponent<EnemyScript>().TakeDamage(meleeDamage);
         }
     }
 
+    // Draw the attack area while in editor
     private void OnDrawGizmosSelected() {
 
         if (attackPoint == null) return;
@@ -295,9 +341,12 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
+    // Jump function
     private void Jump() 
     {
-        //rigidBody.velocity = new Vector2(rigidBody.velocity.x, playerCurrentJumpHeight);
+        // Set gravity and drag to normal, add an upwards force to the player and increase jump counter
+        rigidBody.gravityScale = playerGravity;
+        rigidBody.drag = 0f;
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
         rigidBody.AddForce(Vector2.up * playerCurrentJumpHeight, ForceMode2D.Impulse);
         playerJumpCounter += 1;

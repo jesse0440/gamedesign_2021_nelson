@@ -39,7 +39,9 @@
      <Compile Include="Assets\Scripts\FallZone.cs" />
      <Compile Include="Assets\Scripts\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\PhasePlatform.cs" />
+     <Compile Include="Assets\Scripts\RespawnTrigger.cs" />
      <Compile Include="Assets\Scripts\HealthContainer.cs" />
+     <Compile Include="Assets\Scripts\SpawnPointLocation.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Scriptable Objects\SpawnManagerScriptableObject.cs" />
      <Compile Include="Assets\Scripts\GameManagerScript.cs" />
@@ -47,8 +49,6 @@
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
      <Compile Include="Assets\Scripts\AbilityUnlock.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
-     <Compile Include="Assets\Scripts\RespawnTrigger.cs" />
-     <Compile Include="Assets\Scripts\SpawnPointLocation.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/unity addons/2020.3.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

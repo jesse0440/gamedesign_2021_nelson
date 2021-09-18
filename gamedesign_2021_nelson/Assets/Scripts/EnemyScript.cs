@@ -326,6 +326,7 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    // Function that makes the enemy take damage from a player
     public void TakeDamage(float damage)
     {
         //TODO: play hurt animation
