@@ -115,8 +115,8 @@ public class PlayerController : MonoBehaviour
         // ABILITY 2 - Find out if dash is unlocked (1) or use default value (0)
         dashUnlockedCheck = PlayerPrefs.GetFloat("Ability_2", 0);
         
-        // ABILITY 3 - 
-        // code
+        // ABILITY 3 - Find out if "Omae Wa Mou Shindeiru" is unlocked (x) or use default value (y)
+        // abilityThreeCheck = PlayerPrefs.GetFloat("Ability_3", y);
 
 
         // Assign the health bar HUD element to the variable
@@ -234,8 +234,8 @@ public class PlayerController : MonoBehaviour
         // Call movement
         PlayerMovement(playerDirection.x);
 
-        // If falling
-        if (rigidBody.velocity.y < 0)
+        // If falling and vertical velocity is lower than the bump velocity limit
+        if (rigidBody.velocity.y < -1.67f)
         {
             // Increase gravity by the multiplier
             rigidBody.gravityScale = playerGravity * fallingGravityMultiplier;
@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour
             dashUsed = false;
         }
 
-        // If the player has not jumped but their velocity is lower than the bump velocity limit
+        // If the player has not jumped but their vertical velocity is lower than the bump velocity limit
         if (hasNotJumped && rigidBody.velocity.y < -1.67f)
         {
             // Count it as a fall and increase jump counter
