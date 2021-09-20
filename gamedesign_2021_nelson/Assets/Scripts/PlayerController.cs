@@ -43,10 +43,9 @@ public class PlayerController : MonoBehaviour
     float groundedCheckRayLength = 0.01f;
     float dashIntervalTimer;
     float nextMeleeTimer;
-    float groundedIntervalTimer;
-    bool groundedIntervalPassed;
     bool meleeIntervalPassed;
     bool dashIntervalPassed;
+    bool hasNotJumped = true;
     bool dashUsed;
     
 
@@ -88,9 +87,6 @@ public class PlayerController : MonoBehaviour
 
         // Set the interval comparison time for melee attacks
         nextMeleeTimer = Time.time;
-
-        // Setup your grounded timer comparison
-        groundedIntervalTimer = Time.time;
 
         // Set gravity to a default if not set in editor
         if (playerGravity == 0)
@@ -156,20 +152,15 @@ public class PlayerController : MonoBehaviour
         // Jumping up with W or Up Arrow if your jump counter is not maxed
         if (Input.GetButtonDown("Jump") && playerJumpCounter < playerMaxJumpCounter)
         {
+            hasNotJumped = false;
             Jump();
         }
 
         // Jumping up with Spacebar if your jump counter is not maxed
         if (Input.GetButtonDown("Jump2") && playerJumpCounter < playerMaxJumpCounter)
         {
+            hasNotJumped = false;
             Jump();
-        }
-
-        // If your grounded interval has passed
-        if (Time.time > groundedIntervalTimer + 0.1f)
-        {
-            // Resetting jumps is once again allowed
-            groundedIntervalPassed = true;
         }
 
         // Check if enough time has passed since last melee attack
@@ -224,29 +215,22 @@ public class PlayerController : MonoBehaviour
             meleeIntervalPassed = false;
             nextMeleeTimer = Time.time;
         }
-
-        // Resetting the jump counter & jump height damage boost when player hits the ground
-        // Resetting the timer until you can next reset your jumps
-        if (IsGrounded() && groundedIntervalPassed)
-        {
-            playerCurrentJumpHeight = playerBaseJumpHeight;
-            playerJumpCounter = 0;
-
-            // If not wallclimbing
-            if (rigidBody.velocity.y == 0)
-            {
-                // Set gravity back to normal
-                rigidBody.gravityScale = playerGravity;
-            }
-
-            groundedIntervalPassed = false;
-            groundedIntervalTimer = Time.time;
-        }
     }
 
     // Fixed update occurs at the same time regardless of framerate
     private void FixedUpdate()
     {
+        // Resetting the jump counter & jump height damage boost when player hits the ground
+        // Inform the system that the player can fall again
+        // Set gravity back to normal
+        if (IsGrounded() && rigidBody.velocity.y == 0 || IsWallClimbing())
+        {
+            playerCurrentJumpHeight = playerBaseJumpHeight;
+            playerJumpCounter = 0;
+            hasNotJumped = true;
+            rigidBody.gravityScale = playerGravity;
+        }
+
         // Call movement
         PlayerMovement(playerDirection.x);
 
@@ -263,6 +247,14 @@ public class PlayerController : MonoBehaviour
             // Move the player for dash distance and set the ability on cooldown
             rigidBody.MovePosition(transform.position + new Vector3(Input.GetAxis("Horizontal"), 0) * dashDistance);
             dashUsed = false;
+        }
+
+        // If the player has not jumped but their velocity is lower than the bump velocity limit
+        if (hasNotJumped && rigidBody.velocity.y < -1.67f)
+        {
+            // Count it as a fall and increase jump counter
+            playerJumpCounter += 1;
+            hasNotJumped = false;
         }
     }
 
@@ -283,40 +275,22 @@ public class PlayerController : MonoBehaviour
     // The function which checks if the player is grounded
     private bool IsGrounded() 
     {
-        // Assign the vector with possible ability and cast the ray collider
-        Vector3 wallClimbVector = new Vector3(wallClimbValue, 0, 0);
-        RaycastHit2D rayCastHit = Physics2D.BoxCast(edgeCollider.bounds.center, edgeCollider.bounds.size + wallClimbVector, 0f, Vector2.down, groundedCheckRayLength, terrainLayerMask);
-
-        // This code block is only for debugging purposes
-        // It allows you to see the area of the ray in color as you jump up and down
-        
-        /*
-        // If grounded
-        if (rayCastHit.collider != null)
-        {
-            // Green gizmo color
-            rayColor = Color.green;
-        }
-
-        // If not grounded
-        else
-        {
-            // Red gizmo color
-            rayColor = Color.red;
-        }
-
-        // Visualize the ray collider area
-        Debug.DrawRay(edgeCollider.bounds.center + new Vector3(edgeCollider.bounds.extents.x, 0), Vector2.down * (edgeCollider.bounds.extents.y + groundedCheckRayLength), rayColor);
-        Debug.DrawRay(edgeCollider.bounds.center - new Vector3(edgeCollider.bounds.extents.x, 0), Vector2.down * (edgeCollider.bounds.extents.y + groundedCheckRayLength), rayColor);
-        Debug.DrawRay(edgeCollider.bounds.center - new Vector3(edgeCollider.bounds.extents.x, edgeCollider.bounds.extents.y + groundedCheckRayLength), 2f * Vector2.right * (edgeCollider.bounds.extents.x), rayColor);
-        
-        // Use this to check for hit timings if needed
-        // Debug.Log(rayCastHit.collider);
-        */
+        // Cast the box to check for ground
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(edgeCollider.bounds.center, new Vector3(edgeCollider.bounds.size.x / 2, edgeCollider.bounds.size.y, edgeCollider.bounds.size.z), 0f, Vector2.down, groundedCheckRayLength, terrainLayerMask);
 
         // Return the value so script knows whether the player's jump counter is reset or not
         return rayCastHit.collider;
-    }  
+    }
+
+    // The function which checks if the player is wall climbing
+    private bool IsWallClimbing()
+    {
+        // Cast the box to check for walls
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(edgeCollider.bounds.center, new Vector3(edgeCollider.bounds.size.x + wallClimbValue, edgeCollider.bounds.size.y / 2, edgeCollider.bounds.size.z), 0f, Vector2.down, groundedCheckRayLength, terrainLayerMask);
+
+        // Return the value so script knows whether the player's jump counter is reset or not
+        return rayCastHit.collider;
+    }
 
     // Melee attack function
     private void MeleeAttack()
