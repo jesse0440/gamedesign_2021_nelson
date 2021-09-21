@@ -49,6 +49,8 @@
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
      <Compile Include="Assets\Scripts\AbilityUnlock.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
+     <Compile Include="Assets\Scripts\PlayerHealthBar.cs" />
+     <Compile Include="Assets\Scripts\EnemyProjectile.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/unity addons/2020.3.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

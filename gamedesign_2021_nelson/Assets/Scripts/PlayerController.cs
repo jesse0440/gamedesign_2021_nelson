@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     // Public variables in categories
     [Header("Combat Settings")]
     public float playerHealth = 100f;
+    [HideInInspector]
+    public float playerMaxHealth = 100f;
     [SerializeField]
     float attackRange = 0.5f;
     [SerializeField]
@@ -37,7 +39,6 @@ public class PlayerController : MonoBehaviour
     
 
     // Player statistics which are only needed in this script
-    float playerMaxHealth = 100f;
     float playerSpeed = 10f;
     float playerMaxSpeed = 8f;
     float groundedCheckRayLength = 0.01f;
@@ -59,7 +60,6 @@ public class PlayerController : MonoBehaviour
     Transform attackPoint;
     LayerMask terrainLayerMask;
     LayerMask enemyLayers;
-    Slider playerHealthBarSlider;
     Color rayColor;
 
 
@@ -118,11 +118,6 @@ public class PlayerController : MonoBehaviour
         // ABILITY 3 - Find out if "Omae Wa Mou Shindeiru" is unlocked (x) or use default value (y)
         // abilityThreeCheck = PlayerPrefs.GetFloat("Ability_3", y);
 
-
-        // Assign the health bar HUD element to the variable
-        playerHealthBarSlider = GameObject.FindWithTag("PlayerHealthBar").GetComponent<Slider>();
-        playerHealthBarSlider.maxValue = playerMaxHealth;
-
         // Import the coordinates to your location in the room or use default if unavailable, then warp to the location
         float tempXCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " X Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.x);
         float tempYCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " Y Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.y);
@@ -145,9 +140,6 @@ public class PlayerController : MonoBehaviour
             // Reduce the player's health to the maximum
             playerHealth = playerMaxHealth;
         }
-
-        // Update the health bar in the HUD if player health changes
-        playerHealthBarSlider.value = playerHealth;
 
         // Jumping up with W or Up Arrow if your jump counter is not maxed
         if (Input.GetButtonDown("Jump") && playerJumpCounter < playerMaxJumpCounter)

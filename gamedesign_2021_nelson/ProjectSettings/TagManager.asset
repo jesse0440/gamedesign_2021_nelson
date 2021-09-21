@@ -12,6 +12,7 @@ TagManager:
   - PhasePlatform
   - PlayerHealthBar
   - Weapon
+  - Terrain
   layers:
   - Default
   - TransparentFX

@@ -163,6 +163,9 @@ MonoBehaviour:
   enemyHealth: 100
   enemyAttackInterval: 2
   enemyDamage: 0
+  canEnemyDetectPlayer: 0
+  playerDetectionRange: 0
+  canMove: 1
   enemyMoveSpeed: 5.56
   canEnemyDetectWalls: 1
   baseWallCastingDistance: 0.01
@@ -172,14 +175,17 @@ MonoBehaviour:
   enemyJumpHeight: 0
   enemyJumpInterval: 0
   randomJumpIntervalExtender: 0
-  canEnemyDetectPlayer: 0
-  playerDetectionRange: 0
-  chargePlayer: 0
   enemyChargingSpeed: 0
+  chargePlayer: 0
   chargePlayerY: 0
   canEnemyDropHearts: 0
   enemyDropChance: 0
   heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
+  canEnemyShootPlayer: 0
+  projectileDamage: 0
+  projectileSpeed: 0
+  projectile: {fileID: 0}
+  projectileOutPoint: {fileID: 0}
 --- !u!114 &5958409537240348461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +202,7 @@ MonoBehaviour:
   spawnManagerValues: {fileID: 11400000, guid: 174a0d47ceb07e2428ec3550ec0161aa, type: 2}
   canEnemyDetectPlayer: 1
   playerDetectionRange: 10
+  entitySpawnTickerMax: 0
 --- !u!50 &8066569777714300899
 Rigidbody2D:
   serializedVersion: 4

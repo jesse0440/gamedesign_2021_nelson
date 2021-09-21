@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4638767930960393860}
   m_Layer: 8
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2921,7 +2921,7 @@ GameObject:
   - component: {fileID: 7903634362130926891}
   m_Layer: 8
   m_Name: TileGrid
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

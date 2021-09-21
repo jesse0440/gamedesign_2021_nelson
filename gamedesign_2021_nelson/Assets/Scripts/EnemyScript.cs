@@ -17,9 +17,21 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     float enemyDamage;
 
+    // Bool to determine if this enemy can detect the player
+    [SerializeField]
+    bool canEnemyDetectPlayer;
+
+    // The range in which the enemy can detect the player
+    [SerializeField]
+    float playerDetectionRange;
+
     
     
     [Header("Movement Settings")]
+    //
+    [SerializeField]
+    bool canMove;
+
     // The speed of the enemy
     [SerializeField]
     float enemyMoveSpeed;
@@ -61,15 +73,7 @@ public class EnemyScript : MonoBehaviour
 
     
     
-    [Header("Detection & Charging Settings")]
-    // Bool to determine if this enemy can detect and charge at the player
-    [SerializeField]
-    bool canEnemyDetectPlayer;
-
-    // The range in which the enemy can detect the player
-    [SerializeField]
-    float playerDetectionRange;
-
+    [Header("Charging Settings")]
     // The speed the enemy uses when charging at a player
     [SerializeField]
     float enemyChargingSpeed;
@@ -96,6 +100,29 @@ public class EnemyScript : MonoBehaviour
     // Heart container prefab
     [SerializeField]
     GameObject heartContainer;
+
+
+
+    [Header("Turret Settings")]
+    // Bool to determine if the enemy can shoot
+    [SerializeField]
+    bool canEnemyShootPlayer;
+
+    // The projectile damage
+    [SerializeField]
+    public float projectileDamage;
+
+    // The projectile speed
+    [SerializeField]
+    public float projectileSpeed;
+
+    // Projectile prefab
+    [SerializeField]
+    GameObject projectile;
+
+    // The point the projectile leaves the enemy
+    [SerializeField]
+    Transform projectileOutPoint;
 
     
     
@@ -209,10 +236,10 @@ public class EnemyScript : MonoBehaviour
 
         if (enemyDamage < 0f)
         {
-            enemyDamage = 0f;
+            enemyDamage = 10f;
         }
 
-        if (enemyMoveSpeed == 0f)
+        if (canMove && enemyMoveSpeed == 0f)
         {
             enemyMoveSpeed = 1.25f;
         }
@@ -239,10 +266,7 @@ public class EnemyScript : MonoBehaviour
             {
                 enemyJumpHeight = 6f;
             }
-        }
 
-        if (enemyJumpingAllowed)
-        {
             if (enemyJumpInterval == 0f)
             {
                 enemyJumpInterval = 5f;
@@ -255,15 +279,35 @@ public class EnemyScript : MonoBehaviour
             {
                 playerDetectionRange = 2f;
             }
-        }
 
-        if (canEnemyDetectPlayer)
-        {
             if (chargePlayer)
             {
                 if (enemyChargingSpeed == 0f)
                 {
                     enemyChargingSpeed = 2.5f;
+                }
+            }
+
+            if (canEnemyShootPlayer)
+            {
+                if (projectileDamage == 0f)
+                {
+                    projectileDamage = 10f;
+                }
+
+                if (projectileSpeed == 0f)
+                {
+                    projectileSpeed = 2f;
+                }
+
+                if (projectile == null)
+                {
+                    projectile = GameObject.FindWithTag("EnemyProjectile");
+                }
+
+                if (projectileOutPoint == null)
+                {
+                    projectileOutPoint = GameObject.Find("ProjectileOutPoint").transform;
                 }
             }
         }
@@ -353,7 +397,10 @@ public class EnemyScript : MonoBehaviour
         }
 
         // Move the enemy based on the assigned speed
-        rigidBody.velocity = new Vector2(newSpeed, rigidBody.velocity.y);
+        if (canMove)
+        {
+            rigidBody.velocity = new Vector2(newSpeed, rigidBody.velocity.y);
+        }
 
         // Determine if the enemy is hitting a wall
         if (canEnemyDetectWalls && IsHittingWall() || canEnemyDetectEdges && IsNearEdge() && rigidBody.velocity.y == 0)
@@ -418,6 +465,21 @@ public class EnemyScript : MonoBehaviour
 
                     // Leave the player alone
                     StopChargingAtPlayer();
+                }
+            }
+
+            // If shooting is enabled
+            if (canEnemyShootPlayer)
+            {
+                // If the player is inside the detection range
+                if (distanceToPlayer <= playerDetectionRange)
+                {
+                    // If the enemy has not attacked in the attack interval
+                    if (!alreadyAttacked)
+                    {
+                        // Shoot at the player
+                        ShootAtPlayer();
+                    }
                 }
             }
         }
@@ -595,7 +657,6 @@ public class EnemyScript : MonoBehaviour
         {
             rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
         }
-        
 
         // If the enemy has wall and edge patrol
         if (wallPatrolCheck && edgePatrolCheck)
@@ -621,5 +682,18 @@ public class EnemyScript : MonoBehaviour
             canEnemyDetectEdges = true;
             ChangeFacingDirection(RIGHT);
         }
+    }
+
+    // Shooting function
+    private void ShootAtPlayer()
+    {
+        // Instantiate a projectile and set its damage and speed
+        GameObject shotProjectile = (GameObject)Instantiate(projectile, projectileOutPoint.position, projectileOutPoint.rotation);
+        EnemyProjectile enemyProjectile = shotProjectile.GetComponent<EnemyProjectile>();
+        enemyProjectile.SetVariables(projectileDamage, projectileSpeed);
+
+        // Delay the next possible attack with the interval
+        alreadyAttacked = true;
+        enemyAttackTimer = Time.time;
     }
 }
