@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c9cf80afa2fcc4c8c3647d2f83f669, type: 3}
   m_Name: SpawnerObject
   m_EditorClassIdentifier: 
-  prefabName: EnemyDrone
+  prefabName: AlienEggBoss
   numberOfPrefabsToCreate: 1
   spawnPoints:
   - {x: 15, y: 2, z: 0}

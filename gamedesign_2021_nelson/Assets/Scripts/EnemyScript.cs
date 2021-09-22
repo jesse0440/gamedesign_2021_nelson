@@ -25,6 +25,10 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     float playerDetectionRange;
 
+    // Bool to determine if this enemy dies after hitting the player
+    [SerializeField]
+    bool isSelfdestructing;
+
     
     
     [Header("Movement Settings")]
@@ -363,6 +367,13 @@ public class EnemyScript : MonoBehaviour
                 // Improve the player's jumping height until they touch the ground again
                 collision.gameObject.GetComponent<PlayerController>().playerCurrentJumpHeight *= (1f + (1f / 6f));
 
+                // If this enemy is a self-destructing enemy
+                if (isSelfdestructing)
+                {
+                    // Destroys itself
+                    Destroy(gameObject);
+                }
+                
                 // Delay the next possible attack with the interval
                 alreadyAttacked = true;
                 enemyAttackTimer = Time.time;

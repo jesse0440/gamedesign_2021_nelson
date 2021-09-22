@@ -84,7 +84,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < spawnManagerValues.numberOfPrefabsToCreate; i++)
         {
             // Creates an instance of the prefab at the current spawn point.
-            GameObject currentEntity = Instantiate(entityToSpawn, spawnManagerValues.spawnPoints[currentSpawnPointIndex], Quaternion.identity);
+            GameObject currentEntity = Instantiate(entityToSpawn, transform.position, Quaternion.identity);
 
             // Sets the name of the instantiated entity to be the string defined in the ScriptableObject and then appends it with a unique number. 
             currentEntity.name = spawnManagerValues.prefabName + "_" + instanceNumber;
