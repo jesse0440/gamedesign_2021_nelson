@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
     float meleeDamage = 10f;
     [SerializeField]
     float meleeAttackInterval = 2f;
+    [SerializeField]
+    float rangedAttackInterval = 0.3f;
+    [SerializeField]
+    public GameObject playerShuriken;
 
     [Header("Jump Settings")]
     public float playerMaxJumpCounter = 1;
@@ -44,7 +48,9 @@ public class PlayerController : MonoBehaviour
     float groundedCheckRayLength = 0.01f;
     float dashIntervalTimer;
     float nextMeleeTimer;
+    float nextRangedTimer;
     bool meleeIntervalPassed;
+    bool rangedIntervalPassed;
     bool dashIntervalPassed;
     bool hasNotJumped = true;
     bool dashUsed;
@@ -58,9 +64,11 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Vector2 playerDirection;
     Transform attackPoint;
+    Transform rangedPoint;
     LayerMask terrainLayerMask;
     LayerMask enemyLayers;
     Color rayColor;
+    
 
 
 
@@ -73,6 +81,7 @@ public class PlayerController : MonoBehaviour
         // Find the necessary components of the player object
         playerAnimator = GetComponent<Animator>();
         attackPoint = GameObject.Find("attackPoint").GetComponent<Transform>();
+        rangedPoint = GameObject.Find("rangedPoint").GetComponent<Transform>();
         rigidBody = GetComponent<Rigidbody2D>();
         edgeCollider = GetComponent<EdgeCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -87,6 +96,10 @@ public class PlayerController : MonoBehaviour
 
         // Set the interval comparison time for melee attacks
         nextMeleeTimer = Time.time;
+
+        // Set the interval comparison time for ranged attacks
+        nextRangedTimer = Time.time;
+
 
         // Set gravity to a default if not set in editor
         if (playerGravity == 0)
@@ -160,6 +173,11 @@ public class PlayerController : MonoBehaviour
         {
             meleeIntervalPassed = true;
         }
+
+        if (Time.time > nextRangedTimer + rangedAttackInterval)
+        {
+            rangedIntervalPassed = true;
+        }
         
         // Check if enough time has passed since last use of Dash
         if (dashUnlockedCheck == 1 && Time.time > dashIntervalTimer + dashInterval)
@@ -170,12 +188,15 @@ public class PlayerController : MonoBehaviour
         // Get the Horizontal input of Input manager
         playerDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+
         // While moving right
         if (playerDirection.x > 0) 
         {
             // Make the local scale's X positive to make the player face right
             Vector3 newScale = new Vector3(1, 1, 1);
             transform.localScale = newScale;
+            //rotate rangedPoint to make it face right
+            rangedPoint.rotation =  Quaternion.Euler(0, 0, 0);
         }
 
         // While moving left
@@ -184,6 +205,8 @@ public class PlayerController : MonoBehaviour
             // Make the local scale's X negative to make the player face left
             Vector3 newScale = new Vector3(-1, 1, 1);
             transform.localScale = newScale;
+            //rotate rangedPoint to make it face left
+            rangedPoint.rotation = Quaternion.Euler(0, 180, 0);
         }
 
         // Dashing with Left Shift if it is unlocked
@@ -206,6 +229,16 @@ public class PlayerController : MonoBehaviour
             // Reset attack timer
             meleeIntervalPassed = false;
             nextMeleeTimer = Time.time;
+        }
+
+        // Check for melee attack input
+        if (Input.GetButtonDown("ThrowShuriken") && rangedIntervalPassed)
+        {
+            // Attack
+            throwShuriken();
+
+            rangedIntervalPassed = false;
+            nextRangedTimer = Time.time;
         }
     }
 
@@ -287,6 +320,7 @@ public class PlayerController : MonoBehaviour
     // Melee attack function
     private void MeleeAttack()
     {
+        Debug.Log("Melee triggered");
         // Create attack collider
         playerAnimator.SetTrigger("useMelee");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -297,6 +331,11 @@ public class PlayerController : MonoBehaviour
             // Damage enemies
             enemy.GetComponent<EnemyScript>().TakeDamage(meleeDamage);
         }
+    }
+
+     private void throwShuriken()
+    {
+        Instantiate(playerShuriken, rangedPoint.position, rangedPoint.rotation);
     }
 
     // Draw the attack area while in editor
