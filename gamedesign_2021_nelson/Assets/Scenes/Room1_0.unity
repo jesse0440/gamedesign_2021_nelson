@@ -7782,7 +7782,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 287413025797417291}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: LoadPlayer
         m_Mode: 1
@@ -8076,7 +8076,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 287413025797417291}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: SavePlayer
         m_Mode: 1

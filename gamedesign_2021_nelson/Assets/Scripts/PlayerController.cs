@@ -13,13 +13,13 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public float playerMaxHealth = 100f;
     [SerializeField]
-    float attackRange = 0.5f;
+    public float attackRange = 0.5f;
     [SerializeField]
-    float meleeDamage = 10f;
+    public float meleeDamage = 10f;
     [SerializeField]
-    float meleeAttackInterval = 2f;
+    public float meleeAttackInterval = 2f;
     [SerializeField]
-    float rangedAttackInterval = 0.3f;
+    public float rangedAttackInterval = 0.3f;
     [SerializeField]
     GameObject playerConsumableSlotOne;
     [SerializeField]
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(ContainsKey(keyDoor.GetKeyType()));
             //ALARM, door not working :D it goes through this if check even if you have no key
             //the debug log prints false, then why the hell is it going through the if????
-            if (ContainsKey(keyDoor.GetKeyType())) ;
+            if (ContainsKey(keyDoor.GetKeyType()));
             {
                 //currently holding keycard to open the door
                 //removes the key and opens the door
@@ -470,7 +470,7 @@ public class PlayerController : MonoBehaviour
         playerJumpCounter += 1;
     }
 
-    /*
+    
     // Player save function
     public void SavePlayer()
     {
@@ -483,13 +483,24 @@ public class PlayerController : MonoBehaviour
     // Player load function
     public void LoadPlayer()
     {
+
         PlayerData data = SaveSystem.LoadPlayer();
+
+        //SceneManager.LoadScene(data.savedSceneNumber);
+
+
+        playerHealth = data.savedPlayerHealth;
+        playerMaxHealth = data.savedPlayerMaxHealth;
+        attackRange = data.savedAttackRange;
+        meleeDamage = data.savedMeleeDamage;
+        meleeAttackInterval = data.savedMeleeAttackInterval;
+        rangedAttackInterval = data.savedRangedAttackInterval;
 
         //sets player position
         Vector2 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
+        position.x = data.savedPlayerPosition[0];
+        position.y = data.savedPlayerPosition[1];
         transform.position = position;
     }
-    */
+    
 }

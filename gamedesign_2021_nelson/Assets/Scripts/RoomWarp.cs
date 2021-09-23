@@ -15,6 +15,8 @@ public class RoomWarp : MonoBehaviour
     [SerializeField]
     int nextRoomId;
 
+    GameObject player;
+
     // When entering the PolygonCollider2D trigger
     private void OnTriggerEnter2D(Collider2D collision) 
     {
@@ -24,10 +26,16 @@ public class RoomWarp : MonoBehaviour
             // Find the index of the active scene and save the player's coordinates
             int sceneID = SceneManager.GetActiveScene().buildIndex;
 
+            
             PlayerPrefs.SetFloat("Room " + sceneID + " X Coordinate", collision.gameObject.transform.position.x);
             PlayerPrefs.SetFloat("Room " + sceneID + " Y Coordinate", collision.gameObject.transform.position.y);
             PlayerPrefs.SetFloat("PlayerHealth", collision.gameObject.GetComponent<PlayerController>().playerHealth);
             PlayerPrefs.SetInt("ConsumableSelection", collision.gameObject.GetComponent<PlayerController>().consumableSelection);
+            
+            /*
+            player = GameObject.FindWithTag("Player");
+            SaveSystem.SavePlayer(player.GetComponent<PlayerController>());
+            */
         }
     }
 
@@ -39,6 +47,7 @@ public class RoomWarp : MonoBehaviour
         {
             // Load next room
             SceneManager.LoadScene(nextRoomId);
+
         }
     }
 }

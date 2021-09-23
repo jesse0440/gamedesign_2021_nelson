@@ -12,6 +12,8 @@ public class RespawnTrigger : MonoBehaviour
     // The spawnpoint of the room this object is in
     Transform spawnPointLocation;
 
+    GameObject player;
+
     void Start()
     {
         // Assign the collider and the spawnpoint
@@ -28,9 +30,16 @@ public class RespawnTrigger : MonoBehaviour
             // Find the index of the active scene
             int sceneID = SceneManager.GetActiveScene().buildIndex;
 
+            
             // Move the spawnpoint of the room to this respawn point trigger
             PlayerPrefs.SetFloat("Room " + sceneID + " Respawn Coordinate X", gameObject.transform.position.x);
             PlayerPrefs.SetFloat("Room " + sceneID + " Respawn Coordinate Y", gameObject.transform.position.y);
+            
+
+            /*
+            player = GameObject.FindWithTag("Player");
+            SaveSystem.SavePlayer(player.GetComponent<PlayerController>());
+            */
 
             // Disable this respawn point trigger
             gameObject.SetActive(false);
