@@ -27,6 +27,7 @@ public class RoomWarp : MonoBehaviour
             PlayerPrefs.SetFloat("Room " + sceneID + " X Coordinate", collision.gameObject.transform.position.x);
             PlayerPrefs.SetFloat("Room " + sceneID + " Y Coordinate", collision.gameObject.transform.position.y);
             PlayerPrefs.SetFloat("PlayerHealth", collision.gameObject.GetComponent<PlayerController>().playerHealth);
+            PlayerPrefs.SetInt("ConsumableSelection", collision.gameObject.GetComponent<PlayerController>().consumableSelection);
         }
     }
 

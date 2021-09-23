@@ -21,7 +21,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float rangedAttackInterval = 0.3f;
     [SerializeField]
-    public GameObject playerShuriken;
+    GameObject playerConsumableSlotOne;
+    [SerializeField]
+    GameObject playerConsumableSlotTwo;
 
     [Header("Jump Settings")]
     public float playerMaxJumpCounter = 1;
@@ -42,11 +44,16 @@ public class PlayerController : MonoBehaviour
 
     
 
+    // Player variables needed in other scripts
+    [HideInInspector]
+    public int consumableSelection = 0;
+    [HideInInspector]
+    public float dashIntervalTimer;
+    
     // Player statistics which are only needed in this script
     float playerSpeed = 10f;
     float playerMaxSpeed = 8f;
     float groundedCheckRayLength = 0.01f;
-    float dashIntervalTimer;
     float nextMeleeTimer;
     float nextRangedTimer;
     bool meleeIntervalPassed;
@@ -92,13 +99,13 @@ public class PlayerController : MonoBehaviour
         playerHealth = PlayerPrefs.GetFloat("PlayerHealth", 100f);
 
         // Set the interval comparison time for dashing
-        dashIntervalTimer = Time.time;
+        dashIntervalTimer = 0f;
 
         // Set the interval comparison time for melee attacks
-        nextMeleeTimer = Time.time;
+        nextMeleeTimer = 0f;
 
         // Set the interval comparison time for ranged attacks
-        nextRangedTimer = Time.time;
+        nextRangedTimer = 0f;
 
 
         // Set gravity to a default if not set in editor
@@ -106,6 +113,9 @@ public class PlayerController : MonoBehaviour
         {
             playerGravity = 2.5f;
         }
+
+        // Set the selected consumable slot
+        consumableSelection = PlayerPrefs.GetInt("ConsumableSelection", 0);
 
 
         /*
@@ -210,7 +220,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Dashing with Left Shift if it is unlocked
-        if (Input.GetButtonDown("Dash") && dashUnlockedCheck == 1 && dashIntervalPassed)
+        if (Input.GetButtonDown("Dash") && dashUnlockedCheck == 1 && dashIntervalPassed && rigidBody.velocity.x != 0)
         {
             // Mark that Dash was used
             dashUsed = true;
@@ -231,14 +241,69 @@ public class PlayerController : MonoBehaviour
             nextMeleeTimer = Time.time;
         }
 
-        // Check for melee attack input
-        if (Input.GetButtonDown("ThrowShuriken") && rangedIntervalPassed)
+        // Check for consumable input
+        if (Input.GetButtonDown("Consumable"))
         {
-            // Attack
-            throwShuriken();
+            // If consumable slot 1 is selected
+            if (consumableSelection == 0)
+            {
+                // If the consumable is a shuriken and interval has passed
+                if (playerConsumableSlotOne.name == "playerShuriken" && rangedIntervalPassed)
+                {
+                    // Throw a shuriken
+                    ThrowShuriken(playerConsumableSlotOne);
 
-            rangedIntervalPassed = false;
-            nextRangedTimer = Time.time;
+                    // Reset shuriken cooldown
+                    rangedIntervalPassed = false;
+                    nextRangedTimer = Time.time;
+                }
+
+                // To be done: other consumables
+
+                else
+                {
+                    return;
+                }
+            }
+            
+            // If consumable slot 2 is selected
+            if (consumableSelection == 1)
+            {
+                // If the consumable is a shuriken and interval has passed
+                if (playerConsumableSlotTwo.name == "playerShuriken" && rangedIntervalPassed)
+                {
+                    // Throw a shuriken
+                    ThrowShuriken(playerConsumableSlotTwo);
+
+                    // Reset shuriken cooldown
+                    rangedIntervalPassed = false;
+                    nextRangedTimer = Time.time;
+                }
+
+                // To be done: other consumables
+                
+                else
+                {
+                    return;
+                }
+            }
+        }
+
+        // Switch between consumable slots
+        if (Input.GetButtonDown("ConsumableSelection"))
+        {
+            switch (consumableSelection)
+            {
+                case 0:
+                    consumableSelection = 1;
+                    break;
+                case 1:
+                    consumableSelection = 0;
+                    break;
+                default:
+                    consumableSelection = 0;
+                    break;
+            } 
         }
     }
 
@@ -333,9 +398,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-     private void throwShuriken()
+    // Function to instantiate a thrown shuriken
+    private void ThrowShuriken(GameObject chosenSlotItem)
     {
-        Instantiate(playerShuriken, rangedPoint.position, rangedPoint.rotation);
+        Instantiate(chosenSlotItem, rangedPoint.position, rangedPoint.rotation);
     }
 
     // Draw the attack area while in editor

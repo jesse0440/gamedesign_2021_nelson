@@ -13,6 +13,10 @@ TagManager:
   - PlayerHealthBar
   - Weapon
   - Terrain
+  - DoubleJump
+  - WallClimb
+  - Dash
+  - Teleport
   layers:
   - Default
   - TransparentFX

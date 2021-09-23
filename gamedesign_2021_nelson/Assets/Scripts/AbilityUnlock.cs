@@ -24,6 +24,9 @@ public class AbilityUnlock : MonoBehaviour
     // Check if this ability unlock has already been used, default is 0 = false
     int hasThisAbilityUnlockBeenUsedAlready = 0;
 
+    // The script the ability HUD icons are controlled by
+    AbilityIcons abilityIcons;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,19 +51,27 @@ public class AbilityUnlock : MonoBehaviour
         // If the triggering object is a player
         if (collision.gameObject.tag == "Player" && hasThisAbilityUnlockBeenUsedAlready == 0) 
         {
-            // Enable ability based on the manual ID
+            abilityIcons = GameObject.Find("Abilities").GetComponent<AbilityIcons>();
+            // Enable ability and its icon based on the manual ID
             switch (abilityID)
             {
                 case 0:
                     collision.gameObject.GetComponent<PlayerController>().playerMaxJumpCounter = 2;
+                    abilityIcons.abilityDoubleJump.SetActive(true);
                     break;
                 case 1:
                     collision.gameObject.GetComponent<PlayerController>().wallClimbValue = 0.02f;
+                    abilityIcons.abilityWallClimb.SetActive(true);
                     break;
                 case 2:
                     collision.gameObject.GetComponent<PlayerController>().dashUnlockedCheck = 1;
+                    abilityIcons.abilityDash.SetActive(true);
+                    abilityIcons.dashInterval.gameObject.SetActive(true);
                     break;
                 case 3:
+                    // code
+                    abilityIcons.abilityTeleport.SetActive(true);
+                    abilityIcons.teleportInterval.gameObject.SetActive(true);
                     break;
                 default:
                     break;
