@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 677, y: 492}
   m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 23
+  controlID: 68
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 56
+  controlID: 117
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 221}
   m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 57
+  controlID: 118
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -272,8 +272,8 @@ MonoBehaviour:
     y: 0
     width: 1079
     height: 640
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -454,22 +454,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\1tyopoyta\lappari\koulu\9. pelisuunnittelu\gamedesign_2021_nelson\gamedesign_2021_nelson
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e85b0000
-    m_LastClickedID: 23528
-    m_ExpandedIDs: 00000000c65b0000c85b0000ca5b0000cc5b0000ce5b0000d05b0000d25b0000d45b000000ca9a3b
+    m_SelectedIDs: 0c470000
+    m_LastClickedID: 18188
+    m_ExpandedIDs: 00000000ee460000f0460000f2460000f4460000f6460000f8460000fa460000fc46000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -497,7 +497,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c65b0000c85b0000ca5b0000cc5b0000ce5b0000d05b0000d25b0000d45b0000
+    m_ExpandedIDs: 00000000ee460000f0460000f2460000f4460000f6460000f8460000fa460000fc460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -618,9 +618,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: fe5b0000
+      m_SelectedIDs: 4e470000
       m_LastClickedID: 0
-      m_ExpandedIDs: dabbffff1cc0ffffecc4ffff4cc5ffffcac6ffff16c7ffff14caffffc0cbffff6accffff84cdffffa0ceffffccd0ffff54d2ffff6cd2ffff6ad4ffff3ad8ffffcad8ffff22dbffff0cdeffff56deffff22dfffff06e8ffff8a590000d0720000e4720000e4760000308800004288000090880000d0880000eaa0000004a300004aca00008ccc0000
+      m_ExpandedIDs: 3cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -680,9 +680,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -5.0553727, y: 6.521377, z: -561.4754}
+    m_Target: {x: 0.17970407, y: 1.9790099, z: -566.0261}
     speed: 2
-    m_Value: {x: -5.0553727, y: 6.521377, z: -561.4754}
+    m_Value: {x: 0.17970407, y: 1.9790099, z: -566.0261}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -733,9 +733,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 20.980345
+    m_Target: 7.783863
     speed: 2
-    m_Value: 20.980345
+    m_Value: 7.783863
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -870,9 +870,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 956
-    width: 1924
-    height: 403
+    y: 713
+    width: 1443
+    height: 286
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &21
 MonoBehaviour:

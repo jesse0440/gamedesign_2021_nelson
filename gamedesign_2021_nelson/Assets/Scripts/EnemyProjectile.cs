@@ -27,7 +27,7 @@ public class EnemyProjectile : MonoBehaviour
         {
             // Assign direction, start moving the bullet, wait for next shot
             Vector3 projectileDirection = (projectileTarget.position - transform.position).normalized;
-            rigidBody.velocity = new Vector2(projectileDirection.x * projectileSpeed, projectileDirection.y * projectileSpeed);
+            rigidBody.velocity = projectileDirection * projectileSpeed;
             hasBeenShot = false;
         }
     }
@@ -39,6 +39,11 @@ public class EnemyProjectile : MonoBehaviour
         if (collision.collider.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerController>().playerHealth -= projectileDamage;
+            Destroy(gameObject);
+        }
+
+        else if (collision.gameObject.layer == 8)
+        {
             Destroy(gameObject);
         }
     }
