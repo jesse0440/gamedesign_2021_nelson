@@ -61,9 +61,10 @@ public class PlayerController : MonoBehaviour
     bool dashIntervalPassed;
     bool hasNotJumped = true;
     bool dashUsed;
-    
 
-    
+    //Key holding list
+    private List<KeyCards.KeyType> keyList;
+
     // Player components
     Animator playerAnimator;
     Rigidbody2D rigidBody;
@@ -75,8 +76,54 @@ public class PlayerController : MonoBehaviour
     LayerMask terrainLayerMask;
     LayerMask enemyLayers;
     Color rayColor;
-    
 
+    //-----Keycard related functions etc. here-----
+    //Makes a list of keycards in awake
+    private void Awake()
+    {
+        keyList = new List<KeyCards.KeyType>();
+    }
+    //adds key to list
+    public void AddKey(KeyCards.KeyType keyType)
+    {
+        Debug.Log("Added Key" + keyType);
+        keyList.Add(keyType);
+    }
+    //removes a key from list
+    public void RemoveKey(KeyCards.KeyType keyType)
+    {
+        keyList.Remove(keyType);
+    }
+    //checks whether a (yellow, red, blue) key is in the list
+    public bool ContainsKey(KeyCards.KeyType keyType)
+    {
+        return keyList.Contains(keyType);
+    }
+    //on collide, check if collided with a key and adds it to the list (the function GetKeyType is located in KeyCards.cs)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        KeyCards key = collision.GetComponent<KeyCards>();
+        if (key != null)
+        {
+            AddKey(key.GetKeyType());
+            Destroy(key.gameObject);
+        }
+        KeyDoor keyDoor = collision.GetComponent<KeyDoor>();
+        if (keyDoor != null)
+        {
+            Debug.Log(ContainsKey(keyDoor.GetKeyType()));
+            //ALARM, door not working :D it goes through this if check even if you have no key
+            //the debug log prints false, then why the hell is it going through the if????
+            if (ContainsKey(keyDoor.GetKeyType())) ;
+            {
+                //currently holding keycard to open the door
+                //removes the key and opens the door
+                RemoveKey(keyDoor.GetKeyType());
+                keyDoor.OpenDoor();
+            }
+        }
+    }
+    //-----Keycard functions end here----
 
 
     // Start is called before the first frame update
