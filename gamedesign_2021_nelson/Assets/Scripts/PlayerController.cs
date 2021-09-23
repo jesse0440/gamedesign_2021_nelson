@@ -317,4 +317,27 @@ public class PlayerController : MonoBehaviour
         rigidBody.AddForce(Vector2.up * playerCurrentJumpHeight, ForceMode2D.Impulse);
         playerJumpCounter += 1;
     }
+
+    
+    //save function
+    public void SavePlayer()
+    {
+        //saves the player
+        SaveSystem.SavePlayer(this);
+        // just shows where it saves
+        Debug.Log(Application.persistentDataPath);
+    }
+
+    //loads player
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        //sets player position
+        Vector2 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        transform.position = position;
+    }
+    
 }

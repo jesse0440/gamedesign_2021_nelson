@@ -1474,7 +1474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88087ac4efc11b947a1c07c5cbf18e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextRoomId: 0
+  nextRoomId: 1
 --- !u!212 &3880517544345019492
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5115,6 +5115,7 @@ MonoBehaviour:
   enemyDamage: 25
   canEnemyDetectPlayer: 0
   playerDetectionRange: 0
+  isSelfdestructing: 0
   canMove: 0
   enemyMoveSpeed: 1.25
   canEnemyDetectWalls: 1
@@ -5244,6 +5245,7 @@ MonoBehaviour:
   enemyDamage: 25
   canEnemyDetectPlayer: 0
   playerDetectionRange: 0
+  isSelfdestructing: 0
   canMove: 0
   enemyMoveSpeed: 1.25
   canEnemyDetectWalls: 1
