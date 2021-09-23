@@ -99,11 +99,21 @@ public class EnemyScript : MonoBehaviour
 
     // The chance of a heart container dropping when this enemy dies
     [SerializeField]
-    float enemyDropChance = 0f;
+    float enemyHeartDropChance = 0f;
 
     // Heart container prefab
     [SerializeField]
     GameObject heartContainer;
+
+    //Shuriken Drop Settings
+    [SerializeField]
+    bool canEnemyDropShuriken;
+
+    [SerializeField]
+    float enemyShurikenDropChance = 0f;
+
+    [SerializeField]
+    GameObject shurikenContainer;
 
 
 
@@ -227,9 +237,9 @@ public class EnemyScript : MonoBehaviour
 
         if (canEnemyDropHearts)
         {
-            if (enemyDropChance == 0f)
+            if (enemyHeartDropChance == 0f)
             {
-                enemyDropChance = 5f;
+                enemyHeartDropChance = 5f;
             }
         }
 
@@ -327,9 +337,19 @@ public class EnemyScript : MonoBehaviour
             {
                 float dropRandomValue = Random.Range(1f, 101f);
 
-                if (dropRandomValue <= enemyDropChance)
+                if (dropRandomValue <= enemyHeartDropChance)
                 {
                     Instantiate(heartContainer, transform.position, transform.rotation);
+                }            
+            }
+
+            if (canEnemyDropShuriken)
+            {
+                float dropRandomValue = Random.Range(1f, 101f);
+
+                if (dropRandomValue <= enemyShurikenDropChance)
+                {
+                    Instantiate(shurikenContainer, transform.position, transform.rotation);
                 }            
             }
 

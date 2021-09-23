@@ -21,9 +21,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float rangedAttackInterval = 0.3f;
     [SerializeField]
+    public float maxShuriken = 20f;
+    [SerializeField]
+    public float currentShuriken = 5f;
+    
+    [SerializeField]
     GameObject playerConsumableSlotOne;
     [SerializeField]
     GameObject playerConsumableSlotTwo;
+    
 
     [Header("Jump Settings")]
     public float playerMaxJumpCounter = 1;
@@ -448,7 +454,15 @@ public class PlayerController : MonoBehaviour
     // Function to instantiate a thrown shuriken
     private void ThrowShuriken(GameObject chosenSlotItem)
     {
-        Instantiate(chosenSlotItem, rangedPoint.position, rangedPoint.rotation);
+        if(currentShuriken > 0){
+            Instantiate(chosenSlotItem, rangedPoint.position, rangedPoint.rotation);
+            currentShuriken -= 1;
+        }
+        else{
+            //play a sound
+            //Debug.Log("no shuriken to throw!");
+        }
+        
     }
 
     // Draw the attack area while in editor
