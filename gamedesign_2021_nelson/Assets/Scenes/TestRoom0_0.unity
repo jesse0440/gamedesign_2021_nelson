@@ -1298,7 +1298,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668722733}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.7560472, y: -3.85, z: 0}
+  m_LocalPosition: {x: -41.786045, y: -6, z: 0}
   m_LocalScale: {x: 3, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 462194521}
@@ -2036,8 +2036,8 @@ MonoBehaviour:
   enemyChargingSpeed: 0
   chargePlayer: 0
   chargePlayerY: 0
-  canEnemyDropHearts: 0
-  enemyDropChance: 0
+  canEnemyDropHearts: 1
+  enemyDropChance: 5
   heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
   canEnemyShootPlayer: 0
   projectileDamage: 0
@@ -2672,7 +2672,7 @@ MonoBehaviour:
   chargePlayer: 1
   chargePlayerY: 0
   canEnemyDropHearts: 1
-  enemyDropChance: 2
+  enemyDropChance: 10
   heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
   canEnemyShootPlayer: 0
   projectileDamage: 0
@@ -3212,7 +3212,7 @@ MonoBehaviour:
   chargePlayer: 1
   chargePlayerY: 1
   canEnemyDropHearts: 1
-  enemyDropChance: 5
+  enemyDropChance: 10
   heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
   canEnemyShootPlayer: 0
   projectileDamage: 0
@@ -3249,7 +3249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 100
   playerMaxHealth: 100
-  attackRange: 0.84
+  attackRange: 3
   meleeDamage: 10
   meleeAttackInterval: 2
   playerMaxJumpCounter: 1
@@ -3365,8 +3365,8 @@ MonoBehaviour:
   enemyChargingSpeed: 0
   chargePlayer: 0
   chargePlayerY: 0
-  canEnemyDropHearts: 0
-  enemyDropChance: 0
+  canEnemyDropHearts: 1
+  enemyDropChance: 5
   heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
   canEnemyShootPlayer: 0
   projectileDamage: 0
@@ -3614,7 +3614,7 @@ MonoBehaviour:
   chargePlayer: 0
   chargePlayerY: 0
   canEnemyDropHearts: 1
-  enemyDropChance: 25
+  enemyDropChance: 50
   heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
   canEnemyShootPlayer: 0
   projectileDamage: 0
@@ -7303,6 +7303,26 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 41
       m_TileSpriteIndex: 41
+      m_TileMatrixIndex: 2
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -17, y: -5, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 36
+      m_TileSpriteIndex: 36
+      m_TileMatrixIndex: 2
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -14, y: -5, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 36
+      m_TileSpriteIndex: 36
       m_TileMatrixIndex: 2
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -17182,7 +17202,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 12
+  - m_RefCount: 14
     m_Data: {fileID: 11400000, guid: d169ce019d4fbd2459b18d0067e7e22d, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: cf75841e0b5ae5c48aaff6ead0d0c942, type: 2}
@@ -17267,7 +17287,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 12
+  - m_RefCount: 14
     m_Data: {fileID: 21300000, guid: 80f4cbf0891edca479919278746647ea, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: c2a11949347328d4e9188627a7b0c6f5, type: 3}
@@ -17316,7 +17336,7 @@ Tilemap:
       e31: 7.51e-43
       e32: 7.48e-43
       e33: 7.51e-43
-  - m_RefCount: 1317
+  - m_RefCount: 1319
     m_Data:
       e00: 1
       e01: 0
@@ -17335,7 +17355,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1317
+  - m_RefCount: 1319
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: 2.5847858e-29, g: 2.5847858e-29, b: 2.5847858e-29, a: 2.5847858e-29}
@@ -18323,7 +18343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5754208166783737437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.29, y: -4.35, z: 0}
+  m_LocalPosition: {x: -51.32, y: -6.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5754208166616480483}
@@ -18437,7 +18457,7 @@ MonoBehaviour:
   chargePlayer: 0
   chargePlayerY: 0
   canEnemyDropHearts: 1
-  enemyDropChance: 5
+  enemyDropChance: 15
   heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
   canEnemyShootPlayer: 1
   projectileDamage: 15
@@ -18532,7 +18552,7 @@ MonoBehaviour:
   chargePlayer: 0
   chargePlayerY: 0
   canEnemyDropHearts: 1
-  enemyDropChance: 25
+  enemyDropChance: 40
   heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
   canEnemyShootPlayer: 0
   projectileDamage: 0
@@ -18614,7 +18634,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6789983850239659592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.72, y: -2.96, z: 0}
+  m_LocalPosition: {x: -46.75, y: -5.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6789983850609306358}
@@ -19010,7 +19030,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7352618503041354050}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.64, y: -2.9, z: 0}
+  m_LocalPosition: {x: -47.67, y: -5.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7352618502804925948}
@@ -19149,7 +19169,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8009363959586849171}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.7, y: -1.4, z: 0}
+  m_LocalPosition: {x: -41.73, y: -3.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 462194521}

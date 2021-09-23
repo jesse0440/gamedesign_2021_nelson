@@ -99,7 +99,7 @@ public class EnemyScript : MonoBehaviour
 
     // The chance of a heart container dropping when this enemy dies
     [SerializeField]
-    float enemyDropChance;
+    float enemyDropChance = 0f;
 
     // Heart container prefab
     [SerializeField]
@@ -323,11 +323,14 @@ public class EnemyScript : MonoBehaviour
         // Try to spawn a heart container and destroy this enemy object
         if (enemyHealth <= 0 || enemyHealth > enemyMaxHealth)
         {
-            float dropRandomValue = Random.value;
-
-            if (dropRandomValue * 100 < enemyDropChance)
+            if (canEnemyDropHearts)
             {
-                GameObject.Instantiate(heartContainer, transform.position, transform.rotation);
+                float dropRandomValue = Random.Range(1f, 101f);
+
+                if (dropRandomValue <= enemyDropChance)
+                {
+                    Instantiate(heartContainer, transform.position, transform.rotation);
+                }            
             }
 
             Destroy(gameObject);

@@ -82,6 +82,7 @@ MonoBehaviour:
   enemyDamage: 35
   canEnemyDetectPlayer: 1
   playerDetectionRange: 4.5
+  isSelfdestructing: 0
   canMove: 1
   enemyMoveSpeed: 2
   canEnemyDetectWalls: 1
@@ -96,7 +97,7 @@ MonoBehaviour:
   chargePlayer: 1
   chargePlayerY: 0
   canEnemyDropHearts: 1
-  enemyDropChance: 2
+  enemyDropChance: 10
   heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
   canEnemyShootPlayer: 0
   projectileDamage: 0

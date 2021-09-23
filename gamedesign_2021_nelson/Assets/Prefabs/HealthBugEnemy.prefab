@@ -179,7 +179,7 @@ MonoBehaviour:
   chargePlayer: 0
   chargePlayerY: 0
   canEnemyDropHearts: 1
-  enemyDropChance: 25
+  enemyDropChance: 40
   heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
   canEnemyShootPlayer: 0
   projectileDamage: 0
