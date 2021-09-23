@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RespawnTrigger : MonoBehaviour
 {
@@ -24,9 +25,12 @@ public class RespawnTrigger : MonoBehaviour
         // If it is a player
         if (collision.gameObject.tag == "Player")
         {
+            // Find the index of the active scene
+            int sceneID = SceneManager.GetActiveScene().buildIndex;
+
             // Move the spawnpoint of the room to this respawn point trigger
-            PlayerPrefs.SetFloat("SpawnPointX", gameObject.transform.position.x);
-            PlayerPrefs.SetFloat("SpawnPointY", gameObject.transform.position.y);
+            PlayerPrefs.SetFloat("Room " + sceneID + " Respawn Coordinate X", gameObject.transform.position.x);
+            PlayerPrefs.SetFloat("Room " + sceneID + " Respawn Coordinate Y", gameObject.transform.position.y);
 
             // Disable this respawn point trigger
             gameObject.SetActive(false);

@@ -5,17 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
-    //starts new game from next scene in load order
-    public void PlayGame ()
+    // Start a new game
+    public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    //guits the game when quti is pressed
+    // Load an existing game
+    public void LoadGame()
+    {
+        return;
+    }
+
+    // Quit the game
     public void QuitGame()
     {
-        Debug.Log("Quit");
         Application.Quit();
     }
 }

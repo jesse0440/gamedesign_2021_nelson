@@ -318,8 +318,8 @@ public class PlayerController : MonoBehaviour
         playerJumpCounter += 1;
     }
 
-    
-    //save function
+    /*
+    // Player save function
     public void SavePlayer()
     {
         //saves the player
@@ -328,7 +328,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(Application.persistentDataPath);
     }
 
-    //loads player
+    // Player load function
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
@@ -339,5 +339,5 @@ public class PlayerController : MonoBehaviour
         position.y = data.position[1];
         transform.position = position;
     }
-    
+    */
 }

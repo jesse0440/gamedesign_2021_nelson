@@ -22,9 +22,10 @@ public class RoomWarp : MonoBehaviour
         if (collision.gameObject.tag == "Player") 
         {
             // Find the index of the active scene and save the player's coordinates
-            int temp = SceneManager.GetActiveScene().buildIndex;
-            PlayerPrefs.SetFloat("Room " + temp + " X Coordinate", collision.gameObject.transform.position.x);
-            PlayerPrefs.SetFloat("Room " + temp + " Y Coordinate", collision.gameObject.transform.position.y);
+            int sceneID = SceneManager.GetActiveScene().buildIndex;
+
+            PlayerPrefs.SetFloat("Room " + sceneID + " X Coordinate", collision.gameObject.transform.position.x);
+            PlayerPrefs.SetFloat("Room " + sceneID + " Y Coordinate", collision.gameObject.transform.position.y);
             PlayerPrefs.SetFloat("PlayerHealth", collision.gameObject.GetComponent<PlayerController>().playerHealth);
         }
     }

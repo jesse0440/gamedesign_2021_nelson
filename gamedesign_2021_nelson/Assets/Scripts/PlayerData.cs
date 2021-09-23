@@ -5,16 +5,28 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    //player variables form PlayerContoller, must add everything that is wanted to save
-    public float health;
-    public float[] position;
+    // Game variables that need to be saved for when the game is loaded next
+    public float savedPlayerHealth;
+    public float[] savedPlayerPosition;
 
-    public PlayerData (PlayerController player)
+    // Player object and script
+    GameObject playerObject;
+    PlayerController playerController;
+
+    void Start()
     {
-        //health = player.playerHealth;
+        // Assign the player object and script
+        playerObject = GameObject.FindWithTag("Player");
+        playerController = playerObject.GetComponent<PlayerController>();
+    }
 
-        position = new float[2];
-        position[0] = player.transform.position.x;
-        position[1] = player.transform.position.y;
+    // This data will be saved
+    public PlayerData()
+    {
+        //Saved data variables
+        savedPlayerHealth = playerController.playerHealth;
+        savedPlayerPosition = new float[2];
+        savedPlayerPosition[0] = playerObject.transform.position.x;
+        savedPlayerPosition[1] = playerObject.transform.position.y;
     }
 }
