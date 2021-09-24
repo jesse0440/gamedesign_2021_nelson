@@ -23,10 +23,9 @@ public class RoomWarp : MonoBehaviour
         // If the object passing the room trigger is a player
         if (collision.gameObject.tag == "Player") 
         {
-            // Find the index of the active scene and save the player's coordinates
+            // Find the index of the active scene and save the necessary variables
             int sceneID = SceneManager.GetActiveScene().buildIndex;
 
-            
             PlayerPrefs.SetFloat("Room " + sceneID + " X Coordinate", collision.gameObject.transform.position.x);
             PlayerPrefs.SetFloat("Room " + sceneID + " Y Coordinate", collision.gameObject.transform.position.y);
             PlayerPrefs.SetFloat("PlayerHealth", collision.gameObject.GetComponent<PlayerController>().playerHealth);
@@ -45,9 +44,13 @@ public class RoomWarp : MonoBehaviour
         // If the object colliding the warp collider is a player
         if (collision.gameObject.tag == "Player") 
         {
+            // Save the keys here only just cause of possible abuse mechanisms
+            PlayerPrefs.SetInt("YellowKeyCount", collision.gameObject.GetComponent<PlayerController>().yellowCount);
+            PlayerPrefs.SetInt("BlueKeyCount", collision.gameObject.GetComponent<PlayerController>().blueCount);
+            PlayerPrefs.SetInt("RedKeyCount", collision.gameObject.GetComponent<PlayerController>().redCount);
+
             // Load next room
             SceneManager.LoadScene(nextRoomId);
-
         }
     }
 }

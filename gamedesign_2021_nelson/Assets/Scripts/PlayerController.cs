@@ -21,14 +21,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float rangedAttackInterval = 0.3f;
     [SerializeField]
-    public float maxShuriken = 20f;
+    public float maxShuriken = 10f;
     [SerializeField]
-    public float currentShuriken = 5f;
+    public float currentShuriken = 0f;
     
+    // The slots for player consumable items
     [SerializeField]
     GameObject playerConsumableSlotOne;
     [SerializeField]
     GameObject playerConsumableSlotTwo;
+    [SerializeField]
+    GameObject playerConsumableSlotThree;
     
 
     [Header("Jump Settings")]
@@ -55,6 +58,12 @@ public class PlayerController : MonoBehaviour
     public int consumableSelection = 0;
     [HideInInspector]
     public float dashIntervalTimer;
+    //[HideInInspector]
+    public int yellowCount = 0;
+    //[HideInInspector]
+    public int blueCount = 0;
+    //[HideInInspector]
+    public int redCount = 0;
     
     // Player statistics which are only needed in this script
     float playerSpeed = 10f;
@@ -85,10 +94,14 @@ public class PlayerController : MonoBehaviour
     LayerMask terrainLayerMask;
     LayerMask enemyLayers;
     Color rayColor;
+    GameObject consumableSelectionOne;
+    GameObject consumableSelectionTwo;
+    GameObject consumableSelectionThree;
 
 
 
     //-----Keycard related functions etc. here-----
+
     // Make a list of every key type in awake
     void Awake()
     {
@@ -104,8 +117,9 @@ public class PlayerController : MonoBehaviour
     // Add a key to the list
     public void AddKey(KeyCards.KeyType keyType)
     {
-        Debug.Log("Added Key" + keyType);
+        //Debug.Log("Added Key" + keyType);
         keyList.Add(keyType);
+        KeyCounter(keyType, 1);
 
         // Adding a key invokes the OnKeysChanged event
         OnKeysChanged?.Invoke(this, EventArgs.Empty);
@@ -115,6 +129,7 @@ public class PlayerController : MonoBehaviour
     public void RemoveKey(KeyCards.KeyType keyType)
     {
         keyList.Remove(keyType);
+        KeyCounter(keyType, -1);
 
         // Removing a key invokes the OnKeysChanged event
         OnKeysChanged?.Invoke(this, EventArgs.Empty);
@@ -126,32 +141,26 @@ public class PlayerController : MonoBehaviour
         return keyList.Contains(keyType);
     }
 
-    /*
-    // On collision with another collider check if it is a key/or door and adds it to the list (the function GetKeyType is located in KeyCards.cs)
-    private void OnTriggerEnter2D(Collider2D collision)
+    // Counter which tracks which keys have been obtained for saving purposes
+    public void KeyCounter(KeyCards.KeyType clonedKeyType, int counter)
     {
-        KeyCards key = collision.GetComponent<KeyCards>();
-        if (key != null)
+        if (clonedKeyType == KeyCards.KeyType.Yellow)
         {
-            AddKey(key.GetKeyType());
-            Destroy(key.gameObject);
+            yellowCount += counter;
         }
 
-        KeyDoor keyDoor = collision.GetComponent<KeyDoor>();
-
-        if (keyDoor != null)
+        else if (clonedKeyType == KeyCards.KeyType.Blue)
         {
-            
-            if (ContainsKey(keyDoor.GetKeyType()))//true if player is holding the right key for the door, false otherwise
-            {
-                //currently holding keycard to open the door
-                //removes the key and opens the door
-                RemoveKey(keyDoor.GetKeyType());
-                keyDoor.OpenDoor();
-            }
+            blueCount += counter;
         }
+
+        else if (clonedKeyType == KeyCards.KeyType.Red)
+        {
+            redCount += counter;
+        }
+        //Debug.Log(yellowCount + " / " + blueCount + " / " + redCount);
     }
-    */
+
     //-----Keycard functions end here----
 
 
@@ -193,6 +202,62 @@ public class PlayerController : MonoBehaviour
         // Set the selected consumable slot
         consumableSelection = PlayerPrefs.GetInt("ConsumableSelection", 0);
 
+        // Find the consumable slot selections in the HUD
+        consumableSelectionOne = GameObject.FindWithTag("ConsumableSlot1").transform.Find("SelectionIcon").gameObject;
+        consumableSelectionTwo = GameObject.FindWithTag("ConsumableSlot2").transform.Find("SelectionIcon").gameObject;
+        consumableSelectionThree = GameObject.FindWithTag("ConsumableSlot3").transform.Find("SelectionIcon").gameObject;
+
+        // Disable all of the consumable slot selections
+        consumableSelectionOne.SetActive(false);
+        consumableSelectionTwo.SetActive(false);
+        consumableSelectionThree.SetActive(false);
+        
+        // If slot one is selected activate it
+        if (consumableSelection == 0)
+        {
+            consumableSelectionOne.SetActive(true);
+        }
+
+        // If slot two is selected activate it
+        else if (consumableSelection == 1)
+        {
+            consumableSelectionTwo.SetActive(true);
+        }
+
+        // If slot three is selected activate it
+        if (consumableSelection == 2)
+        {
+            consumableSelectionThree.SetActive(true);
+        }
+
+        // Find the amount of keys of each type the player has obtained
+        yellowCount = PlayerPrefs.GetInt("YellowKeyCount", 0);
+        blueCount = PlayerPrefs.GetInt("BlueKeyCount", 0);
+        redCount = PlayerPrefs.GetInt("RedKeyCount", 0);
+
+        // For each yellow key obtained
+        for (int i=0; i < yellowCount; i++)
+        {
+            // Add a yellow key to the list
+            keyList.Add(KeyCards.KeyType.Yellow);
+        }
+
+        // For each blue key obtained
+        for (int i=0; i < blueCount; i++)
+        {
+            // Add a blue key to the list
+            keyList.Add(KeyCards.KeyType.Blue);
+        }
+
+        // For each red key obtained
+        for (int i=0; i < redCount; i++)
+        {
+            // Add a red key to the list
+            keyList.Add(KeyCards.KeyType.Red);
+        }
+
+        // Invoke HUD change for the amount of keys
+        OnKeysChanged?.Invoke(this, EventArgs.Empty);
 
         /*
          ___________________________________________________________________
@@ -214,8 +279,8 @@ public class PlayerController : MonoBehaviour
         // ABILITY 2 - Find out if dash is unlocked (1) or use default value (0)
         dashUnlockedCheck = PlayerPrefs.GetFloat("Ability_2", 0);
         
-        // ABILITY 3 - Find out if "Omae Wa Mou Shindeiru" is unlocked (x) or use default value (y)
-        // abilityThreeCheck = PlayerPrefs.GetFloat("Ability_3", y);
+        // ABILITY 3 - Find out if teleport is unlocked (x) or use default value (y)
+        // teleportCheck = PlayerPrefs.GetFloat("Ability_3", y);
 
         // Import the coordinates to your location in the room or use default if unavailable, then warp to the location
         float tempXCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " X Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.x);
@@ -363,25 +428,56 @@ public class PlayerController : MonoBehaviour
                     return;
                 }
             }
-        }
 
-        // Switch between consumable slots
-        if (Input.GetButtonDown("ConsumableSelection"))
-        {
-            switch (consumableSelection)
+            // If consumable slot 3 is selected
+            if (consumableSelection == 2)
             {
-                case 0:
-                    consumableSelection = 1;
-                    break;
-                case 1:
-                    consumableSelection = 0;
-                    break;
-                default:
-                    consumableSelection = 0;
-                    break;
-            } 
+                // If the consumable is a shuriken and interval has passed
+                if (playerConsumableSlotThree.name == "playerShuriken" && rangedIntervalPassed)
+                {
+                    // Throw a shuriken
+                    ThrowShuriken(playerConsumableSlotThree);
+
+                    // Reset shuriken cooldown
+                    rangedIntervalPassed = false;
+                    nextRangedTimer = Time.time;
+                }
+
+                // To be done: other consumables
+                
+                else
+                {
+                    return;
+                }
+            }
         }
 
+        // Switch between consumable slots and selection icons
+        if (Input.GetButtonDown("SelectConsumable1"))
+        {
+            consumableSelection = 0;
+            consumableSelectionOne.SetActive(true);
+            consumableSelectionTwo.SetActive(false);
+            consumableSelectionThree.SetActive(false);
+        }
+
+        if (Input.GetButtonDown("SelectConsumable2"))
+        {
+            consumableSelection = 1;
+            consumableSelectionOne.SetActive(false);
+            consumableSelectionTwo.SetActive(true);
+            consumableSelectionThree.SetActive(false);
+        }
+
+        if (Input.GetButtonDown("SelectConsumable3"))
+        {
+            consumableSelection = 2;
+            consumableSelectionOne.SetActive(false);
+            consumableSelectionTwo.SetActive(false);
+            consumableSelectionThree.SetActive(true);
+        }
+
+        // If you obtain more shurikens than is max make shuriken count 10
         if (currentShuriken > maxShuriken)
         {
             currentShuriken = maxShuriken;
@@ -482,15 +578,21 @@ public class PlayerController : MonoBehaviour
     // Function to instantiate a thrown shuriken
     private void ThrowShuriken(GameObject chosenSlotItem)
     {
-        if(currentShuriken > 0){
+        // If player has shurikens
+        if (currentShuriken > 0)
+        {
+            // Throw a shuriken and remove one shuriken from the player's possession
             Instantiate(chosenSlotItem, rangedPoint.position, rangedPoint.rotation);
             currentShuriken -= 1;
         }
-        else{
+
+        // If the player has no shurikens return
+        else
+        {
             //play a sound
             //Debug.Log("no shuriken to throw!");
+            return;
         }
-        
     }
 
     // Draw the attack area while in editor

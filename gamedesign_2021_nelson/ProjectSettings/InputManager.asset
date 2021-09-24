@@ -134,10 +134,10 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: ConsumableSelection
+    m_Name: SelectConsumable1
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 2
+    negativeButton: 
     positiveButton: 1
     altNegativeButton: 
     altPositiveButton: 
@@ -150,11 +150,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Empty
+    m_Name: SelectConsumable2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: 2
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -166,11 +166,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Empty
+    m_Name: SelectConsumable3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: 3
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0

@@ -7,7 +7,7 @@ public class KeyCards : MonoBehaviour
 {
     // Below is the option to choose what colour the keycard is in the editor with default being yellow
     // A key can only be used on a door of the same colour
-    [SerializeField] 
+    [SerializeField]
     KeyType keyType;
 
     // The ID of the key

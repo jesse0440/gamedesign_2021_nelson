@@ -17,6 +17,9 @@ TagManager:
   - WallClimb
   - Dash
   - Teleport
+  - ConsumableSlot1
+  - ConsumableSlot2
+  - ConsumableSlot3
   layers:
   - Default
   - TransparentFX
