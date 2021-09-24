@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class KeyDoor : MonoBehaviour
 {
+    //Choose the key used for this foor, default is yellow
     [SerializeField] private KeyCards.KeyType keyType;
 
     public KeyCards.KeyType GetKeyType()

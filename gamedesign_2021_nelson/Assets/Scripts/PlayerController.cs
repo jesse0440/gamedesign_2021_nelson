@@ -68,8 +68,11 @@ public class PlayerController : MonoBehaviour
     bool hasNotJumped = true;
     bool dashUsed;
 
+    //Keys have changed
+    public event EventHandler OnKeysChanged;
     //Key holding list
     private List<KeyCards.KeyType> keyList;
+    
 
     // Player components
     Animator playerAnimator;
@@ -89,23 +92,32 @@ public class PlayerController : MonoBehaviour
     {
         keyList = new List<KeyCards.KeyType>();
     }
+    //returns the list of keys
+    public List<KeyCards.KeyType> GetKeyList()
+    {
+        return keyList;
+    }
     //adds key to list
     public void AddKey(KeyCards.KeyType keyType)
     {
         Debug.Log("Added Key" + keyType);
         keyList.Add(keyType);
+        //adding a key fires the onkeyschanged event
+        OnKeysChanged?.Invoke(this, EventArgs.Empty);
     }
     //removes a key from list
     public void RemoveKey(KeyCards.KeyType keyType)
     {
         keyList.Remove(keyType);
+        //removing a key fires the onkeyschanged event
+        OnKeysChanged?.Invoke(this, EventArgs.Empty);
     }
     //checks whether a (yellow, red, blue) key is in the list
     public bool ContainsKey(KeyCards.KeyType keyType)
     {
         return keyList.Contains(keyType);
     }
-    //on collide, check if collided with a key and adds it to the list (the function GetKeyType is located in KeyCards.cs)
+    //on collide, check if collided with a key/or door and adds it to the list (the function GetKeyType is located in KeyCards.cs)
     private void OnTriggerEnter2D(Collider2D collision)
     {
         KeyCards key = collision.GetComponent<KeyCards>();
@@ -117,10 +129,8 @@ public class PlayerController : MonoBehaviour
         KeyDoor keyDoor = collision.GetComponent<KeyDoor>();
         if (keyDoor != null)
         {
-            Debug.Log(ContainsKey(keyDoor.GetKeyType()));
-            //ALARM, door not working :D it goes through this if check even if you have no key
-            //the debug log prints false, then why the hell is it going through the if????
-            if (ContainsKey(keyDoor.GetKeyType()));
+            
+            if (ContainsKey(keyDoor.GetKeyType()))//true if player is holding the right key for the door, false otherwise
             {
                 //currently holding keycard to open the door
                 //removes the key and opens the door

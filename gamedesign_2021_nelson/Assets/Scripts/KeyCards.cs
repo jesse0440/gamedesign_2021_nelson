@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyCards : MonoBehaviour
 {
-    //Below is the option to choose what colour the keycard is.
+    //Below is the option to choose what colour the keycard is in the editor, default is yellow.
     //e.g. Red key is only for red doors (for future proof)
     [SerializeField] private KeyType keyType;
     public enum KeyType
