@@ -68,10 +68,10 @@ public class PlayerController : MonoBehaviour
     bool hasNotJumped = true;
     bool dashUsed;
 
-    //Keys have changed
+    // Keys have changed
     public event EventHandler OnKeysChanged;
-    //Key holding list
-    private List<KeyCards.KeyType> keyList;
+    // Key holding list
+    List<KeyCards.KeyType> keyList;
     
 
     // Player components
@@ -86,38 +86,48 @@ public class PlayerController : MonoBehaviour
     LayerMask enemyLayers;
     Color rayColor;
 
+
+
     //-----Keycard related functions etc. here-----
-    //Makes a list of keycards in awake
-    private void Awake()
+    // Make a list of every key type in awake
+    void Awake()
     {
         keyList = new List<KeyCards.KeyType>();
     }
-    //returns the list of keys
+
+    // Return the list of keys
     public List<KeyCards.KeyType> GetKeyList()
     {
         return keyList;
     }
-    //adds key to list
+
+    // Add a key to the list
     public void AddKey(KeyCards.KeyType keyType)
     {
         Debug.Log("Added Key" + keyType);
         keyList.Add(keyType);
-        //adding a key fires the onkeyschanged event
+
+        // Adding a key invokes the OnKeysChanged event
         OnKeysChanged?.Invoke(this, EventArgs.Empty);
     }
-    //removes a key from list
+
+    // Remove a key from the list
     public void RemoveKey(KeyCards.KeyType keyType)
     {
         keyList.Remove(keyType);
-        //removing a key fires the onkeyschanged event
+
+        // Removing a key invokes the OnKeysChanged event
         OnKeysChanged?.Invoke(this, EventArgs.Empty);
     }
-    //checks whether a (yellow, red, blue) key is in the list
+
+    // Check whether a specific key type is in the list
     public bool ContainsKey(KeyCards.KeyType keyType)
     {
         return keyList.Contains(keyType);
     }
-    //on collide, check if collided with a key/or door and adds it to the list (the function GetKeyType is located in KeyCards.cs)
+
+    /*
+    // On collision with another collider check if it is a key/or door and adds it to the list (the function GetKeyType is located in KeyCards.cs)
     private void OnTriggerEnter2D(Collider2D collision)
     {
         KeyCards key = collision.GetComponent<KeyCards>();
@@ -126,7 +136,9 @@ public class PlayerController : MonoBehaviour
             AddKey(key.GetKeyType());
             Destroy(key.gameObject);
         }
+
         KeyDoor keyDoor = collision.GetComponent<KeyDoor>();
+
         if (keyDoor != null)
         {
             
@@ -139,6 +151,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    */
     //-----Keycard functions end here----
 
 
@@ -368,6 +381,11 @@ public class PlayerController : MonoBehaviour
                     break;
             } 
         }
+
+        if (currentShuriken > maxShuriken)
+        {
+            currentShuriken = maxShuriken;
+        }
     }
 
     // Fixed update occurs at the same time regardless of framerate
@@ -494,25 +512,21 @@ public class PlayerController : MonoBehaviour
         playerJumpCounter += 1;
     }
 
-    
-    // Player save function
+    // Player's save function
     public void SavePlayer()
     {
-        //saves the player
+        // Saves the player
         SaveSystem.SavePlayer(this);
-        // just shows where it saves
+        // Shows where it saves the file
         Debug.Log(Application.persistentDataPath);
     }
 
     // Player load function
     public void LoadPlayer()
     {
-
         PlayerData data = SaveSystem.LoadPlayer();
 
-        //SceneManager.LoadScene(data.savedSceneNumber);
-
-
+        // Saved variables
         playerHealth = data.savedPlayerHealth;
         playerMaxHealth = data.savedPlayerMaxHealth;
         attackRange = data.savedAttackRange;
@@ -520,11 +534,10 @@ public class PlayerController : MonoBehaviour
         meleeAttackInterval = data.savedMeleeAttackInterval;
         rangedAttackInterval = data.savedRangedAttackInterval;
 
-        //sets player position
+        // Sets the player's position
         Vector2 position;
         position.x = data.savedPlayerPosition[0];
         position.y = data.savedPlayerPosition[1];
         transform.position = position;
     }
-    
 }

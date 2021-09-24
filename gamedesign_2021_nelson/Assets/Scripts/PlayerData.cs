@@ -7,28 +7,29 @@ using UnityEngine.SceneManagement;
 public class PlayerData
 {
     // Game variables that need to be saved for when the game is loaded next
+    [HideInInspector]
     public float savedPlayerHealth;
+    [HideInInspector]
     public float savedPlayerMaxHealth;
+    [HideInInspector]
     public float[] savedPlayerPosition;
+    [HideInInspector]
     public float savedAttackRange;
+    [HideInInspector]
     public float savedMeleeDamage;
+    [HideInInspector]
     public float savedMeleeAttackInterval;
+    [HideInInspector]
     public float savedRangedAttackInterval;
+    [HideInInspector]
     public float savedPlayerMaxJumpCounter;
+    [HideInInspector]
     public int savedSceneNumber;
-
-
-    void Start()
-    {
-        // Assign the player object and script
-        //playerObject = GameObject.FindWithTag("Player");
-        //playerController = playerObject.GetComponent<PlayerController>();
-    }
 
     // This data will be saved
     public PlayerData(PlayerController player)
     {
-        //Saved data variables
+        // Saved data variables
         savedPlayerHealth = player.playerHealth;
         savedPlayerMaxHealth = player.playerMaxHealth;
         savedPlayerPosition = new float[2];
@@ -41,6 +42,5 @@ public class PlayerData
         savedPlayerMaxJumpCounter = player.playerMaxJumpCounter;
 
         savedSceneNumber = SceneManager.GetActiveScene().buildIndex;
-
     }
 }

@@ -9,13 +9,11 @@ public class ShurikenContainer : MonoBehaviour
     GameObject shurikenParentObject;
     
     // The amount of shuriken this object replenishes
-    // Needs to be entered manually in the editor!
     [SerializeField]
-    float amountGiven = 10;
+    int amountGiven = 10;
 
     // The ID of the container
     // Used to differentiate multiple containers in a room
-    // Needs to be entered manually in the editor!
     [SerializeField]
     int shurikenContainerIDInRoom;
 
@@ -24,9 +22,6 @@ public class ShurikenContainer : MonoBehaviour
 
     // Check if this container has already been consumed, default is 0 = false
     int hasThisContainerBeenUsedAlready = 0;
-
-    // The script of the player character
-    PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +32,7 @@ public class ShurikenContainer : MonoBehaviour
 
         // Find out if this container has already been used in this playthrough or use default (0)
         hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 0);
-
+        
         // If it has been used
         if (hasThisContainerBeenUsedAlready == 1)
         {
@@ -48,9 +43,9 @@ public class ShurikenContainer : MonoBehaviour
         // Checking variables that should not be 0
         // Add as needed
 
-        if (amountGiven == 0f)
+        if (amountGiven == 0)
         {
-            amountGiven = 25f;
+            amountGiven = 10;
         }
     }
 
@@ -60,28 +55,17 @@ public class ShurikenContainer : MonoBehaviour
         // If the object is the player and the container has not been consumed
         if (collision.gameObject.tag == "Player" && hasThisContainerBeenUsedAlready == 0 )
         {
-            // Assign PlayerController and Shuriken Count
-            playerController = collision.gameObject.GetComponent<PlayerController>();
-            //Check if  Player doesn't have max shuriken
-            if (playerController.currentShuriken < playerController.maxShuriken){
+            // Make sure that shuriken amount doesn't go over the max
+            collision.gameObject.GetComponent<PlayerController>().currentShuriken += amountGiven;
 
-                //make sure that currentShuriken doesn't go over the max
-                playerController.currentShuriken += amountGiven;
+            // Make the game remember that this container by ID, in this room by ID, has been consumed
+            PlayerPrefs.SetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 1);
 
-                    if(playerController.currentShuriken > playerController.maxShuriken){
-                        playerController.currentShuriken = playerController.maxShuriken;
-                    }
+            // Assign the check so the health container can't be consumed multiple times in a few frames before it disappears
+            hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 0);
 
-                // Make the game remember that this container by ID, in this room by ID, has been consumed
-                PlayerPrefs.SetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 1);
-
-                // Assign the check so the health container can't be consumed multiple times in a few frames before it disappears
-                hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 0);
-
-                // Disable the container
-                shurikenParentObject.SetActive(false);
-            }
-            
+            // Disable the container
+            shurikenParentObject.SetActive(false);
         }
     }
 }
