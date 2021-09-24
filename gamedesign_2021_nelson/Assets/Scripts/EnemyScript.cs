@@ -93,27 +93,17 @@ public class EnemyScript : MonoBehaviour
     
     
     [Header("Drop Settings")]
-    // Bool to determine if this enemy can drop heart containers on death
+    // Bool to determine if this enemy can drop items on death
     [SerializeField]
-    bool canEnemyDropHearts;
+    bool canEnemyDropItems;
 
-    // The chance of a heart container dropping when this enemy dies
+    // The chance for a drop when this enemy dies
     [SerializeField]
-    float enemyHeartDropChance = 0f;
+    float enemyDropChance = 0f;
 
-    // Heart container prefab
+    // Dropped items' prefabs
     [SerializeField]
-    GameObject heartContainer;
-
-    //Shuriken Drop Settings
-    [SerializeField]
-    bool canEnemyDropShuriken;
-
-    [SerializeField]
-    float enemyShurikenDropChance = 0f;
-
-    [SerializeField]
-    GameObject shurikenContainer;
+    GameObject[] itemDrop;
 
 
 
@@ -235,11 +225,11 @@ public class EnemyScript : MonoBehaviour
         // Checks for variables that should not be 0f
         // Add as needed!
 
-        if (canEnemyDropHearts)
+        if (canEnemyDropItems)
         {
-            if (enemyHeartDropChance == 0f)
+            if (enemyDropChance == 0f)
             {
-                enemyHeartDropChance = 5f;
+                enemyDropChance = 10f;
             }
         }
 
@@ -330,26 +320,17 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
         // If the health bugs out over max health or is reduced to 0 or lower
-        // Try to spawn a heart container and destroy this enemy object
+        // Try to spawn an item and destroy this enemy object
         if (enemyHealth <= 0 || enemyHealth > enemyMaxHealth)
         {
-            if (canEnemyDropHearts)
+            if (canEnemyDropItems)
             {
+                int randomItem = Random.Range(0, itemDrop.Length);
                 float dropRandomValue = Random.Range(1f, 101f);
 
-                if (dropRandomValue <= enemyHeartDropChance)
+                if (dropRandomValue <= enemyDropChance)
                 {
-                    Instantiate(heartContainer, transform.position, transform.rotation);
-                }            
-            }
-
-            if (canEnemyDropShuriken)
-            {
-                float dropRandomValue = Random.Range(1f, 101f);
-
-                if (dropRandomValue <= enemyShurikenDropChance)
-                {
-                    Instantiate(shurikenContainer, transform.position, transform.rotation);
+                    Instantiate(itemDrop[randomItem], transform.position, transform.rotation);
                 }            
             }
 

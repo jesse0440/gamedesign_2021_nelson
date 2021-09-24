@@ -96,9 +96,11 @@ MonoBehaviour:
   enemyChargingSpeed: 4
   chargePlayer: 1
   chargePlayerY: 0
-  canEnemyDropHearts: 1
-  enemyDropChance: 10
-  heartContainer: {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
+  canEnemyDropItems: 1
+  enemyDropChance: 20
+  itemDrop:
+  - {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
+  - {fileID: 4314995480373190011, guid: ce60fd2f070ad5f449c3cb12c159e602, type: 3}
   canEnemyShootPlayer: 0
   projectileDamage: 0
   projectileSpeed: 0
