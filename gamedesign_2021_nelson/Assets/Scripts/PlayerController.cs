@@ -50,6 +50,10 @@ public class PlayerController : MonoBehaviour
     public float dashUnlockedCheck = 0f;
     public float dashDistance = 4f;
     public float dashInterval = 2f;
+    public float teleportUnlockedCheck;
+    [SerializeField]
+    float teleportRange;
+    public float teleportInterval;
 
     
 
@@ -58,11 +62,13 @@ public class PlayerController : MonoBehaviour
     public int consumableSelection = 0;
     [HideInInspector]
     public float dashIntervalTimer;
-    //[HideInInspector]
+    [HideInInspector]
+    public float teleportIntervalTimer;
+    [HideInInspector]
     public int yellowCount = 0;
-    //[HideInInspector]
+    [HideInInspector]
     public int blueCount = 0;
-    //[HideInInspector]
+    [HideInInspector]
     public int redCount = 0;
     
     // Player statistics which are only needed in this script
@@ -71,9 +77,11 @@ public class PlayerController : MonoBehaviour
     float groundedCheckRayLength = 0.01f;
     float nextMeleeTimer;
     float nextRangedTimer;
-    bool meleeIntervalPassed;
-    bool rangedIntervalPassed;
-    bool dashIntervalPassed;
+    float teleportDestinationDistance;
+    bool teleportIntervalPassed = true;
+    bool meleeIntervalPassed = true;
+    bool rangedIntervalPassed = true;
+    bool dashIntervalPassed = true;
     bool hasNotJumped = true;
     bool dashUsed;
 
@@ -97,6 +105,8 @@ public class PlayerController : MonoBehaviour
     GameObject consumableSelectionOne;
     GameObject consumableSelectionTwo;
     GameObject consumableSelectionThree;
+    GameObject teleportDestination;
+    AbilityIcons abilitiesObject;
 
 
 
@@ -179,6 +189,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         terrainLayerMask = LayerMask.GetMask("Terrain");
         enemyLayers = LayerMask.GetMask("Enemies");
+        abilitiesObject = GameObject.FindWithTag("AbilitiesObject").GetComponent<AbilityIcons>();
 
         // Find if there is a saved amount of health for the player or use default (100f)
         playerHealth = PlayerPrefs.GetFloat("PlayerHealth", 100f);
@@ -186,12 +197,17 @@ public class PlayerController : MonoBehaviour
         // Set the interval comparison time for dashing
         dashIntervalTimer = 0f;
 
+        // Set the interval comparison time for teleporting
+        teleportIntervalTimer = 0f;
+
+        // Set the starting distance for teleportation distance comparison
+        teleportDestinationDistance = teleportRange + 1f;
+
         // Set the interval comparison time for melee attacks
         nextMeleeTimer = 0f;
 
         // Set the interval comparison time for ranged attacks
         nextRangedTimer = 0f;
-
 
         // Set gravity to a default if not set in editor
         if (playerGravity == 0)
@@ -279,8 +295,8 @@ public class PlayerController : MonoBehaviour
         // ABILITY 2 - Find out if dash is unlocked (1) or use default value (0)
         dashUnlockedCheck = PlayerPrefs.GetFloat("Ability_2", 0);
         
-        // ABILITY 3 - Find out if teleport is unlocked (x) or use default value (y)
-        // teleportCheck = PlayerPrefs.GetFloat("Ability_3", y);
+        // ABILITY 3 - Find out if teleport is unlocked (1) or use default value (0)
+        teleportUnlockedCheck = PlayerPrefs.GetFloat("Ability_3", 0);
 
         // Import the coordinates to your location in the room or use default if unavailable, then warp to the location
         float tempXCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " X Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.x);
@@ -325,6 +341,7 @@ public class PlayerController : MonoBehaviour
             meleeIntervalPassed = true;
         }
 
+        // // Check if enough time has passed since last shuriken throw
         if (Time.time > nextRangedTimer + rangedAttackInterval)
         {
             rangedIntervalPassed = true;
@@ -335,10 +352,15 @@ public class PlayerController : MonoBehaviour
         {
             dashIntervalPassed = true;
         }
+
+        // Check if enough time has passed since last use of Teleport
+        if (teleportUnlockedCheck == 1 && Time.time > teleportIntervalTimer + teleportInterval)
+        {
+            teleportIntervalPassed = true;
+        }
         
         // Get the Horizontal input of Input manager
         playerDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
 
         // While moving right
         if (playerDirection.x > 0) 
@@ -363,12 +385,74 @@ public class PlayerController : MonoBehaviour
         // Dashing with Left Shift if it is unlocked
         if (Input.GetButtonDown("Dash") && dashUnlockedCheck == 1 && dashIntervalPassed && rigidBody.velocity.x != 0)
         {
+            // If dash has not been used in this room yet
+            if (abilitiesObject.firstDashUsage == false)
+            {
+                // Enable HUD timer
+                abilitiesObject.firstDashUsage = true;
+            }
+
             // Mark that Dash was used
             dashUsed = true;
 
             // Reset Dash timer
             dashIntervalPassed = false;
             dashIntervalTimer = Time.time;
+        }
+
+        // Teleporting with F if it is unlocked
+        if (Input.GetButtonDown("Teleport") && teleportUnlockedCheck == 1 && teleportIntervalPassed)
+        {
+            // Detect every enemy in teleportation range
+            Collider2D[] foundEnemies = Physics2D.OverlapCircleAll(transform.position, teleportRange, enemyLayers);
+
+            // For each enemy inside teleportation range
+            foreach(Collider2D enemy in foundEnemies)
+            {
+                // If the enemy is not a boss or its minion
+                if (enemy.tag == "Enemy")
+                {
+                    // Get the distance between the enemy and the player
+                    Vector3 temporaryDistance = enemy.transform.position - transform.position;
+
+                    // If the distance to this enemy is shorter than the previous shortest distance to an enemy
+                    if (Mathf.Abs(temporaryDistance.magnitude) < teleportDestinationDistance)
+                    {
+                        // Change this enemy to the teleportation destination
+                        teleportDestinationDistance = Mathf.Abs(temporaryDistance.magnitude);
+                        teleportDestination = enemy.gameObject;
+                    }
+                }
+            }
+
+            // If no enemies are in range do not teleport
+            if (foundEnemies.Length == 0)
+            {
+                teleportDestinationDistance = teleportRange + 1f;
+                teleportDestination = null;
+            }
+
+            // If it exists
+            if (teleportDestination != null)
+            {
+                // If teleport has not been used in this room yet
+                if (abilitiesObject.firstTeleportUsage == false)
+                {
+                    // Enable HUD timer
+                    abilitiesObject.firstTeleportUsage = true;
+                }
+
+                // Teleport to and instakill the enemy
+                float temporaryPlayerHealth = playerHealth;
+                transform.position = teleportDestination.transform.position;
+                teleportDestination.GetComponent<EnemyScript>().enemyHealth = 0;
+                playerHealth = temporaryPlayerHealth;
+
+                // Reset teleportation variables
+                teleportDestinationDistance = teleportRange + 1f;
+                teleportIntervalPassed = false;
+                teleportIntervalTimer = Time.time;
+            }
         }
 
         // Check for melee attack input
@@ -595,12 +679,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Draw the attack area while in editor
+    // Draw either the attack area or the teleportation range in editor
     private void OnDrawGizmosSelected() {
 
-        if (attackPoint == null) return;
-
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        if (attackPoint != null)
+        {
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        }
+        
+        if (teleportUnlockedCheck == 1)
+        {
+            Gizmos.DrawWireSphere(transform.position, teleportRange);
+        }
     }
 
     // Jump function

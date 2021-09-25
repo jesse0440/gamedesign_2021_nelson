@@ -28,8 +28,6 @@ public class RoomWarp : MonoBehaviour
 
             PlayerPrefs.SetFloat("Room " + sceneID + " X Coordinate", collision.gameObject.transform.position.x);
             PlayerPrefs.SetFloat("Room " + sceneID + " Y Coordinate", collision.gameObject.transform.position.y);
-            PlayerPrefs.SetFloat("PlayerHealth", collision.gameObject.GetComponent<PlayerController>().playerHealth);
-            PlayerPrefs.SetInt("ConsumableSelection", collision.gameObject.GetComponent<PlayerController>().consumableSelection);
             
             /*
             player = GameObject.FindWithTag("Player");
@@ -44,7 +42,9 @@ public class RoomWarp : MonoBehaviour
         // If the object colliding the warp collider is a player
         if (collision.gameObject.tag == "Player") 
         {
-            // Save the keys here only just cause of possible abuse mechanisms
+            // Save the rest of the variables here because of possible abuse mechanisms
+            PlayerPrefs.SetFloat("PlayerHealth", collision.gameObject.GetComponent<PlayerController>().playerHealth);
+            PlayerPrefs.SetInt("ConsumableSelection", collision.gameObject.GetComponent<PlayerController>().consumableSelection);
             PlayerPrefs.SetInt("YellowKeyCount", collision.gameObject.GetComponent<PlayerController>().yellowCount);
             PlayerPrefs.SetInt("BlueKeyCount", collision.gameObject.GetComponent<PlayerController>().blueCount);
             PlayerPrefs.SetInt("RedKeyCount", collision.gameObject.GetComponent<PlayerController>().redCount);

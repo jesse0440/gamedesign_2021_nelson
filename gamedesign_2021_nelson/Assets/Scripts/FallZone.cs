@@ -15,10 +15,10 @@ public class FallZone : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        // If the object which fell was an enemy
-        else if (collision.gameObject.tag == "Enemy")
+        // If the object which fell was an enemy/bossMinion/boss
+        else if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "BossMinion" || collision.gameObject.tag == "Boss")
         {
-            // Destroy the enemy
+            // Destroy the object
             Destroy(collision.gameObject);
         }
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7911288232365540755}
   m_Layer: 6
   m_Name: DroneEnemy
-  m_TagString: Enemy
+  m_TagString: BossMinion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

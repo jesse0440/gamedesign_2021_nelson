@@ -16,8 +16,14 @@ public class AbilityIcons : MonoBehaviour
     public Text teleportInterval;
 
     // Timers for abilities
-    float dashTime;
-    float teleportTime;
+    float dashTime = 0f;
+    float teleportTime = 0f;
+
+    // When the ability is first used in the room
+    [HideInInspector]
+    public bool firstDashUsage = false;
+    [HideInInspector]
+    public bool firstTeleportUsage = false;
 
     // The player's script
     PlayerController playerController;
@@ -66,7 +72,18 @@ public class AbilityIcons : MonoBehaviour
     void Update()
     {
         // Update dash cooldown on the screen every frame
-        dashTime = (float)Math.Round(playerController.dashIntervalTimer + playerController.dashInterval - Time.time, 1);
+        if (firstDashUsage)
+        {
+            dashTime = (float)Math.Round(playerController.dashIntervalTimer + playerController.dashInterval - Time.time, 1);
+        }
+
+        // If not used yet cooldown is 0
+        else
+        {
+            dashTime = 0f;
+        }
+        
+        // Update value on screen
         dashInterval.text = "" + dashTime;
 
         // But do not go to the negative values
@@ -75,7 +92,25 @@ public class AbilityIcons : MonoBehaviour
             dashInterval.text = "0";
         }
 
-        // Change later
-        teleportInterval.text = "0";
+        // Update teleport cooldown on the screen every frame
+        if (firstTeleportUsage)
+        {
+            teleportTime = (float)Math.Round(playerController.teleportIntervalTimer + playerController.teleportInterval - Time.time, 1);
+        }
+
+        // If not used yet cooldown is 0
+        else
+        {
+            teleportTime = 0f;
+        }
+        
+        // Update value on screen
+        teleportInterval.text = "" + teleportTime;
+
+        // But do not go to the negative values
+        if (teleportTime < 0f)
+        {
+            teleportInterval.text = "0";
+        }
     }
 }

@@ -9,12 +9,10 @@ public class AbilityUnlock : MonoBehaviour
     GameObject abilityUnlockObject;
 
     // The ID of the ability unlocked by this object
-    // Must be entered manually in editor!!
     [SerializeField]
     int abilityID;
 
     // The value this ability adds to the player
-    // Must be entered manually in editor!!
     [SerializeField]
     float abilityValue;
 
@@ -69,7 +67,7 @@ public class AbilityUnlock : MonoBehaviour
                     abilityIcons.dashInterval.gameObject.SetActive(true);
                     break;
                 case 3:
-                    // code
+                    collision.gameObject.GetComponent<PlayerController>().teleportUnlockedCheck = 1;
                     abilityIcons.abilityTeleport.SetActive(true);
                     abilityIcons.teleportInterval.gameObject.SetActive(true);
                     break;
@@ -77,8 +75,10 @@ public class AbilityUnlock : MonoBehaviour
                     break;
             }
 
+            // Save the ability object as obtaine
             PlayerPrefs.SetInt("AbilityUnlock" + roomID + "_" + abilityID, 1);
 
+            // Set the ability object as already obtained
             hasThisAbilityUnlockBeenUsedAlready = PlayerPrefs.GetInt("AbilityUnlock" + roomID + "_" + abilityID, 0);
 
             // Enable ability and save it in PlayerPrefs

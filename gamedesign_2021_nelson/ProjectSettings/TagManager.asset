@@ -20,6 +20,9 @@ TagManager:
   - ConsumableSlot1
   - ConsumableSlot2
   - ConsumableSlot3
+  - Boss
+  - BossMinion
+  - AbilitiesObject
   layers:
   - Default
   - TransparentFX
