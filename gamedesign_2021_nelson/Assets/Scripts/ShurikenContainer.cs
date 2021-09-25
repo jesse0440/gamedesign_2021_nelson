@@ -61,7 +61,7 @@ public class ShurikenContainer : MonoBehaviour
             // Make the game remember that this container by ID, in this room by ID, has been consumed
             PlayerPrefs.SetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 1);
 
-            // Assign the check so the health container can't be consumed multiple times in a few frames before it disappears
+            // Assign the check so the bomb container can't be consumed multiple times in a few frames before it disappears
             hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 0);
 
             // Disable the container

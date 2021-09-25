@@ -20,7 +20,9 @@ public class PlayerData
     [HideInInspector]
     public float savedMeleeAttackInterval;
     [HideInInspector]
-    public float savedRangedAttackInterval;
+    public float savedShurikenAttackInterval;
+    [HideInInspector]
+    public float savedBombAttackInterval;
     [HideInInspector]
     public float savedPlayerMaxJumpCounter;
     [HideInInspector]
@@ -38,7 +40,8 @@ public class PlayerData
         savedAttackRange = player.attackRange;
         savedMeleeDamage = player.meleeDamage;
         savedMeleeAttackInterval = player.meleeAttackInterval;
-        savedRangedAttackInterval = player.rangedAttackInterval;
+        savedShurikenAttackInterval = player.ShurikenAttackInterval;
+        savedBombAttackInterval = player.BombAttackInterval;
         savedPlayerMaxJumpCounter = player.playerMaxJumpCounter;
 
         savedSceneNumber = SceneManager.GetActiveScene().buildIndex;

@@ -19,11 +19,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float meleeAttackInterval = 2f;
     [SerializeField]
-    public float rangedAttackInterval = 0.3f;
+    public float ShurikenAttackInterval = 0.3f;
     [SerializeField]
     public float maxShuriken = 10f;
     [SerializeField]
     public float currentShuriken = 0f;
+    [SerializeField]
+    public float BombAttackInterval = 1f;
+    [SerializeField]
+    public float maxBombs = 5f;
+    [SerializeField]
+    public float currentBombs = 5f;
     
     // The slots for player consumable items
     [SerializeField]
@@ -76,11 +82,13 @@ public class PlayerController : MonoBehaviour
     float playerMaxSpeed = 8f;
     float groundedCheckRayLength = 0.01f;
     float nextMeleeTimer;
-    float nextRangedTimer;
+    float nextShurikenTimer;
+    float nextBombTimer;
     float teleportDestinationDistance;
     bool teleportIntervalPassed = true;
     bool meleeIntervalPassed = true;
-    bool rangedIntervalPassed = true;
+    bool shurikenIntervalPassed = true;
+    bool bombIntervalPassed = true;
     bool dashIntervalPassed = true;
     bool hasNotJumped = true;
     bool dashUsed;
@@ -206,8 +214,11 @@ public class PlayerController : MonoBehaviour
         // Set the interval comparison time for melee attacks
         nextMeleeTimer = 0f;
 
-        // Set the interval comparison time for ranged attacks
-        nextRangedTimer = 0f;
+        // Set the interval comparison time for shuriken throws
+        nextShurikenTimer = 0f;
+
+        // Set the interval comparison time for bomb throws
+        nextBombTimer = 0f;
 
         // Set gravity to a default if not set in editor
         if (playerGravity == 0)
@@ -342,9 +353,15 @@ public class PlayerController : MonoBehaviour
         }
 
         // // Check if enough time has passed since last shuriken throw
-        if (Time.time > nextRangedTimer + rangedAttackInterval)
+        if (Time.time > nextShurikenTimer + ShurikenAttackInterval)
         {
-            rangedIntervalPassed = true;
+            shurikenIntervalPassed = true;
+        }
+
+        // // Check if enough time has passed since last bomb throw
+        if (Time.time > nextBombTimer + BombAttackInterval)
+        {
+            bombIntervalPassed = true;
         }
         
         // Check if enough time has passed since last use of Dash
@@ -473,17 +490,25 @@ public class PlayerController : MonoBehaviour
             if (consumableSelection == 0)
             {
                 // If the consumable is a shuriken and interval has passed
-                if (playerConsumableSlotOne.name == "playerShuriken" && rangedIntervalPassed)
+                if (playerConsumableSlotOne.name == "playerShuriken" && shurikenIntervalPassed)
                 {
                     // Throw a shuriken
                     ThrowShuriken(playerConsumableSlotOne);
 
                     // Reset shuriken cooldown
-                    rangedIntervalPassed = false;
-                    nextRangedTimer = Time.time;
+                    shurikenIntervalPassed = false;
+                    nextShurikenTimer = Time.time;
                 }
 
-                // To be done: other consumables
+                if (playerConsumableSlotOne.name == "playerBomb" && bombIntervalPassed)
+                {
+                    // Throw a bomb
+                    ThrowBomb(playerConsumableSlotOne);
+
+                    // Reset bomb cooldown
+                    bombIntervalPassed = false;
+                    nextBombTimer = Time.time;
+                }
 
                 else
                 {
@@ -495,16 +520,25 @@ public class PlayerController : MonoBehaviour
             if (consumableSelection == 1)
             {
                 // If the consumable is a shuriken and interval has passed
-                if (playerConsumableSlotTwo.name == "playerShuriken" && rangedIntervalPassed)
+                if (playerConsumableSlotTwo.name == "playerShuriken" && shurikenIntervalPassed)
                 {
                     // Throw a shuriken
-                    ThrowShuriken(playerConsumableSlotTwo);
+                    ThrowBomb(playerConsumableSlotTwo);
 
                     // Reset shuriken cooldown
-                    rangedIntervalPassed = false;
-                    nextRangedTimer = Time.time;
+                    shurikenIntervalPassed = false;
+                    nextShurikenTimer = Time.time;
                 }
 
+                if (playerConsumableSlotTwo.name == "playerBomb" && bombIntervalPassed)
+                {
+                    // Throw a bomb
+                    ThrowBomb(playerConsumableSlotTwo);
+
+                    // Reset bomb cooldown
+                    bombIntervalPassed = false;
+                    nextBombTimer = Time.time;
+                }
                 // To be done: other consumables
                 
                 else
@@ -517,14 +551,25 @@ public class PlayerController : MonoBehaviour
             if (consumableSelection == 2)
             {
                 // If the consumable is a shuriken and interval has passed
-                if (playerConsumableSlotThree.name == "playerShuriken" && rangedIntervalPassed)
+                if (playerConsumableSlotThree.name == "playerShuriken" && shurikenIntervalPassed)
                 {
                     // Throw a shuriken
                     ThrowShuriken(playerConsumableSlotThree);
 
                     // Reset shuriken cooldown
-                    rangedIntervalPassed = false;
-                    nextRangedTimer = Time.time;
+                    shurikenIntervalPassed = false;
+                    nextShurikenTimer = Time.time;
+                }
+
+
+                if (playerConsumableSlotThree.name == "playerBomb" && bombIntervalPassed)
+                {
+                    // Throw a bomb
+                    ThrowBomb(playerConsumableSlotThree);
+
+                    // Reset bomb cooldown
+                    bombIntervalPassed = false;
+                    nextBombTimer = Time.time;
                 }
 
                 // To be done: other consumables
@@ -678,6 +723,25 @@ public class PlayerController : MonoBehaviour
             return;
         }
     }
+    //Function to instantiate a thrown bomb (could combine with ThrowShuriken?)
+    private void ThrowBomb(GameObject chosenSlotItem)
+    {
+        // If player has a bomb
+        if (currentBombs > 0)
+        {
+            // Throw a bomb and remove one bomb from the player's possession
+            Instantiate(chosenSlotItem, rangedPoint.position, rangedPoint.rotation);
+            currentBombs -= 1;
+        }
+
+        // If the player has no bombs return
+        else
+        {
+            //play a sound
+            //Debug.Log("no bombs to throw!");
+            return;
+        }
+    }
 
     // Draw either the attack area or the teleportation range in editor
     private void OnDrawGizmosSelected() {
@@ -724,7 +788,7 @@ public class PlayerController : MonoBehaviour
         attackRange = data.savedAttackRange;
         meleeDamage = data.savedMeleeDamage;
         meleeAttackInterval = data.savedMeleeAttackInterval;
-        rangedAttackInterval = data.savedRangedAttackInterval;
+        ShurikenAttackInterval = data.savedShurikenAttackInterval;
 
         // Sets the player's position
         Vector2 position;
