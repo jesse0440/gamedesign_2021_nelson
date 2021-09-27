@@ -1,0 +1,35 @@
+﻿{"frames": {
+
+"default1.png Kopie":
+{
+	"frame": {"x":0,"y":0,"w":2200,"h":2800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2200,"h":2800},
+	"sourceSize": {"w":2200,"h":2800}
+},
+"default2.png Kopie":
+{
+	"frame": {"x":2200,"y":0,"w":2200,"h":2800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2200,"h":2800},
+	"sourceSize": {"w":2200,"h":2800}
+},
+"default3.png Kopie":
+{
+	"frame": {"x":4400,"y":0,"w":2200,"h":2800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2200,"h":2800},
+	"sourceSize": {"w":2200,"h":2800}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "21.0.9.42677",
+	"image": "sensowalk.png",
+	"format": "RGBA8888",
+	"size": {"w":8192,"h":4096},
+	"scale": "1"
+}
+}
