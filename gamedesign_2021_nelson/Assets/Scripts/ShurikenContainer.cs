@@ -55,13 +55,24 @@ public class ShurikenContainer : MonoBehaviour
         // If the object is the player and the container has not been consumed
         if (collision.gameObject.tag == "Player" && hasThisContainerBeenUsedAlready == 0 )
         {
-            // Make sure that shuriken amount doesn't go over the max
-            collision.gameObject.GetComponent<PlayerController>().currentShuriken += amountGiven;
+            PlayerController playerScript = collision.gameObject.GetComponent<PlayerController>();
+
+            // If the player has never obtained shurikens before
+            if (PlayerPrefs.GetInt("ShurikenObtained", 0) == 0)
+            {
+                // Allow shurikens in the HUD
+                PlayerPrefs.SetInt("ShurikenObtained", 1);
+                playerScript.shurikenObtainedCheck = 1;
+                playerScript.shurikenIcon.SetActive(true);
+            }
+
+            // Add shurikens
+            playerScript.currentShuriken += amountGiven;
 
             // Make the game remember that this container by ID, in this room by ID, has been consumed
             PlayerPrefs.SetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 1);
 
-            // Assign the check so the bomb container can't be consumed multiple times in a few frames before it disappears
+            // Assign the check so the shuriken container can't be consumed multiple times in a few frames before it disappears
             hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 0);
 
             // Disable the container

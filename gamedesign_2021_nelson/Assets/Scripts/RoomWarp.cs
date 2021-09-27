@@ -42,12 +42,16 @@ public class RoomWarp : MonoBehaviour
         // If the object colliding the warp collider is a player
         if (collision.gameObject.tag == "Player") 
         {
+            PlayerController playerScript = collision.gameObject.GetComponent<PlayerController>();
             // Save the rest of the variables here because of possible abuse mechanisms
-            PlayerPrefs.SetFloat("PlayerHealth", collision.gameObject.GetComponent<PlayerController>().playerHealth);
-            PlayerPrefs.SetInt("ConsumableSelection", collision.gameObject.GetComponent<PlayerController>().consumableSelection);
-            PlayerPrefs.SetInt("YellowKeyCount", collision.gameObject.GetComponent<PlayerController>().yellowCount);
-            PlayerPrefs.SetInt("BlueKeyCount", collision.gameObject.GetComponent<PlayerController>().blueCount);
-            PlayerPrefs.SetInt("RedKeyCount", collision.gameObject.GetComponent<PlayerController>().redCount);
+            PlayerPrefs.SetFloat("PlayerHealth", playerScript.playerHealth);
+            PlayerPrefs.SetInt("ConsumableSelection", playerScript.consumableSelection);
+            PlayerPrefs.SetInt("ShurikenAmount", playerScript.currentShuriken);
+            PlayerPrefs.SetInt("BombAmount", playerScript.currentBombs);
+            PlayerPrefs.SetInt("HealthPotionAmount", playerScript.currentHealthPotions);
+            PlayerPrefs.SetInt("YellowKeyCount", playerScript.yellowCount);
+            PlayerPrefs.SetInt("BlueKeyCount", playerScript.blueCount);
+            PlayerPrefs.SetInt("RedKeyCount", playerScript.redCount);
 
             // Load next room
             SceneManager.LoadScene(nextRoomId);

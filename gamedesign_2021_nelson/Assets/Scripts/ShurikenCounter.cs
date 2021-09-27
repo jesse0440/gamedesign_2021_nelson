@@ -22,8 +22,12 @@ public class ShurikenCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Update the new shuriken amount and check again
-        gameObject.GetComponent<Text>().text = clonedCurrentShuriken + " / " + clonedMaxShuriken;
-        clonedCurrentShuriken = player.GetComponent<PlayerController>().currentShuriken;
+        // Check if the player has ever obtained shurikens
+        if (player.GetComponent<PlayerController>().shurikenObtainedCheck == 1)
+        {
+            // Update the new shuriken amount and check again
+            gameObject.GetComponent<Text>().text = clonedCurrentShuriken + " / " + clonedMaxShuriken;
+            clonedCurrentShuriken = player.GetComponent<PlayerController>().currentShuriken;
+        }
     }
 }

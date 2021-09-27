@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2457979551711442272}
   - component: {fileID: 2457979551711442273}
   - component: {fileID: 4628097792782766506}
+  - component: {fileID: 3693523003593698226}
   m_Layer: 8
   m_Name: PhasePlatform 1
-  m_TagString: Untagged
+  m_TagString: PhasePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,3 +110,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.4375, y: 0.6640625}
   m_EdgeRadius: 0
+--- !u!114 &3693523003593698226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457979551711442279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724fecb6f7253dc4e89d776b0527391f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

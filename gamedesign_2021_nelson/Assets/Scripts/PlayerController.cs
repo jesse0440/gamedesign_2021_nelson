@@ -19,17 +19,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float meleeAttackInterval = 2f;
     [SerializeField]
-    public float ShurikenAttackInterval = 0.3f;
+    public float shurikenAttackInterval = 0.3f;
     [SerializeField]
-    public float maxShuriken = 10f;
+    public int maxShuriken = 10;
     [SerializeField]
-    public float currentShuriken = 0f;
+    public int currentShuriken = 0;
     [SerializeField]
-    public float BombAttackInterval = 1f;
+    public float bombAttackInterval = 1f;
     [SerializeField]
-    public float maxBombs = 5f;
+    public int maxBombs = 5;
     [SerializeField]
-    public float currentBombs = 5f;
+    public int currentBombs = 0;
+    [SerializeField]
+    public int maxHealthPotions = 1;
+    [SerializeField]
+    public int currentHealthPotions = 0;
     
     // The slots for player consumable items
     [SerializeField]
@@ -93,12 +97,25 @@ public class PlayerController : MonoBehaviour
     bool hasNotJumped = true;
     bool dashUsed;
 
+    // HUD Icons check if ever obtained, otherwise hide them
+    [HideInInspector]
+    public int shurikenObtainedCheck = 0;
+    [HideInInspector]
+    public GameObject shurikenIcon;
+    [HideInInspector]
+    public int bombObtainedCheck = 0;
+    [HideInInspector]
+    public GameObject bombIcon;
+    [HideInInspector]
+    public int healthPotionObtainedCheck = 0;
+    [HideInInspector]
+    public GameObject healthPotionIcon;
+
     // Keys have changed
     public event EventHandler OnKeysChanged;
     // Key holding list
     List<KeyCards.KeyType> keyList;
     
-
     // Player components
     Animator playerAnimator;
     Rigidbody2D rigidBody;
@@ -176,6 +193,7 @@ public class PlayerController : MonoBehaviour
         {
             redCount += counter;
         }
+
         //Debug.Log(yellowCount + " / " + blueCount + " / " + redCount);
     }
 
@@ -226,6 +244,29 @@ public class PlayerController : MonoBehaviour
             playerGravity = 2.5f;
         }
 
+        shurikenObtainedCheck = PlayerPrefs.GetInt("ShurikenObtained", 0);
+        bombObtainedCheck = PlayerPrefs.GetInt("BombObtained", 0);
+        healthPotionObtainedCheck = PlayerPrefs.GetInt("HealthPotionObtained", 0);
+
+        shurikenIcon = GameObject.FindWithTag("ConsumableSlot1").transform.Find("ShurikenIcon").gameObject;
+        bombIcon = GameObject.FindWithTag("ConsumableSlot2").transform.Find("BombIcon").gameObject;
+        healthPotionIcon = GameObject.FindWithTag("ConsumableSlot3").transform.Find("HealthPotionIcon").gameObject;
+
+        if (shurikenObtainedCheck == 0)
+        {
+            shurikenIcon.SetActive(false);
+        }
+
+        if (bombObtainedCheck == 0)
+        {
+            bombIcon.SetActive(false);
+        }
+
+        if (healthPotionObtainedCheck == 0)
+        {
+            healthPotionIcon.SetActive(false);
+        }
+
         // Set the selected consumable slot
         consumableSelection = PlayerPrefs.GetInt("ConsumableSelection", 0);
 
@@ -256,6 +297,11 @@ public class PlayerController : MonoBehaviour
         {
             consumableSelectionThree.SetActive(true);
         }
+
+        // Find the amounts of consumables the player has
+        currentShuriken = PlayerPrefs.GetInt("ShurikenAmount", 0);
+        currentBombs = PlayerPrefs.GetInt("BombAmount", 0);
+        currentHealthPotions = PlayerPrefs.GetInt("HealthPotionAmount", 0);
 
         // Find the amount of keys of each type the player has obtained
         yellowCount = PlayerPrefs.GetInt("YellowKeyCount", 0);
@@ -353,13 +399,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // // Check if enough time has passed since last shuriken throw
-        if (Time.time > nextShurikenTimer + ShurikenAttackInterval)
+        if (Time.time > nextShurikenTimer + shurikenAttackInterval)
         {
             shurikenIntervalPassed = true;
         }
 
         // // Check if enough time has passed since last bomb throw
-        if (Time.time > nextBombTimer + BombAttackInterval)
+        if (Time.time > nextBombTimer + bombAttackInterval)
         {
             bombIntervalPassed = true;
         }
@@ -486,98 +532,33 @@ public class PlayerController : MonoBehaviour
         // Check for consumable input
         if (Input.GetButtonDown("Consumable"))
         {
-            // If consumable slot 1 is selected
-            if (consumableSelection == 0)
+            // If consumable slot 1 is selected and interval has passed
+            if (consumableSelection == 0 && shurikenIntervalPassed)
             {
-                // If the consumable is a shuriken and interval has passed
-                if (playerConsumableSlotOne.name == "playerShuriken" && shurikenIntervalPassed)
-                {
-                    // Throw a shuriken
-                    ThrowShuriken(playerConsumableSlotOne);
+                // Throw a shuriken
+                ThrowShuriken(playerConsumableSlotOne);
 
-                    // Reset shuriken cooldown
-                    shurikenIntervalPassed = false;
-                    nextShurikenTimer = Time.time;
-                }
-
-                if (playerConsumableSlotOne.name == "playerBomb" && bombIntervalPassed)
-                {
-                    // Throw a bomb
-                    ThrowBomb(playerConsumableSlotOne);
-
-                    // Reset bomb cooldown
-                    bombIntervalPassed = false;
-                    nextBombTimer = Time.time;
-                }
-
-                else
-                {
-                    return;
-                }
+                // Reset shuriken cooldown
+                shurikenIntervalPassed = false;
+                nextShurikenTimer = Time.time;
             }
             
-            // If consumable slot 2 is selected
-            if (consumableSelection == 1)
+            // If consumable slot 2 is selected and interval has passed
+            if (consumableSelection == 1 && bombIntervalPassed)
             {
-                // If the consumable is a shuriken and interval has passed
-                if (playerConsumableSlotTwo.name == "playerShuriken" && shurikenIntervalPassed)
-                {
-                    // Throw a shuriken
-                    ThrowBomb(playerConsumableSlotTwo);
+                // Throw a bomb
+                ThrowBomb(playerConsumableSlotTwo);
 
-                    // Reset shuriken cooldown
-                    shurikenIntervalPassed = false;
-                    nextShurikenTimer = Time.time;
-                }
-
-                if (playerConsumableSlotTwo.name == "playerBomb" && bombIntervalPassed)
-                {
-                    // Throw a bomb
-                    ThrowBomb(playerConsumableSlotTwo);
-
-                    // Reset bomb cooldown
-                    bombIntervalPassed = false;
-                    nextBombTimer = Time.time;
-                }
-                // To be done: other consumables
-                
-                else
-                {
-                    return;
-                }
+                // Reset bomb cooldown
+                bombIntervalPassed = false;
+                nextBombTimer = Time.time;
             }
 
             // If consumable slot 3 is selected
             if (consumableSelection == 2)
             {
-                // If the consumable is a shuriken and interval has passed
-                if (playerConsumableSlotThree.name == "playerShuriken" && shurikenIntervalPassed)
-                {
-                    // Throw a shuriken
-                    ThrowShuriken(playerConsumableSlotThree);
-
-                    // Reset shuriken cooldown
-                    shurikenIntervalPassed = false;
-                    nextShurikenTimer = Time.time;
-                }
-
-
-                if (playerConsumableSlotThree.name == "playerBomb" && bombIntervalPassed)
-                {
-                    // Throw a bomb
-                    ThrowBomb(playerConsumableSlotThree);
-
-                    // Reset bomb cooldown
-                    bombIntervalPassed = false;
-                    nextBombTimer = Time.time;
-                }
-
-                // To be done: other consumables
-                
-                else
-                {
-                    return;
-                }
+                // Consume a health potion
+                ConsumeHealthPotion(playerConsumableSlotThree);
             }
         }
 
@@ -610,6 +591,17 @@ public class PlayerController : MonoBehaviour
         if (currentShuriken > maxShuriken)
         {
             currentShuriken = maxShuriken;
+        }
+
+        // If you obtain more bombs than is max make bomb count 5
+        if (currentBombs > maxBombs)
+        {
+            currentBombs = maxBombs;
+        }
+
+        if (currentHealthPotions > maxHealthPotions)
+        {
+            currentHealthPotions = maxHealthPotions;
         }
     }
 
@@ -707,7 +699,7 @@ public class PlayerController : MonoBehaviour
     // Function to instantiate a thrown shuriken
     private void ThrowShuriken(GameObject chosenSlotItem)
     {
-        // If player has shurikens
+        // If the player has a shuriken
         if (currentShuriken > 0)
         {
             // Throw a shuriken and remove one shuriken from the player's possession
@@ -723,10 +715,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
     }
-    //Function to instantiate a thrown bomb (could combine with ThrowShuriken?)
+
+    // Function to instantiate a thrown bomb
     private void ThrowBomb(GameObject chosenSlotItem)
     {
-        // If player has a bomb
+        // If the player has a bomb
         if (currentBombs > 0)
         {
             // Throw a bomb and remove one bomb from the player's possession
@@ -739,6 +732,24 @@ public class PlayerController : MonoBehaviour
         {
             //play a sound
             //Debug.Log("no bombs to throw!");
+            return;
+        }
+    }
+
+    // Function to consume a health potion
+    private void ConsumeHealthPotion(GameObject chosenSlotItem)
+    {
+        // If the player has a health potion
+        if (currentHealthPotions > 0)
+        {
+            // Replenish health and remove one health potion from the player's possession
+            playerHealth += chosenSlotItem.GetComponent<PlayerHealthPotion>().healthReplenished;
+            currentHealthPotions -= 1;
+        }
+
+        // If the player has no health potions return
+        else
+        {
             return;
         }
     }
@@ -789,7 +800,7 @@ public class PlayerController : MonoBehaviour
         attackRange = data.savedAttackRange;
         meleeDamage = data.savedMeleeDamage;
         meleeAttackInterval = data.savedMeleeAttackInterval;
-        ShurikenAttackInterval = data.savedShurikenAttackInterval;
+        shurikenAttackInterval = data.savedShurikenAttackInterval;
         currentShuriken = data.savedCurrentShuriken;
         currentBombs = data.savedCurrentBombs;
         maxBombs = data.savedMaxBombs;

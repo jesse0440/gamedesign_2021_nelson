@@ -55,8 +55,19 @@ public class BombContainer : MonoBehaviour
         // If the object is the player and the container has not been consumed
         if (collision.gameObject.tag == "Player" && hasThisContainerBeenUsedAlready == 0 )
         {
-            // Make sure that bomb amount doesn't go over the max
-            collision.gameObject.GetComponent<PlayerController>().currentBombs += amountGiven;
+            PlayerController playerScript = collision.gameObject.GetComponent<PlayerController>();
+
+            // If the player has never obtained bombs before
+            if (PlayerPrefs.GetInt("BombObtained", 0) == 0)
+            {
+                // Allow bombs in the HUD
+                PlayerPrefs.SetInt("BombObtained", 1);
+                playerScript.bombObtainedCheck = 1;
+                playerScript.bombIcon.SetActive(true);
+            }
+
+            // Add bombs
+            playerScript.currentBombs += amountGiven;
 
             // Make the game remember that this container by ID, in this room by ID, has been consumed
             PlayerPrefs.SetInt("BombContainer" + roomID + "_" + bombContainerIDInRoom, 1);

@@ -26,13 +26,13 @@ public class PlayerData
     [HideInInspector]
     public float savedPlayerMaxJumpCounter;
     [HideInInspector]
-    public float savedCurrentShuriken;
+    public int savedCurrentShuriken;
     [HideInInspector]
-    public float savedCurrentBombs;
+    public int savedCurrentBombs;
     [HideInInspector]
-    public float savedMaxBombs;
+    public int savedMaxBombs;
     [HideInInspector]
-    public float savedMaxShuriken;
+    public int savedMaxShuriken;
     [HideInInspector]
     public float savedWallClimbValue;
     [HideInInspector]
@@ -67,8 +67,8 @@ public class PlayerData
         savedAttackRange = player.attackRange;
         savedMeleeDamage = player.meleeDamage;
         savedMeleeAttackInterval = player.meleeAttackInterval;
-        savedShurikenAttackInterval = player.ShurikenAttackInterval;
-        savedBombAttackInterval = player.BombAttackInterval;
+        savedShurikenAttackInterval = player.shurikenAttackInterval;
+        savedBombAttackInterval = player.bombAttackInterval;
         savedPlayerMaxJumpCounter = player.playerMaxJumpCounter;
         savedCurrentShuriken = player.currentShuriken;
         savedCurrentBombs = player.currentBombs;

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1321422287636033913}
+  - component: {fileID: 8186162108096817364}
   - component: {fileID: 1538998020679496028}
   - component: {fileID: 3826525971960701303}
   - component: {fileID: 1964711226612968411}
-  - component: {fileID: 8186162108096817364}
   m_Layer: 0
   m_Name: playerBomb
   m_TagString: Untagged
@@ -34,6 +34,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8186162108096817364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6075533749840621250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e8989851a6ea24cbda50ea5e61ca8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1538998020679496028}
+  explosionSprite: {fileID: 21300000, guid: d9f59a72d16279c4ca9eda1f91075dc4, type: 3}
+  speed: 10
+  impactDamage: 10
+  explodeTime: 2
+  splashRange: 1
+  explosionDamage: 50
+  xForce: {x: 0.2, y: 0, z: 0}
+  yForce: {x: 0, y: 0.5, z: 0}
 --- !u!212 &1538998020679496028
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -102,7 +123,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -122,24 +143,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.28
---- !u!114 &8186162108096817364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6075533749840621250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94e8989851a6ea24cbda50ea5e61ca8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1538998020679496028}
-  explosionSprite: {fileID: 21300000, guid: d9f59a72d16279c4ca9eda1f91075dc4, type: 3}
-  speed: 10
-  impactDamage: 10
-  explodeTime: 2
-  splashRange: 1
-  explosionDamage: 50
-  xForce: {x: 0.2, y: 0, z: 0}
-  yForce: {x: 0, y: 0.5, z: 0}
