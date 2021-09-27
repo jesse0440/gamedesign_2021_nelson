@@ -26,6 +26,33 @@ public class PlayerData
     [HideInInspector]
     public float savedPlayerMaxJumpCounter;
     [HideInInspector]
+    public float savedCurrentShuriken;
+    [HideInInspector]
+    public float savedCurrentBombs;
+    [HideInInspector]
+    public float savedMaxBombs;
+    [HideInInspector]
+    public float savedMaxShuriken;
+    [HideInInspector]
+    public float savedWallClimbValue;
+    [HideInInspector]
+    public float savedDashUnlockedCheck;
+    [HideInInspector]
+    public float savedDashDistance;
+    [HideInInspector]
+    public float savedDashInterval;
+    [HideInInspector]
+    public float savedTeleportUnlockedCheck;
+    [HideInInspector]
+    public float savedTeleportInterval;
+    [HideInInspector]
+    public int savedYellowCount;
+    [HideInInspector]
+    public int savedBlueCount;
+    [HideInInspector]
+    public int savedRedCount;
+
+    [HideInInspector]
     public int savedSceneNumber;
 
     // This data will be saved
@@ -43,6 +70,19 @@ public class PlayerData
         savedShurikenAttackInterval = player.ShurikenAttackInterval;
         savedBombAttackInterval = player.BombAttackInterval;
         savedPlayerMaxJumpCounter = player.playerMaxJumpCounter;
+        savedCurrentShuriken = player.currentShuriken;
+        savedCurrentBombs = player.currentBombs;
+        savedMaxBombs = player.maxBombs;
+        savedMaxShuriken = player.maxShuriken;
+        savedWallClimbValue = player.wallClimbValue;
+        savedDashUnlockedCheck = player.dashUnlockedCheck;
+        savedDashDistance = player.dashDistance;
+        savedDashInterval = player.dashInterval;
+        savedTeleportUnlockedCheck = player.teleportUnlockedCheck;
+        savedTeleportInterval = player.teleportInterval;
+        savedYellowCount = player.yellowCount;
+        savedBlueCount = player.blueCount;
+        savedRedCount = player.redCount;
 
         savedSceneNumber = SceneManager.GetActiveScene().buildIndex;
     }

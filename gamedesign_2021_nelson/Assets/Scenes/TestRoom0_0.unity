@@ -931,7 +931,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &286596631
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1198,7 +1198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &319382862
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21182,9 +21182,10 @@ MonoBehaviour:
   attackRange: 3
   meleeDamage: 10
   meleeAttackInterval: 2
-  rangedAttackInterval: 0.5
+  ShurikenAttackInterval: 0.3
   maxShuriken: 10
   currentShuriken: 0
+  BombAttackInterval: 1
   maxBombs: 5
   currentBombs: 5
   playerConsumableSlotOne: {fileID: 3611530734654877224, guid: 00a38cca93ab04049862000ed44eb3b9, type: 3}

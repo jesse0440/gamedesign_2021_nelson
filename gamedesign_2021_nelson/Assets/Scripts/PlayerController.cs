@@ -773,6 +773,7 @@ public class PlayerController : MonoBehaviour
     {
         // Saves the player
         SaveSystem.SavePlayer(this);
+
         // Shows where it saves the file
         Debug.Log(Application.persistentDataPath);
     }
@@ -789,6 +790,22 @@ public class PlayerController : MonoBehaviour
         meleeDamage = data.savedMeleeDamage;
         meleeAttackInterval = data.savedMeleeAttackInterval;
         ShurikenAttackInterval = data.savedShurikenAttackInterval;
+        currentShuriken = data.savedCurrentShuriken;
+        currentBombs = data.savedCurrentBombs;
+        maxBombs = data.savedMaxBombs;
+        maxShuriken = data.savedMaxShuriken;
+        wallClimbValue = data.savedWallClimbValue;
+        dashUnlockedCheck = data.savedDashUnlockedCheck;
+        dashDistance = data.savedDashDistance;
+        dashInterval = data.savedDashInterval;
+        teleportUnlockedCheck = data.savedTeleportUnlockedCheck;
+        teleportInterval = data.savedTeleportInterval;
+        yellowCount = data.savedYellowCount;
+        blueCount = data.savedBlueCount;
+        redCount = data.savedRedCount;
+
+
+        SceneManager.LoadScene(data.savedSceneNumber);
 
         // Sets the player's position
         Vector2 position;

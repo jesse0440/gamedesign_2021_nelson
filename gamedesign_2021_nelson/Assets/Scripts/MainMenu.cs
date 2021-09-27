@@ -5,20 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    PlayerController Loader;
+
+    void Start()
+    {
+        Loader = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+    }
+
     // Start a new game
     public void PlayGame()
     {
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     // Load an existing game
     public void LoadGame()
     {
-        PlayerData data = SaveSystem.LoadPlayer();
-
-        SceneManager.LoadScene(data.savedSceneNumber);
-
+        Loader.LoadPlayer();
     }
 
     // Quit the game
