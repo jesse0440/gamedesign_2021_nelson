@@ -14,8 +14,7 @@ public class ShurikenContainer : MonoBehaviour
 
     // The ID of the container
     // Used to differentiate multiple containers in a room
-    [SerializeField]
-    int shurikenContainerIDInRoom;
+    public int containerIDInRoom;
 
     // The ID of the room the container is located in
     int roomID;
@@ -31,7 +30,7 @@ public class ShurikenContainer : MonoBehaviour
         roomID = SceneManager.GetActiveScene().buildIndex;
 
         // Find out if this container has already been used in this playthrough or use default (0)
-        hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 0);
+        hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("ShurikenContainer" + roomID + "_" + containerIDInRoom, 0);
         
         // If it has been used
         if (hasThisContainerBeenUsedAlready == 1)
@@ -70,10 +69,10 @@ public class ShurikenContainer : MonoBehaviour
             playerScript.currentShuriken += amountGiven;
 
             // Make the game remember that this container by ID, in this room by ID, has been consumed
-            PlayerPrefs.SetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 1);
+            PlayerPrefs.SetInt("ShurikenContainer" + roomID + "_" + containerIDInRoom, 1);
 
             // Assign the check so the shuriken container can't be consumed multiple times in a few frames before it disappears
-            hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("ShurikenContainer" + roomID + "_" + shurikenContainerIDInRoom, 0);
+            hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("ShurikenContainer" + roomID + "_" + containerIDInRoom, 0);
 
             // Disable the container
             shurikenParentObject.SetActive(false);

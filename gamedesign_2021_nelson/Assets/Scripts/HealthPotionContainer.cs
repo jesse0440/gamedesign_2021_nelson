@@ -14,8 +14,7 @@ public class HealthPotionContainer : MonoBehaviour
 
     // The ID of the container
     // Used to differentiate multiple containers in a room
-    [SerializeField]
-    int healthPotionContainerIDInRoom;
+    public int containerIDInRoom;
 
     // The ID of the room the container is located in
     int roomID;
@@ -31,7 +30,7 @@ public class HealthPotionContainer : MonoBehaviour
         roomID = SceneManager.GetActiveScene().buildIndex;
 
         // Find out if this container has already been used in this playthrough or use default (0)
-        hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("HealthPotionContainer" + roomID + "_" + healthPotionContainerIDInRoom, 0);
+        hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("HealthPotionContainer" + roomID + "_" + containerIDInRoom, 0);
         
         // If it has been used
         if (hasThisContainerBeenUsedAlready == 1)
@@ -70,10 +69,10 @@ public class HealthPotionContainer : MonoBehaviour
             playerScript.currentHealthPotions += amountGiven;
 
             // Make the game remember that this container by ID, in this room by ID, has been consumed
-            PlayerPrefs.SetInt("HealthPotionContainer" + roomID + "_" + healthPotionContainerIDInRoom, 1);
+            PlayerPrefs.SetInt("HealthPotionContainer" + roomID + "_" + containerIDInRoom, 1);
 
             // Assign the check so the health potion container can't be consumed multiple times in a few frames before it disappears
-            hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("HealthPotionContainer" + roomID + "_" + healthPotionContainerIDInRoom, 0);
+            hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("HealthPotionContainer" + roomID + "_" + containerIDInRoom, 0);
 
             // Disable the container
             healthPotionParentObject.SetActive(false);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -105,6 +106,12 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     GameObject[] itemDrop;
 
+    // ID of the room
+    int roomID;
+    // Counter for enemy drops resetting in rooms
+    [HideInInspector]
+    public int roomDropCounter = 100;
+
 
 
     [Header("Turret Settings")]
@@ -180,6 +187,10 @@ public class EnemyScript : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         castingPosition = gameObject.transform.Find("CastPosition");
         baseScale = transform.localScale;
+        roomID = SceneManager.GetActiveScene().buildIndex;
+
+        // Get the counter for this rooms drops or use default
+        roomDropCounter = PlayerPrefs.GetInt("DropCounter_" + "Room_" + roomID, 100);
 
         // If jumping is allowed and RNG is turned on for jump intervals
         if (enemyJumpingAllowed && randomJumpIntervalExtender)
@@ -330,9 +341,39 @@ public class EnemyScript : MonoBehaviour
 
                 if (dropRandomValue <= enemyDropChance)
                 {
-                    Instantiate(itemDrop[randomItem], transform.position, transform.rotation);
+                    GameObject temporaryObject = Instantiate(itemDrop[randomItem], transform.position, transform.rotation);
+                    GameObject childObject = temporaryObject.transform.GetChild(0).gameObject;
+                    
+                    if (childObject.name == "HealthContainer")
+                    {
+                        childObject.GetComponent<HealthContainer>().containerIDInRoom = roomDropCounter;
+                    }
+
+                    else if (childObject.name == "ShurikenContainer")
+                    {
+                        childObject.GetComponent<ShurikenContainer>().containerIDInRoom = roomDropCounter;
+                    }
+
+                    else if (childObject.name == "BombContainer")
+                    {
+                        childObject.GetComponent<BombContainer>().containerIDInRoom = roomDropCounter;
+                    }
+
+                    else if (childObject.name == "HealthPotionContainer")
+                    {
+                        childObject.GetComponent<HealthPotionContainer>().containerIDInRoom = roomDropCounter;
+                    }
+
+                    else
+                    {
+                        return;
+                    }
                 }            
             }
+
+            // Rise the drop counter
+            roomDropCounter++;
+            PlayerPrefs.SetInt("DropCounter_" + "Room_" + roomID, roomDropCounter);
 
             Destroy(gameObject);
         }

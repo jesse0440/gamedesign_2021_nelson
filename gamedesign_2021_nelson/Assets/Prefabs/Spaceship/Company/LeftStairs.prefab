@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2210692759145923988}
   - component: {fileID: 2210692759145923989}
-  - component: {fileID: 8974482534235824478}
+  - component: {fileID: 466658838345853314}
   m_Layer: 8
   m_Name: LeftStairs
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2210692759145923987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -39.55, y: -3.13, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,8 +83,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8974482534235824478
-BoxCollider2D:
+--- !u!60 &466658838345853314
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,6 +106,23 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 5.4609375, y: 3.0625}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.01953125, y: 0.3515625}
+      - {x: -0.03515625, y: 0.3359375}
+      - {x: -0.30859375, y: 0.15625}
+      - {x: -0.32421875, y: 0.140625}
+      - {x: -0.58984375, y: -0.0390625}
+      - {x: -0.60546875, y: -0.0546875}
+      - {x: -0.91796875, y: -0.234375}
+      - {x: -0.93359375, y: -0.25}
+      - {x: -1.2226562, y: -0.4375}
+      - {x: -1.2382812, y: -0.453125}
+      - {x: -1.5117188, y: -0.6328125}
+      - {x: -1.5273438, y: -0.6484375}
+      - {x: -1.8085938, y: -0.8359375}
+      - {x: -2.1155586, y: -1.064162}
+      - {x: -1.8242188, y: -1.0625}
+      - {x: 2.7304688, y: -1.0625}
+      - {x: 2.7304688, y: 1.53125}
+      - {x: 1.8592224, y: 1.53125}
