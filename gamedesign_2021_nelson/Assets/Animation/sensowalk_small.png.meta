@@ -1,0 +1,444 @@
+fileFormatVersion: 2
+guid: dbcc1981304e4e74fbb09a2955c83954
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3742801005672853392
+    second: sensowalk_small_0
+  - first:
+      213: 1364381286451194224
+    second: sensowalk_small_1
+  - first:
+      213: 8481523685453131540
+    second: sensowalk_small_2
+  - first:
+      213: 298348325775301886
+    second: sensowalk_small_3
+  - first:
+      213: -5426755656859528370
+    second: sensowalk_small_4
+  - first:
+      213: 4751656097144919654
+    second: sensowalk_small_5
+  - first:
+      213: 2959139751758374476
+    second: sensowalk_small_6
+  - first:
+      213: 3584705497624130981
+    second: sensowalk_small_7
+  - first:
+      213: -9216488495063580014
+    second: sensowalk_small_8
+  - first:
+      213: -528972487741262520
+    second: sensowalk_small_9
+  - first:
+      213: 4295458415137213225
+    second: sensowalk_small_10
+  - first:
+      213: -480916638439235879
+    second: sensowalk_small_11
+  - first:
+      213: 4519190880797782803
+    second: sensowalk_small_12
+  - first:
+      213: 5722920187506268331
+    second: sensowalk_small_13
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sensowalk_small_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 971
+        width: 255
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09fea183fa911f330800000000000000
+      internalID: 3742801005672853392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_1
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 962
+        width: 219
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0792d1d1d814fe210800000000000000
+      internalID: 1364381286451194224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_2
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 965
+        width: 219
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41fee79dadc64b570800000000000000
+      internalID: 8481523685453131540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_3
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 964
+        width: 218
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efc5b29b832f32400800000000000000
+      internalID: 298348325775301886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_4
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 694
+        width: 219
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e43db067b7a40b4b0800000000000000
+      internalID: -5426755656859528370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_5
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 695
+        width: 219
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66654258b0641f140800000000000000
+      internalID: 4751656097144919654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_6
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 701
+        width: 216
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c46ab401de9f01920800000000000000
+      internalID: 2959139751758374476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_7
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 701
+        width: 220
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a5b64258ae6fb130800000000000000
+      internalID: 3584705497624130981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_8
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 426
+        width: 221
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 292c2477b84781080800000000000000
+      internalID: -9216488495063580014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_9
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 426
+        width: 221
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8453a343356b8a8f0800000000000000
+      internalID: -528972487741262520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_10
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 426
+        width: 219
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92b47b59ba88c9b30800000000000000
+      internalID: 4295458415137213225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_11
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 425
+        width: 219
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9de11478dd07359f0800000000000000
+      internalID: -480916638439235879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_12
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 158
+        width: 219
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 313f222992467be30800000000000000
+      internalID: 4519190880797782803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensowalk_small_13
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 157
+        width: 219
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba81936d695eb6f40800000000000000
+      internalID: 5722920187506268331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

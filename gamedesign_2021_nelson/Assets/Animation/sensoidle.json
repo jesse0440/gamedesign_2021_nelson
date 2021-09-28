@@ -1,0 +1,35 @@
+﻿{"frames": {
+
+"default1.png":
+{
+	"frame": {"x":0,"y":0,"w":1025,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1025,"h":800},
+	"sourceSize": {"w":1025,"h":800}
+},
+"default2.png":
+{
+	"frame": {"x":1025,"y":0,"w":1025,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1025,"h":800},
+	"sourceSize": {"w":1025,"h":800}
+},
+"default3.png":
+{
+	"frame": {"x":2050,"y":0,"w":1025,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1025,"h":800},
+	"sourceSize": {"w":1025,"h":800}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "21.0.9.42677",
+	"image": "sensoidle.png",
+	"format": "RGBA8888",
+	"size": {"w":4096,"h":1024},
+	"scale": "1"
+}
+}

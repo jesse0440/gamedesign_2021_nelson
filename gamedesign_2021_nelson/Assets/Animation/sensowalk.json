@@ -1,0 +1,123 @@
+﻿{"frames": {
+
+"walk1.png":
+{
+	"frame": {"x":0,"y":0,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk10.png":
+{
+	"frame": {"x":950,"y":0,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk11.png":
+{
+	"frame": {"x":1900,"y":0,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk12.png":
+{
+	"frame": {"x":2850,"y":0,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk13.png":
+{
+	"frame": {"x":0,"y":900,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk13to5.png":
+{
+	"frame": {"x":950,"y":900,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk2.png":
+{
+	"frame": {"x":1900,"y":900,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk3.png":
+{
+	"frame": {"x":2850,"y":900,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk4.png":
+{
+	"frame": {"x":0,"y":1800,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk5.png":
+{
+	"frame": {"x":950,"y":1800,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk6.png":
+{
+	"frame": {"x":1900,"y":1800,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk7.png":
+{
+	"frame": {"x":2850,"y":1800,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk8.png":
+{
+	"frame": {"x":0,"y":2700,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+},
+"walk9.png":
+{
+	"frame": {"x":950,"y":2700,"w":950,"h":900},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":950,"h":900},
+	"sourceSize": {"w":950,"h":900}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "21.0.9.42677",
+	"image": "sensowalk.png",
+	"format": "RGBA8888",
+	"size": {"w":4096,"h":4096},
+	"scale": "1"
+}
+}

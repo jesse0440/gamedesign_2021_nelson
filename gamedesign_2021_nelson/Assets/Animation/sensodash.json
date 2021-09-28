@@ -1,0 +1,51 @@
+﻿{"frames": {
+
+"dash1.png":
+{
+	"frame": {"x":0,"y":0,"w":1025,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1025,"h":800},
+	"sourceSize": {"w":1025,"h":800}
+},
+"dash2.png":
+{
+	"frame": {"x":1025,"y":0,"w":1025,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1025,"h":800},
+	"sourceSize": {"w":1025,"h":800}
+},
+"dash3.png":
+{
+	"frame": {"x":2050,"y":0,"w":1025,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1025,"h":800},
+	"sourceSize": {"w":1025,"h":800}
+},
+"dash4.png":
+{
+	"frame": {"x":0,"y":800,"w":1025,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1025,"h":800},
+	"sourceSize": {"w":1025,"h":800}
+},
+"dash5.png":
+{
+	"frame": {"x":1025,"y":800,"w":1025,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1025,"h":800},
+	"sourceSize": {"w":1025,"h":800}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "21.0.9.42677",
+	"image": "sensodash.png",
+	"format": "RGBA8888",
+	"size": {"w":4096,"h":2048},
+	"scale": "1"
+}
+}

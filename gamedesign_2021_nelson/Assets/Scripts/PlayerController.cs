@@ -425,9 +425,13 @@ public class PlayerController : MonoBehaviour
         // Get the Horizontal input of Input manager
         playerDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+
+        playerAnimator.SetFloat("Speed", Math.Abs(Input.GetAxis("Horizontal")));
+
         // While moving right
         if (playerDirection.x > 0) 
         {
+            //playerAnimator.SetTrigger("walkStart");
             // Make the local scale's X positive to make the player face right
             Vector3 newScale = new Vector3(1, 1, 1);
             transform.localScale = newScale;
@@ -438,6 +442,8 @@ public class PlayerController : MonoBehaviour
         // While moving left
         if (playerDirection.x < 0)
         {
+            //playerAnimator.SetTrigger("walkStart");
+
             // Make the local scale's X negative to make the player face left
             Vector3 newScale = new Vector3(-1, 1, 1);
             transform.localScale = newScale;
@@ -445,13 +451,21 @@ public class PlayerController : MonoBehaviour
             rangedPoint.rotation = Quaternion.Euler(0, 180, 0);
         }
 
+        //If player has stopped moving
+        /*if (playerDirection.x == 0){
+            playerAnimator.SetTrigger("walkEnd");
+        }*/
+
         // Dashing with Left Shift if it is unlocked
         if (Input.GetButtonDown("Dash") && dashUnlockedCheck == 1 && dashIntervalPassed && rigidBody.velocity.x != 0)
         {
+            //trigger dash animation
+            playerAnimator.SetTrigger("UseDash");
+
             // If dash has not been used in this room yet
             if (abilitiesObject.firstDashUsage == false)
             {
-                // Enable HUD timer
+                // Enable HUD timerS
                 abilitiesObject.firstDashUsage = true;
             }
 
