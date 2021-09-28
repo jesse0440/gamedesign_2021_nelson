@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     // Start a new game
     public void PlayGame()
     {
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
