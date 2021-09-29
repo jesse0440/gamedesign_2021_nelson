@@ -21,11 +21,11 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 6059878098207055579, guid: 13ac9670f779c5f4bb6a7a2b424c6d34, type: 3}
-    - time: 0.16666667
+    - time: 0.25
       value: {fileID: -101631680848970695, guid: 13ac9670f779c5f4bb6a7a2b424c6d34, type: 3}
-    - time: 0.33333334
-      value: {fileID: 6488542451751651946, guid: 13ac9670f779c5f4bb6a7a2b424c6d34, type: 3}
     - time: 0.5
+      value: {fileID: 6488542451751651946, guid: 13ac9670f779c5f4bb6a7a2b424c6d34, type: 3}
+    - time: 0.75
       value: {fileID: -101631680848970695, guid: 13ac9670f779c5f4bb6a7a2b424c6d34, type: 3}
     attribute: m_Sprite
     path: 
@@ -55,7 +55,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5416667
+    m_StopTime: 0.7916667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -74,4 +74,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: SetColliderForAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

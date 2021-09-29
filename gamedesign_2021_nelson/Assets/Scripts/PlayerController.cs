@@ -65,7 +65,14 @@ public class PlayerController : MonoBehaviour
     float teleportRange;
     public float teleportInterval;
 
-    
+    [Header("Animation Settings")]
+    [SerializeField]
+    private EdgeCollider2D[] colliders;
+    //index 0: idle
+    //index 1: walk
+    //index 2: dash
+    private int currentColliderIndex = 0;
+
 
     // Player variables needed in other scripts
     [HideInInspector]
@@ -699,7 +706,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Melee triggered");
         // Create attack collider
-        playerAnimator.SetTrigger("useMelee");
+        //playerAnimator.SetTrigger("useMelee");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         // If enemy colliders are inside the collider
@@ -792,6 +799,20 @@ public class PlayerController : MonoBehaviour
         rigidBody.AddForce(Vector2.up * playerCurrentJumpHeight, ForceMode2D.Impulse);
         playerJumpCounter += 1;
     }
+
+
+    public void SetColliderForAnimation( int animationIndex )
+    {
+    //disable collider of the last animation
+    colliders[currentColliderIndex].enabled = false;
+    currentColliderIndex = animationIndex;
+    //enable collider of the new animatison
+    colliders[currentColliderIndex].enabled = true;
+
+    //reassign edgeCollider for other functions
+    edgeCollider = colliders[animationIndex];
+    }
+
 
     // Player's save function
     public void SavePlayer()
