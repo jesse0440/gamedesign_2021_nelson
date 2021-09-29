@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        Loader = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        //Loader = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
 
     // Start a new game
@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour
     // Load an existing game
     public void LoadGame()
     {
-        Loader.LoadPlayer();
+        //Loader.LoadPlayer();
     }
 
     // Quit the game

@@ -521,7 +521,7 @@ public class PlayerController : MonoBehaviour
 
                 // Teleport to and instakill the enemy
                 float temporaryPlayerHealth = playerHealth;
-                transform.position = teleportDestination.transform.position;
+                transform.position = teleportDestination.GetComponent<BoxCollider2D>().bounds.center;
                 teleportDestination.GetComponent<EnemyScript>().enemyHealth = 0;
                 playerHealth = temporaryPlayerHealth;
 

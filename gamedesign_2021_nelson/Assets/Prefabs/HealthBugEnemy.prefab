@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 7928036496311477785}
   - component: {fileID: 7928036496311477784}
   - component: {fileID: 7928036496311477767}
+  - component: {fileID: -4812078100148958628}
   m_Layer: 6
   m_Name: HealthBugEnemy
   m_TagString: Enemy
@@ -183,6 +184,7 @@ MonoBehaviour:
   itemDrop:
   - {fileID: 5992109048396307417, guid: c7fee8518e63ddc4383e6b0c2a5100a3, type: 3}
   - {fileID: 5651996646660014829, guid: 09e8344ea7f5e074980275c19d5cbd52, type: 3}
+  roomDropCounter: 100
   canEnemyShootPlayer: 0
   projectileDamage: 0
   projectileSpeed: 0
@@ -225,3 +227,29 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 0.6}
   m_Direction: 0
+--- !u!61 &-4812078100148958628
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7928036496311477766}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

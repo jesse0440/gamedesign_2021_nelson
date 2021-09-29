@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1013065343770198213}
   - component: {fileID: 1013065343770198235}
   - component: {fileID: -1035922897275786246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LockedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyType: 0
+  doorIDInRoom: 0
 --- !u!61 &1013065343770198235
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1013065343859316257}
   - component: {fileID: 1013065343859316256}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
