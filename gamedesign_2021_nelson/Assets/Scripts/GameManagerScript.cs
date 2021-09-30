@@ -31,4 +31,6 @@ public class GameManagerScript : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
     }
+
+
 }

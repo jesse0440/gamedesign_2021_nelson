@@ -4833,6 +4833,7 @@ MonoBehaviour:
   teleportUnlockedCheck: 0
   teleportRange: 8
   teleportInterval: 10
+  colliders: []
   consumableSelection: 0
   dashIntervalTimer: 0
   teleportIntervalTimer: 0

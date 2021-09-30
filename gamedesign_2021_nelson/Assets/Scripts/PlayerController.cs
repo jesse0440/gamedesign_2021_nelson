@@ -824,6 +824,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(Application.persistentDataPath);
     }
 
+    
     // Player load function
     public void LoadPlayer()
     {
@@ -859,4 +860,5 @@ public class PlayerController : MonoBehaviour
         position.y = data.savedPlayerPosition[1];
         transform.position = position;
     }
+    
 }

@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class SpawnPointLocation : MonoBehaviour
 {
     // Variables needed
-    float respawnXCoordinate;
-    float respawnYCoordinate;
+    public float respawnXCoordinate;
+    public float respawnYCoordinate;
 
     void Awake()
     {

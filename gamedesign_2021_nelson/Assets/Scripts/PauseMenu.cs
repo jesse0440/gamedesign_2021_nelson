@@ -9,13 +9,6 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
-    PlayerController Loader;
-
-    void Start()
-    {
-        Loader = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -58,7 +51,8 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadSave()
     {
+        pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        Loader.LoadPlayer();
+        isPaused = false;
     }
 }

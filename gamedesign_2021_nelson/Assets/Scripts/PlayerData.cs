@@ -55,15 +55,19 @@ public class PlayerData
     [HideInInspector]
     public int savedSceneNumber;
 
+    public int firstTime;
+
     // This data will be saved
     public PlayerData(PlayerController player)
     {
         // Saved data variables
         savedPlayerHealth = player.playerHealth;
         savedPlayerMaxHealth = player.playerMaxHealth;
+
         savedPlayerPosition = new float[2];
         savedPlayerPosition[0] = player.transform.position.x;
         savedPlayerPosition[1] = player.transform.position.y;
+
         savedAttackRange = player.attackRange;
         savedMeleeDamage = player.meleeDamage;
         savedMeleeAttackInterval = player.meleeAttackInterval;
@@ -83,6 +87,8 @@ public class PlayerData
         savedYellowCount = player.yellowCount;
         savedBlueCount = player.blueCount;
         savedRedCount = player.redCount;
+
+        firstTime = 0;
 
         savedSceneNumber = SceneManager.GetActiveScene().buildIndex;
     }
