@@ -38,13 +38,13 @@ public class PlayerBomb : MonoBehaviour
     // Waiting Coroutines
     IEnumerator WaitAndExplode(float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         Explode();
     }
 
     IEnumerator WaitAndDestroy(float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         Destroy(gameObject);
     }
 

@@ -723,9 +723,10 @@ public class PlayerController : MonoBehaviour
         // If the player has a shuriken
         if (currentShuriken > 0)
         {
+            //play throw animation
+            playerAnimator.SetTrigger("ThrowConsumable");
             // Throw a shuriken and remove one shuriken from the player's possession
-            Instantiate(chosenSlotItem, rangedPoint.position, rangedPoint.rotation);
-            currentShuriken -= 1;
+            StartCoroutine(WaitAndThrowShuriken(0.3f, chosenSlotItem));
         }
 
         // If the player has no shurikens return
@@ -743,9 +744,10 @@ public class PlayerController : MonoBehaviour
         // If the player has a bomb
         if (currentBombs > 0)
         {
+            //play throw animation
+            playerAnimator.SetTrigger("ThrowConsumable");
             // Throw a bomb and remove one bomb from the player's possession
-            Instantiate(chosenSlotItem, rangedPoint.position, rangedPoint.rotation);
-            currentBombs -= 1;
+            StartCoroutine(WaitAndThrowBomb(0.3f, chosenSlotItem));
         }
 
         // If the player has no bombs return
@@ -773,6 +775,21 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+    }
+
+    //waiting coroutines for consumables
+    IEnumerator WaitAndThrowShuriken(float time, GameObject chosenSlotItem)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        Instantiate(chosenSlotItem, rangedPoint.position, rangedPoint.rotation);
+        currentShuriken -= 1;
+    }
+
+    IEnumerator WaitAndThrowBomb(float time, GameObject chosenSlotItem)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        Instantiate(chosenSlotItem, rangedPoint.position, rangedPoint.rotation);
+        currentBombs -= 1;
     }
 
     // Draw either the attack area or the teleportation range in editor
@@ -813,6 +830,7 @@ public class PlayerController : MonoBehaviour
     edgeCollider = colliders[animationIndex];
     }
 
+    
 
     // Player's save function
     public void SavePlayer()
