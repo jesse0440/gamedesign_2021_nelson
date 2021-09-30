@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     [Header("Animation Settings")]
     [SerializeField]
     private EdgeCollider2D[] colliders;
-    //index 0: idle
+    //index 0: idle/throw
     //index 1: walk
     //index 2: dash
     private int currentColliderIndex = 0;
@@ -726,7 +726,7 @@ public class PlayerController : MonoBehaviour
             //play throw animation
             playerAnimator.SetTrigger("ThrowConsumable");
             // Throw a shuriken and remove one shuriken from the player's possession
-            StartCoroutine(WaitAndThrowShuriken(0.3f, chosenSlotItem));
+            StartCoroutine(WaitAndThrowShuriken(0.25f, chosenSlotItem));
         }
 
         // If the player has no shurikens return
@@ -747,7 +747,7 @@ public class PlayerController : MonoBehaviour
             //play throw animation
             playerAnimator.SetTrigger("ThrowConsumable");
             // Throw a bomb and remove one bomb from the player's possession
-            StartCoroutine(WaitAndThrowBomb(0.3f, chosenSlotItem));
+            StartCoroutine(WaitAndThrowBomb(0.25f, chosenSlotItem));
         }
 
         // If the player has no bombs return
