@@ -317,6 +317,7 @@ MonoBehaviour:
   canEnemyDetectPlayer: 0
   playerDetectionRange: 0
   isSelfdestructing: 0
+  healthBarLength: 3
   canMove: 1
   enemyMoveSpeed: 5.56
   canEnemyDetectWalls: 1

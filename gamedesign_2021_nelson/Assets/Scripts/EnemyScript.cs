@@ -30,6 +30,10 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     bool isSelfdestructing;
 
+    // The length of the health bar
+    [SerializeField]
+    float healthBarLength = 1.5f;
+
     
     
     [Header("Movement Settings")]
@@ -165,8 +169,9 @@ public class EnemyScript : MonoBehaviour
     // Transform of the player
     Transform playerTransform;
 
-    // Health bar variable
+    // Health bar variables
     GameObject enemyHealthBar;
+    GameObject enemyHealthBarCanvas;
 
     
     
@@ -195,8 +200,9 @@ public class EnemyScript : MonoBehaviour
         // Get the counter for this rooms drops or use default
         roomDropCounter = PlayerPrefs.GetInt("DropCounter_" + "Room_" + roomID, 100);
 
-        // Assign the health bar component
+        // Assign the health bar components
         enemyHealthBar = gameObject.transform.Find("EnemyCanvas").Find("HealthBarFull").gameObject;
+        enemyHealthBarCanvas = gameObject.transform.Find("EnemyCanvas").gameObject;
 
         // If jumping is allowed and RNG is turned on for jump intervals
         if (enemyJumpingAllowed && randomJumpIntervalExtender)
@@ -336,8 +342,22 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
-        // Change the healthbar size to match the health percentage
-        enemyHealthBar.GetComponent<RectTransform>().sizeDelta = new Vector2((enemyHealth / enemyMaxHealth) * 1.5f, 0.25f);
+        // Checks to see if the health bar should be displayed or not
+        if (enemyHealth == enemyMaxHealth)
+        {
+            enemyHealthBarCanvas.SetActive(false);
+        }
+
+        else if (enemyHealth < enemyMaxHealth)
+        {
+            enemyHealthBarCanvas.SetActive(true);
+        }
+
+        // If active change the healthbar size to match the health percentage
+        if (enemyHealthBarCanvas.activeInHierarchy)
+        {
+            enemyHealthBar.GetComponent<RectTransform>().sizeDelta = new Vector2((enemyHealth / enemyMaxHealth) * healthBarLength, 0.25f);
+        }
 
         // If the health bugs out over max health or is reduced to 0 or lower
         // Try to spawn an item and destroy this enemy object
