@@ -165,6 +165,9 @@ public class EnemyScript : MonoBehaviour
     // Transform of the player
     Transform playerTransform;
 
+    // Health bar variable
+    GameObject enemyHealthBar;
+
     
     
     void Start()
@@ -191,6 +194,9 @@ public class EnemyScript : MonoBehaviour
 
         // Get the counter for this rooms drops or use default
         roomDropCounter = PlayerPrefs.GetInt("DropCounter_" + "Room_" + roomID, 100);
+
+        // Assign the health bar component
+        enemyHealthBar = gameObject.transform.Find("EnemyCanvas").Find("HealthBarFull").gameObject;
 
         // If jumping is allowed and RNG is turned on for jump intervals
         if (enemyJumpingAllowed && randomJumpIntervalExtender)
@@ -330,6 +336,9 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
+        // Change the healthbar size to match the health percentage
+        enemyHealthBar.GetComponent<RectTransform>().sizeDelta = new Vector2((enemyHealth / enemyMaxHealth) * 1.5f, 0.25f);
+
         // If the health bugs out over max health or is reduced to 0 or lower
         // Try to spawn an item and destroy this enemy object
         if (enemyHealth <= 0 || enemyHealth > enemyMaxHealth)
@@ -464,15 +473,17 @@ public class EnemyScript : MonoBehaviour
             // If going left before hitting a wall/nearing an edge
             if (enemyFacingDirection == LEFT)
             {
-                // Change direction to right
+                // Change direction to right and flip health bar
                 ChangeFacingDirection(RIGHT);
+                gameObject.transform.Find("EnemyCanvas").localScale = new Vector2(-gameObject.transform.Find("EnemyCanvas").localScale.x, gameObject.transform.Find("EnemyCanvas").localScale.y);
             }
 
             // If going right before hitting a wall/nearing an edge
             else if (enemyFacingDirection == RIGHT)
             {
-                // Change direction to left
+                // Change direction to left and flip health bar
                 ChangeFacingDirection(LEFT);
+                gameObject.transform.Find("EnemyCanvas").localScale = new Vector2(-gameObject.transform.Find("EnemyCanvas").localScale.x, gameObject.transform.Find("EnemyCanvas").localScale.y);
             }
         }
 
