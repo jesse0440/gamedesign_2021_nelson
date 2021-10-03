@@ -157,9 +157,9 @@ TextureImporter:
       name: sensowalk_small_1
       rect:
         serializedVersion: 2
-        x: 345
+        x: 271
         y: 962
-        width: 219
+        width: 293
         height: 244
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -178,9 +178,9 @@ TextureImporter:
       name: sensowalk_small_2
       rect:
         serializedVersion: 2
-        x: 630
+        x: 570
         y: 965
-        width: 219
+        width: 279
         height: 237
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -199,9 +199,9 @@ TextureImporter:
       name: sensowalk_small_3
       rect:
         serializedVersion: 2
-        x: 916
+        x: 849
         y: 964
-        width: 218
+        width: 285
         height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -220,9 +220,9 @@ TextureImporter:
       name: sensowalk_small_4
       rect:
         serializedVersion: 2
-        x: 60
+        x: 2
         y: 691
-        width: 219
+        width: 277
         height: 238
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -241,9 +241,9 @@ TextureImporter:
       name: sensowalk_small_5
       rect:
         serializedVersion: 2
-        x: 345
-        y: 690
-        width: 219
+        x: 281
+        y: 689
+        width: 283
         height: 252
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -262,9 +262,9 @@ TextureImporter:
       name: sensowalk_small_6
       rect:
         serializedVersion: 2
-        x: 621
+        x: 571
         y: 690
-        width: 216
+        width: 265
         height: 260
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -283,9 +283,9 @@ TextureImporter:
       name: sensowalk_small_7
       rect:
         serializedVersion: 2
-        x: 910
+        x: 847
         y: 690
-        width: 220
+        width: 283
         height: 257
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -304,9 +304,9 @@ TextureImporter:
       name: sensowalk_small_8
       rect:
         serializedVersion: 2
-        x: 54
+        x: 1
         y: 415
-        width: 221
+        width: 274
         height: 255
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -325,9 +325,9 @@ TextureImporter:
       name: sensowalk_small_9
       rect:
         serializedVersion: 2
-        x: 342
+        x: 278
         y: 416
-        width: 221
+        width: 286
         height: 251
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -346,9 +346,9 @@ TextureImporter:
       name: sensowalk_small_10
       rect:
         serializedVersion: 2
-        x: 630
+        x: 570
         y: 415
-        width: 219
+        width: 279
         height: 247
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -367,9 +367,9 @@ TextureImporter:
       name: sensowalk_small_11
       rect:
         serializedVersion: 2
-        x: 915
+        x: 852
         y: 416
-        width: 219
+        width: 282
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -388,9 +388,9 @@ TextureImporter:
       name: sensowalk_small_12
       rect:
         serializedVersion: 2
-        x: 60
+        x: 1
         y: 144
-        width: 219
+        width: 278
         height: 258
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -409,9 +409,9 @@ TextureImporter:
       name: sensowalk_small_13
       rect:
         serializedVersion: 2
-        x: 345
+        x: 283
         y: 144
-        width: 219
+        width: 281
         height: 258
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
