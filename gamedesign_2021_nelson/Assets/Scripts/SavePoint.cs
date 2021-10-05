@@ -16,6 +16,7 @@ public class SavePoint : MonoBehaviour
 
     public void OnCollisionStay2D(Collision2D collision)
     {
+        Debug.Log("yeyeyeyey");
         if (collision.gameObject.tag == "Player")
         {
             text.gameObject.SetActive(true);

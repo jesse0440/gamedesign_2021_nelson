@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     public float playerMaxJumpCounter = 1;
     public float playerJumpCounter = 0;
     [SerializeField]
-    float playerBaseJumpHeight = 12f;
+    float playerBaseJumpHeight = 14f;
     public float playerCurrentJumpHeight;
     [SerializeField]
     float playerGravity = 2.5f;
