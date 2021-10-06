@@ -439,6 +439,7 @@ public class PlayerController : MonoBehaviour
         if (playerDirection.x > 0) 
         {
             //playerAnimator.SetTrigger("walkStart");
+            
             // Make the local scale's X positive to make the player face right
             Vector3 newScale = new Vector3(1, 1, 1);
             transform.localScale = newScale;
@@ -450,7 +451,6 @@ public class PlayerController : MonoBehaviour
         if (playerDirection.x < 0)
         {
             //playerAnimator.SetTrigger("walkStart");
-
             // Make the local scale's X negative to make the player face left
             Vector3 newScale = new Vector3(-1, 1, 1);
             transform.localScale = newScale;
@@ -699,6 +699,12 @@ public class PlayerController : MonoBehaviour
 
         // Return the value so script knows whether the player's jump counter is reset or not
         return rayCastHit.collider;
+    }
+
+    public void takeDamage(float enemyDamage)
+    {
+        playerAnimator.SetTrigger("TakeDamage");
+       playerHealth -= enemyDamage;
     }
 
     // Melee attack function

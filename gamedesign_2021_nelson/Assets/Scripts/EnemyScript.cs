@@ -433,7 +433,7 @@ public class EnemyScript : MonoBehaviour
             if (alreadyAttacked == false)
             {
                 // Substract the enemy damage from the player's health
-                collision.gameObject.GetComponent<PlayerController>().playerHealth -= enemyDamage;
+                collision.gameObject.GetComponent<PlayerController>().takeDamage(enemyDamage);
 
                 // Reset the player's jump counter (Damage boosting)
                 collision.gameObject.GetComponent<PlayerController>().playerJumpCounter = 0;
