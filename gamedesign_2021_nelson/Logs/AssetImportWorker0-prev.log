@@ -1,126 +1,126 @@
 Using pre-set license
 Built from '2020.3/staging' branch; Version is '2020.3.16f1 (049d6eca3c44) revision 302446'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Home; OS build 19041.1237; Version 2004; 64bit' Language: 'fi' Physical Memory: 16332 MB
+OS: 'Windows 10 Pro; OS build 19043.1237; Version 2009; 64bit' Language: 'fi' Physical Memory: 16334 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
-F:\juu\unity\2020.3.16f1\Editor\Unity.exe
+C:\Program Files\unity addons\2020.3.16f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/Pottunisti/Documents/GitHub/gamedesign_2021_nelson/gamedesign_2021_nelson
+D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-52262
-Successfully changed project path to: C:/Users/Pottunisti/Documents/GitHub/gamedesign_2021_nelson/gamedesign_2021_nelson
-C:/Users/Pottunisti/Documents/GitHub/gamedesign_2021_nelson/gamedesign_2021_nelson
+52628
+Successfully changed project path to: D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson
+D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 45.80 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 42.15 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.16f1 (049d6eca3c44)
-[Subsystems] Discovering subsystems at path F:/juu/unity/2020.3.16f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/Pottunisti/Documents/GitHub/gamedesign_2021_nelson/gamedesign_2021_nelson/Assets
+[Subsystems] Discovering subsystems at path C:/Program Files/unity addons/2020.3.16f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/1tyopoyta/lappari/koulu/9. pelisuunnittelu/gamedesign_2021_nelson/gamedesign_2021_nelson/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 960 (ID=0x1401)
+    Renderer: NVIDIA GeForce GTX 1070 (ID=0x1b81)
     Vendor:   
-    VRAM:     4053 MB
-    Driver:   30.0.14.7212
+    VRAM:     8088 MB
+    Driver:   27.21.14.5671
 Initialize mono
-Mono path[0] = 'F:/juu/unity/2020.3.16f1/Editor/Data/Managed'
-Mono path[1] = 'F:/juu/unity/2020.3.16f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'F:/juu/unity/2020.3.16f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56972
+Mono path[0] = 'C:/Program Files/unity addons/2020.3.16f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/unity addons/2020.3.16f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/unity addons/2020.3.16f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56988
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: F:/juu/unity/2020.3.16f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: F:/juu/unity/2020.3.16f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001022 seconds.
+Register platform support module: C:/Program Files/unity addons/2020.3.16f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/unity addons/2020.3.16f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001872 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 47.09 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 43.90 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.883 seconds
+- Completed reload, in  0.923 seconds
 Domain Reload Profiling:
-	ReloadAssembly (884ms)
-		BeginReloadAssembly (40ms)
+	ReloadAssembly (923ms)
+		BeginReloadAssembly (41ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (362ms)
-			LoadAssemblies (39ms)
+		EndReloadAssembly (340ms)
+			LoadAssemblies (40ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (131ms)
+			SetupTypeCache (119ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (26ms)
-			SetupLoadedEditorAssemblies (149ms)
+			RebuildScriptCaches (25ms)
+			SetupLoadedEditorAssemblies (140ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (4ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (47ms)
-				BeforeProcessingInitializeOnLoad (8ms)
-				ProcessInitializeOnLoadAttributes (66ms)
-				ProcessInitializeOnLoadMethodAttributes (23ms)
+				RefreshPlugins (44ms)
+				BeforeProcessingInitializeOnLoad (10ms)
+				ProcessInitializeOnLoadAttributes (61ms)
+				ProcessInitializeOnLoadMethodAttributes (20ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.003080 seconds.
+Registered in 0.002195 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 46.86 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 45.64 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.011 seconds
+- Completed reload, in  0.959 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1012ms)
-		BeginReloadAssembly (127ms)
+	ReloadAssembly (960ms)
+		BeginReloadAssembly (115ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (4ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (17ms)
-		EndReloadAssembly (834ms)
-			LoadAssemblies (72ms)
+			CreateAndSetChildDomain (16ms)
+		EndReloadAssembly (793ms)
+			LoadAssemblies (67ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (248ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (44ms)
-			SetupLoadedEditorAssemblies (363ms)
+			SetupTypeCache (228ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (39ms)
+			SetupLoadedEditorAssemblies (362ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (4ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (47ms)
-				BeforeProcessingInitializeOnLoad (56ms)
-				ProcessInitializeOnLoadAttributes (244ms)
-				ProcessInitializeOnLoadMethodAttributes (10ms)
-				AfterProcessingInitializeOnLoad (2ms)
+				RefreshPlugins (46ms)
+				BeforeProcessingInitializeOnLoad (66ms)
+				ProcessInitializeOnLoadAttributes (231ms)
+				ProcessInitializeOnLoadMethodAttributes (9ms)
+				AfterProcessingInitializeOnLoad (5ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.18 seconds
-Refreshing native plugins compatible for Editor in 0.65 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 0.57 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2164 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 97.6 MB.
-System memory in use after: 97.7 MB.
+System memory in use before: 97.7 MB.
+System memory in use after: 97.8 MB.
 
 Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 2603.
-Total: 3.216500 ms (FindLiveObjects: 0.249500 ms CreateObjectMapping: 0.058200 ms MarkObjects: 2.835300 ms  DeleteObjects: 0.072100 ms)
+Total: 2.728400 ms (FindLiveObjects: 0.171500 ms CreateObjectMapping: 0.045600 ms MarkObjects: 2.449000 ms  DeleteObjects: 0.061500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -134,41 +134,33 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/Scenes/SpaceShip/Ship Room1.3.unity
-  artifactKey: Guid(e37cb3af036073946bf07e6405d1df90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/SpaceShip/Ship Room1.3.unity using Guid(e37cb3af036073946bf07e6405d1df90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0a93778d572c514053cbd9b9ef3d03d') in 0.014720 seconds 
-  Import took 0.018466 seconds .
+  path: Assets/Scenes/SpaceShip/Ship Room1.5.1.unity
+  artifactKey: Guid(4b17123b2ae21454886cffb65c413c0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/SpaceShip/Ship Room1.5.1.unity using Guid(4b17123b2ae21454886cffb65c413c0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6009315b784b5b56e9d8e7f70320a256') in 0.015835 seconds 
+  Import took 0.018885 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 19.451951 seconds.
-  path: Assets/Scenes/SpaceShip/Ship Room1.5.2.unity
-  artifactKey: Guid(8a21ac80bd48fb34aac5e1fe6325ebda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/SpaceShip/Ship Room1.5.2.unity using Guid(8a21ac80bd48fb34aac5e1fe6325ebda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c1fd955a8bd709034ae88c0795b5715') in 0.004398 seconds 
-  Import took 0.007706 seconds .
+  Time since last request: 55.178327 seconds.
+  path: Assets/dogsources/2D Scifi Enviromnent/Environment 2/Jail/ClosedDoor.png
+  artifactKey: Guid(77a07ddab09e34a2aa20368363d94e17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/dogsources/2D Scifi Enviromnent/Environment 2/Jail/ClosedDoor.png using Guid(77a07ddab09e34a2aa20368363d94e17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2fa9bd76434e87555777a70bbe009eeb') in 0.158062 seconds 
+  Import took 0.161105 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 9.007219 seconds.
-  path: Assets/Scenes/SpaceShip/Ship Room1.7.unity
-  artifactKey: Guid(27e176a46c6a6fe45a21a6839d0d18e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/SpaceShip/Ship Room1.7.unity using Guid(27e176a46c6a6fe45a21a6839d0d18e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82f56e851cd0780661c86d5c658b4b37') in 0.009107 seconds 
-  Import took 0.012459 seconds .
+  Time since last request: 7.474818 seconds.
+  path: Assets/dogsources/2D Scifi Enviromnent/Environment 2/Jail/ClosedDoor.png
+  artifactKey: Guid(77a07ddab09e34a2aa20368363d94e17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/dogsources/2D Scifi Enviromnent/Environment 2/Jail/ClosedDoor.png using Guid(77a07ddab09e34a2aa20368363d94e17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73f41e7096c9e8c0a37449422e19d66c') in 0.007454 seconds 
+  Import took 0.010367 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 6.252267 seconds.
-  path: Assets/Scenes/SpaceShip/Ship Room1.9.unity
-  artifactKey: Guid(7b3c1f8803032154aabe3ac8c9490faf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/SpaceShip/Ship Room1.9.unity using Guid(7b3c1f8803032154aabe3ac8c9490faf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '859717b36d3f6ca3608dc1b45cceded7') in 0.003003 seconds 
-  Import took 0.006373 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.190866 seconds.
-  path: Assets/Scenes/SpaceShip/Ship Room2.0.unity
-  artifactKey: Guid(87170e23b4539714b8e2465c48639973) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/SpaceShip/Ship Room2.0.unity using Guid(87170e23b4539714b8e2465c48639973) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'caece80cf96e6e52e6db001c59cd0745') in 0.002997 seconds 
-  Import took 0.006359 seconds .
+  Time since last request: 0.007098 seconds.
+  path: Assets/dogsources/2D Scifi Enviromnent/Environment 2/Jail/ClosedDoor.png
+  artifactKey: Guid(77a07ddab09e34a2aa20368363d94e17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/dogsources/2D Scifi Enviromnent/Environment 2/Jail/ClosedDoor.png using Guid(77a07ddab09e34a2aa20368363d94e17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73f41e7096c9e8c0a37449422e19d66c') in 0.007313 seconds 
+  Import took 0.010318 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
