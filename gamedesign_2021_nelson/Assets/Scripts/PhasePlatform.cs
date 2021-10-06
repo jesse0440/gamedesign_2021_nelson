@@ -9,6 +9,8 @@ public class PhasePlatform : MonoBehaviour
     EdgeCollider2D playerEdgeCollider;
     BoxCollider2D boxCollider;
 
+    bool phaseCheck = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -23,16 +25,18 @@ public class PhasePlatform : MonoBehaviour
     {
         // If the player's Y position + the player's height / 2 is lower than the platform's Y position
         // Unsolidify the platform
-        if (player.transform.position.y + 1.365f < boxCollider.transform.position.y)
+        if (playerEdgeCollider.bounds.min.y < boxCollider.bounds.center.y)
         {
             boxCollider.enabled = false;
+            phaseCheck = false;
         }
 
         // If the player's Y position - the player's height / 2 is higher than the platform's Y position
         // Solidify the platform
-        if (player.transform.position.y - 1.365f > boxCollider.transform.position.y)
+        if (playerEdgeCollider.bounds.min.y > boxCollider.bounds.center.y && phaseCheck == false)
         {
             boxCollider.enabled = true;
+            phaseCheck = true;
         }
 
         // If the player is standing on the platform and they press any Vertical keys
