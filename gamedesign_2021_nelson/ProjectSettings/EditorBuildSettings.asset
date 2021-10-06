@@ -24,6 +24,24 @@ EditorBuildSettings:
     path: Assets/Scenes/SpaceShip/Ship Room1.4.unity
     guid: 068bdae7e5998554db4f0f78fc31e9f2
   - enabled: 1
-    path: Assets/Scenes/SpaceShip/Ship Room1.5.unity
+    path: Assets/Scenes/SpaceShip/Ship Room1.5.1.unity
     guid: 4b17123b2ae21454886cffb65c413c0e
+  - enabled: 1
+    path: Assets/Scenes/SpaceShip/Ship Room1.5.2.unity
+    guid: 8a21ac80bd48fb34aac5e1fe6325ebda
+  - enabled: 1
+    path: Assets/Scenes/SpaceShip/Ship Room1.6.unity
+    guid: 6956a1aac3087224f8933cef78e4d815
+  - enabled: 1
+    path: Assets/Scenes/SpaceShip/Ship Room1.7.unity
+    guid: 27e176a46c6a6fe45a21a6839d0d18e9
+  - enabled: 1
+    path: Assets/Scenes/SpaceShip/Ship Room1.8.unity
+    guid: 442b7a28f35a73744861506374cc9b46
+  - enabled: 1
+    path: Assets/Scenes/SpaceShip/Ship Room1.9.unity
+    guid: 7b3c1f8803032154aabe3ac8c9490faf
+  - enabled: 1
+    path: Assets/Scenes/SpaceShip/Ship Room2.0.unity
+    guid: 87170e23b4539714b8e2465c48639973
   m_configObjects: {}
