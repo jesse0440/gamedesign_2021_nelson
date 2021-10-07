@@ -716,10 +716,21 @@ public class PlayerController : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         // If enemy colliders are inside the collider
-        foreach(Collider2D enemy in hitEnemies)
+        if (hitEnemies[0] != null)
         {
-            // Damage enemies
-            enemy.GetComponent<EnemyScript>().TakeDamage(meleeDamage);
+            foreach(Collider2D enemy in hitEnemies)
+            {
+                // Damage enemies
+                if (enemy.TryGetComponent<EnemyScript>(out var enemyScript))
+                {
+                    enemyScript.TakeDamage(meleeDamage);
+                }
+                
+                else
+                {
+                    return;
+                }
+            }
         }
     }
 

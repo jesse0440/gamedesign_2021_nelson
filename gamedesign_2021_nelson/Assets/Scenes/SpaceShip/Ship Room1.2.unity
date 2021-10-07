@@ -7677,8 +7677,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 100
   playerMaxHealth: 100
-  attackRange: 3
-  meleeDamage: 10
+  attackRange: 2.25
+  meleeDamage: 20
   meleeAttackInterval: 2
   shurikenAttackInterval: 0.3
   maxShuriken: 10
@@ -8602,6 +8602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4696468797464c340b451745e16eaf48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canEnemiesSpawn: 0
 --- !u!4 &7193495403007387022
 Transform:
   m_ObjectHideFlags: 0

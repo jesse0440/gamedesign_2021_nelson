@@ -83,8 +83,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 100
   playerMaxHealth: 100
-  attackRange: 3
-  meleeDamage: 10
+  attackRange: 2.25
+  meleeDamage: 20
   meleeAttackInterval: 2
   shurikenAttackInterval: 0.3
   maxShuriken: 10

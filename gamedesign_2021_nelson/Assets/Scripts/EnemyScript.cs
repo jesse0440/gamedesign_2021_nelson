@@ -34,6 +34,10 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     float healthBarLength = 1.5f;
 
+    // Bool to determine if this enemy has enemy trigger spawning turned on
+    [SerializeField]
+    bool enemyTriggerMode = false;
+
     
     
     [Header("Movement Settings")]
@@ -149,6 +153,8 @@ public class EnemyScript : MonoBehaviour
     float enemyJumpTimer;
     float randomJumpIntervalExtenderValue;
 
+    int enemyTriggerValue = 0;
+
     bool alreadyJumped = false;
     bool alreadyAttacked = false;
     bool chargeInstanceCheck = false;
@@ -181,6 +187,16 @@ public class EnemyScript : MonoBehaviour
         if (enemyHealth == 0f)
         {
             enemyHealth = 25f;
+        }
+
+        // Determine if enemy trigger has been passed
+        enemyTriggerValue = PlayerPrefs.GetInt("EnemiesCanSpawn", 0);
+
+        // If enemy trigger mode spawning is on and trigger has not been passed
+        if (enemyTriggerMode == true && enemyTriggerValue == 0)
+        {
+            // Disable this enemy
+            gameObject.SetActive(false);
         }
 
         // Default direction the enemy faces

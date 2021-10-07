@@ -7,6 +7,10 @@ public class GameManagerScript : MonoBehaviour
     // Variable for determining an unique instance
     GameObject gameManagerInstance;
 
+    // Check if enemies are allowed to spawn
+    [HideInInspector]
+    public bool canEnemiesSpawn = false;
+
     // Wake up protocols
     void Awake()
     {
@@ -23,6 +27,16 @@ public class GameManagerScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (PlayerPrefs.GetInt("EnemiesCanSpawn") == 1)
+        {
+            canEnemiesSpawn = true;
+        }
+
+        else
+        {
+            canEnemiesSpawn = false;
+        }
     }
 
     // When the application is closed, erase all checkpoints' progress in rooms
@@ -31,6 +45,4 @@ public class GameManagerScript : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
     }
-
-
 }

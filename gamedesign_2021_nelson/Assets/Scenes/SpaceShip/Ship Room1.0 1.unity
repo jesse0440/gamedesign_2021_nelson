@@ -4212,8 +4212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 100
   playerMaxHealth: 100
-  attackRange: 3
-  meleeDamage: 10
+  attackRange: 2.25
+  meleeDamage: 20
   meleeAttackInterval: 2
   shurikenAttackInterval: 0.3
   maxShuriken: 10
@@ -8822,11 +8822,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.347879, y: -0.6765294}
-      - {x: 3.7735286, y: -4.219295}
-      - {x: 3.7620697, y: -4.489378}
-      - {x: 2.4116535, y: -4.4473424}
-      - {x: 2.3885717, y: -0.693223}
+    - - {x: 1.8662791, y: -0.6765294}
+      - {x: 1.9040718, y: -4.0632534}
+      - {x: 1.9042206, y: -4.1916013}
+      - {x: 1.8789148, y: -4.447838}
+      - {x: 1.013134, y: -4.4611893}
+      - {x: 1.0315924, y: -0.65168285}
 --- !u!4 &6321431051999286217
 Transform:
   m_ObjectHideFlags: 0
@@ -8854,7 +8855,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.09495497, y: -2.5366628}
+  m_Offset: {x: -0.4589138, y: -2.5366628}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8865,7 +8866,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7048693, y: 4.0873904}
+  m_Size: {x: 0.9818039, y: 4.0873904}
   m_EdgeRadius: 0
 --- !u!222 &6358280132766088614
 CanvasRenderer:
@@ -8963,6 +8964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4696468797464c340b451745e16eaf48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canEnemiesSpawn: 0
 --- !u!4 &7193495403007387022
 Transform:
   m_ObjectHideFlags: 0

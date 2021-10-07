@@ -1073,6 +1073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4696468797464c340b451745e16eaf48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canEnemiesSpawn: 0
 --- !u!4 &272158821
 Transform:
   m_ObjectHideFlags: 0
@@ -8358,8 +8359,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 100
   playerMaxHealth: 100
-  attackRange: 3
-  meleeDamage: 10
+  attackRange: 2.25
+  meleeDamage: 20
   meleeAttackInterval: 2
   shurikenAttackInterval: 0.3
   maxShuriken: 10
@@ -9910,10 +9911,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2, y: 2}
-      - {x: 2, y: -2}
-      - {x: -2, y: -2}
-      - {x: -2, y: 2}
+    - - {x: 0.911474, y: -0.38502598}
+      - {x: 0.91147375, y: -2.3238926}
+      - {x: -0.9114742, y: -2.3238907}
+      - {x: -0.91147375, y: -0.41447067}
 --- !u!1 &4647893894773210423
 GameObject:
   m_ObjectHideFlags: 0
@@ -9946,7 +9947,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.01511848, y: -4.5197654}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -9957,7 +9958,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 7}
+  m_Size: {x: 1.8730052, y: 1.6116152}
   m_EdgeRadius: 0
 --- !u!4 &4647893894773210426
 Transform:
@@ -10377,10 +10378,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -6.471696, y: 1.6125894}
-      - {x: -6.5205035, y: -0.6782689}
-      - {x: -7.570092, y: -0.68840075}
-      - {x: -7.650785, y: 1.5837545}
+    - - {x: -5.2791967, y: 1.5910578}
+      - {x: -5.261755, y: -0.79669094}
+      - {x: -6.576343, y: -0.7852917}
+      - {x: -6.6901603, y: 1.6052856}
 --- !u!1 &6321431053382441526
 GameObject:
   m_ObjectHideFlags: 0
