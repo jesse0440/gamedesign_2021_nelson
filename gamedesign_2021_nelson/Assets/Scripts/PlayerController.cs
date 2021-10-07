@@ -715,21 +715,17 @@ public class PlayerController : MonoBehaviour
         //playerAnimator.SetTrigger("useMelee");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
-        // If enemy colliders are inside the collider
-        if (hitEnemies[0] != null)
+        foreach (Collider2D enemy in hitEnemies)
         {
-            foreach(Collider2D enemy in hitEnemies)
+            // Damage enemies
+            if (enemy.TryGetComponent<EnemyScript>(out var enemyScript))
             {
-                // Damage enemies
-                if (enemy.TryGetComponent<EnemyScript>(out var enemyScript))
-                {
-                    enemyScript.TakeDamage(meleeDamage);
-                }
+                enemyScript.TakeDamage(meleeDamage);
+            }
                 
-                else
-                {
-                    return;
-                }
+            else
+            {
+                return;
             }
         }
     }

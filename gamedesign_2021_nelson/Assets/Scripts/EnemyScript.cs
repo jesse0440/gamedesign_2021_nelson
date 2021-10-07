@@ -38,6 +38,14 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     bool enemyTriggerMode = false;
 
+    // Bool to determine if this enemy is a boss
+    [SerializeField]
+    bool isEnemyABoss = false;
+
+    // Boss ID
+    [SerializeField]
+    int bossID;
+
     
     
     [Header("Movement Settings")]
@@ -154,6 +162,7 @@ public class EnemyScript : MonoBehaviour
     float randomJumpIntervalExtenderValue;
 
     int enemyTriggerValue = 0;
+    int bossCheckValue = 0;
 
     bool alreadyJumped = false;
     bool alreadyAttacked = false;
@@ -183,6 +192,18 @@ public class EnemyScript : MonoBehaviour
     
     void Start()
     {
+        // If enemy is a boss
+        if (isEnemyABoss)
+        {
+            // Find if boss has been fought and if it has disable it
+            bossCheckValue = PlayerPrefs.GetInt("BossFought_" + bossID, 0);
+
+            if (bossCheckValue == 1)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+
         // Check that health is not 0f
         if (enemyHealth == 0f)
         {
@@ -419,6 +440,19 @@ public class EnemyScript : MonoBehaviour
             // Rise the drop counter
             roomDropCounter++;
             PlayerPrefs.SetInt("DropCounter_" + "Room_" + roomID, roomDropCounter);
+
+            // If the enemy was a boss pass the ID so it won't respawn
+            if (gameObject.tag == "Boss")
+            {
+                PlayerPrefs.SetInt("BossFought_" + bossID, 1);
+                GameObject[] bossWalls = GameObject.FindGameObjectsWithTag("BossWall");
+
+                // Disable walls
+                foreach (GameObject wall in bossWalls)
+                {
+                    wall.SetActive(false);
+                }
+            }
 
             Destroy(gameObject);
         }

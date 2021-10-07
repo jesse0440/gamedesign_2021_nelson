@@ -24,6 +24,7 @@ TagManager:
   - BossMinion
   - AbilitiesObject
   - SecretTile
+  - BossWall
   layers:
   - Default
   - TransparentFX

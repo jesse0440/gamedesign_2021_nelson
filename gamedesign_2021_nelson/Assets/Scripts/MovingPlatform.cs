@@ -12,6 +12,9 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField]
     float verticalDetectionRange;
     
+    public enum PlatformDirectionChoice {UP, DOWN}
+    public PlatformDirectionChoice platformDirectionChoice;
+    
     // Easy way to make less writing mistakes
     const string UP = "up";
     const string DOWN = "down";
@@ -20,13 +23,23 @@ public class MovingPlatform : MonoBehaviour
     Rigidbody2D rigidBody;
     Transform castingPosition;
     string platformDirection;
+
     float castingPositionOffset = 0.25f;
 
     // Start is called before the first frame update
     void Start()
     {
         // Set default direction, assign variables
-        platformDirection = UP;
+        if ((int)platformDirectionChoice == 0)
+        {
+            platformDirection = UP;
+        }
+
+        else
+        {
+            platformDirection = DOWN;
+        }
+
         rigidBody = GetComponent<Rigidbody2D>();
         castingPosition = gameObject.transform.Find("CastingPosition");
 

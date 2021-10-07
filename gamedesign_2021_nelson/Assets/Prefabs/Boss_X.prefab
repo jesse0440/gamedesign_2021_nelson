@@ -318,6 +318,9 @@ MonoBehaviour:
   playerDetectionRange: 0
   isSelfdestructing: 0
   healthBarLength: 3
+  enemyTriggerMode: 0
+  isEnemyABoss: 1
+  bossID: 1
   canMove: 1
   enemyMoveSpeed: 5.56
   canEnemyDetectWalls: 1
@@ -466,8 +469,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1471942247
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &8116305040126870293
 MonoBehaviour:

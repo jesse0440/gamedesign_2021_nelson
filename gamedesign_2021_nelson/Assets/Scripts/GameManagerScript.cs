@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
     // Variable for determining an unique instance
-    GameObject gameManagerInstance;
+    public static GameObject gameManagerInstance;
 
     // Check if enemies are allowed to spawn
     [HideInInspector]
@@ -14,20 +14,22 @@ public class GameManagerScript : MonoBehaviour
     // Wake up protocols
     void Awake()
     {
-        // This gameobject will never be destroyed when switching scenes/rooms
-        DontDestroyOnLoad(gameObject);
-
-        // If there is no instance of GameManager, assign this variable. Otherwise destroy the instance of GameManager.
-        if (!gameManagerInstance)
+        // If there is an instance of GameManager already destroy this one. Otherwise assign the instance of GameManager.
+        if (gameManagerInstance)
         {
-            gameManagerInstance = gameObject;
+            DestroyImmediate(gameObject);
         } 
         
         else 
         {
-            Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
+            gameManagerInstance = gameObject;
         }
+    }
 
+    // Start up protocols
+    void Start()
+    {
         if (PlayerPrefs.GetInt("EnemiesCanSpawn") == 1)
         {
             canEnemiesSpawn = true;

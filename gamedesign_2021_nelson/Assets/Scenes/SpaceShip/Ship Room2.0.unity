@@ -6710,10 +6710,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e6f454a20e5354d8d1140e42de7e3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftLimit: 3.97
+  leftLimit: 3.96
   rightLimit: 8.71
-  bottomLimit: -5.548548
-  topLimit: 50
+  bottomLimit: -4
+  topLimit: -4
 --- !u!81 &1565724880
 AudioListener:
   m_ObjectHideFlags: 0
@@ -9125,7 +9125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143182216}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.523, y: -11.61, z: 0}
+  m_LocalPosition: {x: -8.877, y: -11.575, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 111570212}
@@ -12072,10 +12072,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.0953562, y: 1.9037862}
-      - {x: 3.073153, y: -0.83063364}
+    - - {x: 2.5090988, y: 2.9460213}
+      - {x: 2.533424, y: -0.867856}
       - {x: 2.2482052, y: -0.88244104}
-      - {x: 2.2630072, y: 1.8593802}
+      - {x: 2.2257843, y: 2.9574494}
 --- !u!61 &6429730625583108961
 BoxCollider2D:
   m_ObjectHideFlags: 0
