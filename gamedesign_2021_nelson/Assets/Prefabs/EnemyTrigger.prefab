@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc3efacc716ca94a9f4b919712f6599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyMusic: {fileID: 8300000, guid: b7ebad17cf9f0614ea6b3dacf777545e, type: 3}
 --- !u!61 &1777303591435642836
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class PlayerShuriken : MonoBehaviour
 {
     // Set relevant variables
     Rigidbody2D rigidBody;
+    AudioSource gameAudioManager;
 
     [SerializeField]
     float projectileDamage;
@@ -16,6 +17,7 @@ public class PlayerShuriken : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
 
         if (projectileDamage == 0f)
         {
@@ -37,6 +39,11 @@ public class PlayerShuriken : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             collision.gameObject.GetComponent<EnemyScript>().TakeDamage(projectileDamage);
+            
+            // Play enemy hit sound
+            gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
+            gameAudioManager.Play();
+
             Destroy(gameObject);
         }
 

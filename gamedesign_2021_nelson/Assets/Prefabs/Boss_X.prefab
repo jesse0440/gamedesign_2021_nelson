@@ -321,6 +321,7 @@ MonoBehaviour:
   enemyTriggerMode: 0
   isEnemyABoss: 1
   bossID: 1
+  gameMusic: {fileID: 8300000, guid: 6059ca3c3968392459318574d53fd8d0, type: 3}
   canMove: 1
   enemyMoveSpeed: 5.56
   canEnemyDetectWalls: 1

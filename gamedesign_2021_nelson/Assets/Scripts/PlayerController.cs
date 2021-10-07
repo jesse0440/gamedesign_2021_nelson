@@ -139,6 +139,7 @@ public class PlayerController : MonoBehaviour
     GameObject consumableSelectionThree;
     GameObject teleportDestination;
     AbilityIcons abilitiesObject;
+    AudioSource gameAudioManager;
 
 
 
@@ -223,6 +224,7 @@ public class PlayerController : MonoBehaviour
         terrainLayerMask = LayerMask.GetMask("Terrain");
         enemyLayers = LayerMask.GetMask("Enemies");
         abilitiesObject = GameObject.FindWithTag("AbilitiesObject").GetComponent<AbilityIcons>();
+        gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
 
         // Find if there is a saved amount of health for the player or use default (100f)
         playerHealth = PlayerPrefs.GetFloat("PlayerHealth", 100f);
@@ -374,6 +376,9 @@ public class PlayerController : MonoBehaviour
         // If the player's health drops to zero or bugs out to negative
         if (playerHealth <= 0) 
         {
+            // Play death sound
+            gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().playerDeath;
+            gameAudioManager.Play();
             // Respawn the player
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
@@ -432,14 +437,11 @@ public class PlayerController : MonoBehaviour
         // Get the Horizontal input of Input manager
         playerDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-
         playerAnimator.SetFloat("Speed", Math.Abs(Input.GetAxis("Horizontal")));
 
         // While moving right
         if (playerDirection.x > 0) 
         {
-            //playerAnimator.SetTrigger("walkStart");
-            
             // Make the local scale's X positive to make the player face right
             Vector3 newScale = new Vector3(1, 1, 1);
             transform.localScale = newScale;
@@ -450,18 +452,12 @@ public class PlayerController : MonoBehaviour
         // While moving left
         if (playerDirection.x < 0)
         {
-            //playerAnimator.SetTrigger("walkStart");
             // Make the local scale's X negative to make the player face left
             Vector3 newScale = new Vector3(-1, 1, 1);
             transform.localScale = newScale;
             //rotate rangedPoint to make it face left
             rangedPoint.rotation = Quaternion.Euler(0, 180, 0);
         }
-
-        //If player has stopped moving
-        /*if (playerDirection.x == 0){
-            playerAnimator.SetTrigger("walkEnd");
-        }*/
 
         // Dashing with Left Shift if it is unlocked
         if (Input.GetButtonDown("Dash") && dashUnlockedCheck == 1 && dashIntervalPassed && rigidBody.velocity.x != 0)
@@ -773,6 +769,10 @@ public class PlayerController : MonoBehaviour
     {
         playerAnimator.SetTrigger("UseMelee");
 
+        // Play slash sound
+        gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().playerSlashing;
+        gameAudioManager.Play();
+
         //wait for given time to match animation
         yield return new WaitForSecondsRealtime(time);
 
@@ -788,21 +788,38 @@ public class PlayerController : MonoBehaviour
                 if (enemy.TryGetComponent<EnemyScript>(out var enemyScript))
                 {
                     enemyScript.TakeDamage(meleeDamage);
+
+                    if (enemy.gameObject.tag == "Enemy" || enemy.gameObject.tag == "BossMinion")
+                    {
+                        // Play enemy hit sound
+                        gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
+                        gameAudioManager.Play();
+                    }
+
+                    else if (enemy.gameObject.tag == "Boss")
+                    {
+                        // Play boss hit sound
+                        gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().bossHit;
+                        gameAudioManager.Play();
+                    }
                 }
+
                 else
                 {
                     yield return null;
                 }
                 
             }
-        }
-        
+        }  
     }
 
     IEnumerator WaitAndThrowShuriken(float time, GameObject chosenSlotItem)
     {
         yield return new WaitForSecondsRealtime(time);
         Instantiate(chosenSlotItem, rangedPoint.position, rangedPoint.rotation);
+        // Play throw sound
+        gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().playerThrowing;
+        gameAudioManager.Play();
         currentShuriken -= 1;
     }
 
@@ -810,6 +827,9 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(time);
         Instantiate(chosenSlotItem, rangedPoint.position, rangedPoint.rotation);
+        // Play throw sound
+        gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().playerThrowing;
+        gameAudioManager.Play();
         currentBombs -= 1;
     }
 
@@ -835,6 +855,9 @@ public class PlayerController : MonoBehaviour
         rigidBody.drag = 0f;
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
         rigidBody.AddForce(Vector2.up * playerCurrentJumpHeight, ForceMode2D.Impulse);
+        // Play jump sound
+        gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().playerJumping;
+        gameAudioManager.Play();
         playerJumpCounter += 1;
     }
 
@@ -899,5 +922,4 @@ public class PlayerController : MonoBehaviour
         position.y = data.savedPlayerPosition[1];
         transform.position = position;
     }
-    
 }

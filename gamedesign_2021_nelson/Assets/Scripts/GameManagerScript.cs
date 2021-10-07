@@ -10,6 +10,9 @@ public class GameManagerScript : MonoBehaviour
     // Check if enemies are allowed to spawn
     [HideInInspector]
     public bool canEnemiesSpawn = false;
+    public AudioClip gameMusic;
+    public AudioClip enemyMusic;
+    public AudioClip bossMusic;
 
     // Wake up protocols
     void Awake()

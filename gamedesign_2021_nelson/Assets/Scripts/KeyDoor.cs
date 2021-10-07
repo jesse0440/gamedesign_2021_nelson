@@ -23,11 +23,15 @@ public class KeyDoor : MonoBehaviour
     // The ID of the room the container is located in
     int roomID;
 
+    AudioSource gameAudioManager;
+
     void Start()
     {
         // Assign the player's script variable
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         roomID = SceneManager.GetActiveScene().buildIndex;
+
+        gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
 
         // Find out if this door has already been opened in this playthrough or use default (0)
         keyUsed = PlayerPrefs.GetInt("Door" + roomID + "_" + doorIDInRoom, 0);
@@ -57,6 +61,10 @@ public class KeyDoor : MonoBehaviour
             {
                 // Remove one key of this door's type from the player
                 playerController.RemoveKey(GetKeyType());
+
+                // Play door opened sound
+                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().doorOpened;
+                gameAudioManager.Play();
                 
                 // Make the game remember that this door by ID, in this room by ID, has been opened
                 PlayerPrefs.SetInt("Door" + roomID + "_" + doorIDInRoom, 1);

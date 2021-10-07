@@ -25,6 +25,8 @@ TagManager:
   - AbilitiesObject
   - SecretTile
   - BossWall
+  - BossTrigger
+  - GameAudioManager
   layers:
   - Default
   - TransparentFX

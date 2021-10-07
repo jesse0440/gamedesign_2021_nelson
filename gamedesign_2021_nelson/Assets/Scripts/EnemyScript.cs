@@ -46,6 +46,10 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     int bossID;
 
+    // Game music
+    [SerializeField]
+    AudioClip gameMusic;
+
     
     
     [Header("Movement Settings")]
@@ -188,6 +192,9 @@ public class EnemyScript : MonoBehaviour
     GameObject enemyHealthBar;
     GameObject enemyHealthBarCanvas;
 
+    GameObject gameManager;
+    AudioSource gameAudioManager;
+
     
     
     void Start()
@@ -233,6 +240,9 @@ public class EnemyScript : MonoBehaviour
         castingPosition = gameObject.transform.Find("CastPosition");
         baseScale = transform.localScale;
         roomID = SceneManager.GetActiveScene().buildIndex;
+
+        gameManager = GameObject.FindWithTag("GameManager");
+        gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
 
         // Get the counter for this rooms drops or use default
         roomDropCounter = PlayerPrefs.GetInt("DropCounter_" + "Room_" + roomID, 100);
@@ -442,16 +452,32 @@ public class EnemyScript : MonoBehaviour
             PlayerPrefs.SetInt("DropCounter_" + "Room_" + roomID, roomDropCounter);
 
             // If the enemy was a boss pass the ID so it won't respawn
-            if (gameObject.tag == "Boss")
+            if (isEnemyABoss == true)
             {
                 PlayerPrefs.SetInt("BossFought_" + bossID, 1);
                 GameObject[] bossWalls = GameObject.FindGameObjectsWithTag("BossWall");
+                GameObject bossTrigger = GameObject.FindWithTag("BossTrigger");
 
-                // Disable walls
+                // Disable walls and trigger
                 foreach (GameObject wall in bossWalls)
                 {
                     wall.SetActive(false);
                 }
+
+                // Play victory sound
+                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().victory;
+                gameAudioManager.Play();
+
+                bossTrigger.SetActive(false);
+                GameObject.FindWithTag("GameManager").GetComponent<AudioSource>().clip = gameManager.GetComponent<GameManagerScript>().gameMusic;
+                GameObject.FindWithTag("GameManager").GetComponent<AudioSource>().Play();
+            }
+
+            else if (isEnemyABoss == false)
+            {
+                // Play enemy death sound
+                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyDeath;
+                gameAudioManager.Play();
             }
 
             Destroy(gameObject);
@@ -485,6 +511,10 @@ public class EnemyScript : MonoBehaviour
                 // Substract the enemy damage from the player's health
                 collision.gameObject.GetComponent<PlayerController>().takeDamage(enemyDamage);
 
+                // Play player hurt sound
+                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().playerHit;
+                gameAudioManager.Play();
+
                 // Reset the player's jump counter (Damage boosting)
                 collision.gameObject.GetComponent<PlayerController>().playerJumpCounter = 0;
 
@@ -509,6 +539,9 @@ public class EnemyScript : MonoBehaviour
     public void TakeDamage(float damage)
     {
         //TODO: play hurt animation
+        // Play enemy hurt sound
+        gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
+        gameAudioManager.Play();
 
         enemyHealth -= damage;
     }
@@ -828,6 +861,10 @@ public class EnemyScript : MonoBehaviour
         GameObject shotProjectile = (GameObject)Instantiate(projectile, projectileOutPoint.position, projectileOutPoint.rotation);
         EnemyProjectile enemyProjectile = shotProjectile.GetComponent<EnemyProjectile>();
         enemyProjectile.SetVariables(projectileDamage, projectileSpeed);
+
+        // Play boss shooting sound
+        gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().bossShooting;
+        gameAudioManager.Play();
 
         // Delay the next possible attack with the interval
         alreadyAttacked = true;

@@ -25,12 +25,16 @@ public class AbilityUnlock : MonoBehaviour
     // The script the ability HUD icons are controlled by
     AbilityIcons abilityIcons;
 
+    AudioSource gameAudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
         // Assign the parent object and the room ID variables
         abilityUnlockObject = transform.parent.gameObject;
         roomID = SceneManager.GetActiveScene().buildIndex;
+
+        gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
 
         // Find out if this ability unlock has already been used in this playthrough or use default (0)
         hasThisAbilityUnlockBeenUsedAlready = PlayerPrefs.GetInt("AbilityUnlock" + roomID + "_" + abilityID, 0);
@@ -74,6 +78,10 @@ public class AbilityUnlock : MonoBehaviour
                 default:
                     break;
             }
+
+            // Play ability get sound
+            gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().abilityGet;
+            gameAudioManager.Play();
 
             // Save the ability object as obtaine
             PlayerPrefs.SetInt("AbilityUnlock" + roomID + "_" + abilityID, 1);

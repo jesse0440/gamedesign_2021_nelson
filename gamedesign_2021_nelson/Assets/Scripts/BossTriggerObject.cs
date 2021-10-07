@@ -7,6 +7,8 @@ public class BossTriggerObject : MonoBehaviour
     // Set variables
     BoxCollider2D boxCollider;
     GameObject gameManager;
+    AudioSource gameAudioManager;
+    AudioSource gameAudio;
     GameObject[] bossWalls;
     int bossBeenFoughtValue = 0;
 
@@ -28,6 +30,7 @@ public class BossTriggerObject : MonoBehaviour
         // Assign variables
         boxCollider = GetComponent<BoxCollider2D>();
         gameManager = GameObject.FindWithTag("GameManager");
+        gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
         bossWalls = GameObject.FindGameObjectsWithTag("BossWall");
 
         // Disable walls at first
@@ -51,6 +54,14 @@ public class BossTriggerObject : MonoBehaviour
                 {
                     wall.SetActive(true);
                 }
+
+                // Play boss start sound
+                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().bossStart;
+                gameAudioManager.Play();
+
+                // Switch Audio
+                gameManager.GetComponent<AudioSource>().clip = gameManager.GetComponent<GameManagerScript>().bossMusic;
+                gameManager.GetComponent<AudioSource>().Play();
             }
         }
     }

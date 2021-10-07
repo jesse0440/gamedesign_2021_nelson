@@ -8,6 +8,7 @@ public class PlayerBomb : MonoBehaviour
     // TODO: play explosion animation
     public SpriteRenderer spriteRenderer;
     public Sprite explosionSprite;
+    AudioSource gameAudioManager;
 
     // Speed, explosion timer and impact damage of the projectile
     public float speed = 25;
@@ -32,6 +33,7 @@ public class PlayerBomb : MonoBehaviour
         var angle = xForceScaled + yForce;
         // Apply force to the bomb
         GetComponent<Rigidbody2D>().AddForce(angle * speed, ForceMode2D.Impulse);
+        gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
     }
 
 
@@ -59,6 +61,11 @@ public class PlayerBomb : MonoBehaviour
             if (hasImpacted == false)
             {
                 enemy.TakeDamage(impactDamage);
+
+                // Play enemy hit sound
+                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
+                gameAudioManager.Play();
+
                 hasImpacted = true;
             }
             
@@ -101,6 +108,10 @@ public class PlayerBomb : MonoBehaviour
                 // Calculate damage dealt based on distance
                 var damagePercent = Mathf.InverseLerp(splashRange, 0, distance);
                 enemy.TakeDamage(damagePercent * explosionDamage);
+
+                // Play enemy hit sound
+                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
+                gameAudioManager.Play();
             }
 
             // Destroy Secret Tile if it is in the explosion range

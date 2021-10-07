@@ -24,11 +24,15 @@ public class KeyCards : MonoBehaviour
     // The ID of the room the container is located in
     int roomID;
 
+    AudioSource gameAudioManager;
+
     void Start()
     {
         // Assign the player's script variable
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         roomID = SceneManager.GetActiveScene().buildIndex;
+
+        gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
 
         // Find out if this key has already been obtained in this playthrough or use default (0)
         keyGiven = PlayerPrefs.GetInt("Key" + roomID + "_" + keyIDInRoom, 0);
@@ -63,6 +67,10 @@ public class KeyCards : MonoBehaviour
         {
             // Give the player a key of this object's type and destroy this object
             playerController.AddKey(GetKeyType());
+
+            // Play key get sound
+            gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().keyGet;
+            gameAudioManager.Play();
 
             // Make the game remember that this key by ID, in this room by ID, has been obtained
             PlayerPrefs.SetInt("Key" + roomID + "_" + keyIDInRoom, 1);

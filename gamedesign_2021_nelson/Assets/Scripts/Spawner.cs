@@ -24,8 +24,6 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     double entitySpawnTickerMax;
 
-
-
     // This will be appended to the name of the created entities and increment when each is created
     int instanceNumber = 0;
 
@@ -38,7 +36,12 @@ public class Spawner : MonoBehaviour
     // The distance between the spawner and the player
     float distanceToPlayer;
 
+    AudioSource gameAudioManager;
 
+    void Start()
+    {
+        gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
+    }
 
     // Fixed update is called at the same frame regardless of framerate
     void FixedUpdate()
@@ -85,6 +88,10 @@ public class Spawner : MonoBehaviour
         {
             // Creates an instance of the prefab at the current spawn point.
             GameObject currentEntity = Instantiate(entityToSpawn, transform.position, Quaternion.identity);
+
+            // Play egg spawn sound
+            gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemySpawning;
+            gameAudioManager.Play();
 
             // Sets the name of the instantiated entity to be the string defined in the ScriptableObject and then appends it with a unique number. 
             currentEntity.name = spawnManagerValues.prefabName + "_" + instanceNumber;

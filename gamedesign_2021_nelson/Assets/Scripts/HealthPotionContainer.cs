@@ -22,12 +22,16 @@ public class HealthPotionContainer : MonoBehaviour
     // Check if this container has already been consumed, default is 0 = false
     int hasThisContainerBeenUsedAlready = 0;
 
+    AudioSource gameAudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
         // Assign the parent object and the room ID variables
         healthPotionParentObject = transform.parent.gameObject;
         roomID = SceneManager.GetActiveScene().buildIndex;
+
+        gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
 
         // Find out if this container has already been used in this playthrough or use default (0)
         hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("HealthPotionContainer" + roomID + "_" + containerIDInRoom, 0);
@@ -67,6 +71,10 @@ public class HealthPotionContainer : MonoBehaviour
 
             // Add a health potion
             playerScript.currentHealthPotions += amountGiven;
+
+            // Play consumable get sound
+            gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().consumableGet;
+            gameAudioManager.Play();
 
             // Make the game remember that this container by ID, in this room by ID, has been consumed
             PlayerPrefs.SetInt("HealthPotionContainer" + roomID + "_" + containerIDInRoom, 1);

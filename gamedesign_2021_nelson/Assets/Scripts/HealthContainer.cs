@@ -25,12 +25,16 @@ public class HealthContainer : MonoBehaviour
     // The script of the player character
     PlayerController playerController;
 
+    AudioSource gameAudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
         // Assign the parent object and the room ID variables
         healthParentObject = transform.parent.gameObject;
         roomID = SceneManager.GetActiveScene().buildIndex;
+
+        gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
 
         // Find out if this health container has already been used in this playthrough or use default (0)
         hasThisContainerBeenUsedAlready = PlayerPrefs.GetInt("HealthContainer" + roomID + "_" + containerIDInRoom, 0);
@@ -60,6 +64,10 @@ public class HealthContainer : MonoBehaviour
             // Assign PlayerController and increase the health
             playerController = collision.gameObject.GetComponent<PlayerController>();
             playerController.playerHealth += amountOfHealthGiven;
+
+            // Play heart get sound
+            gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().heartGet;
+            gameAudioManager.Play();
 
             // Make the game remember that this container by ID, in this room by ID, has been consumed
             PlayerPrefs.SetInt("HealthContainer" + roomID + "_" + containerIDInRoom, 1);
