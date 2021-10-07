@@ -543,7 +543,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Attack") && meleeIntervalPassed)
         {
             // Attack
-            MeleeAttack();
+            StartCoroutine(MeleeAttack(0.3f));
 
             // Reset attack timer
             meleeIntervalPassed = false;
@@ -707,28 +707,6 @@ public class PlayerController : MonoBehaviour
        playerHealth -= enemyDamage;
     }
 
-    // Melee attack function
-    private void MeleeAttack()
-    {
-        Debug.Log("Melee triggered");
-        // Create attack collider
-        //playerAnimator.SetTrigger("useMelee");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            // Damage enemies
-            if (enemy.TryGetComponent<EnemyScript>(out var enemyScript))
-            {
-                enemyScript.TakeDamage(meleeDamage);
-            }
-                
-            else
-            {
-                return;
-            }
-        }
-    }
 
     // Function to instantiate a thrown shuriken
     private void ThrowShuriken(GameObject chosenSlotItem)
@@ -790,7 +768,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //waiting coroutines for consumables
+    //waiting coroutines for consumables and melee
+    IEnumerator MeleeAttack(float time)
+    {
+        playerAnimator.SetTrigger("UseMelee");
+
+        //wait for given time to match animation
+        yield return new WaitForSecondsRealtime(time);
+
+        //check if melee is still playing (for when attack gets interrupted, for example when dashing)
+        if (this.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Player_Melee"))
+        {
+        // Create attack collider
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                // Damage enemies
+                if (enemy.TryGetComponent<EnemyScript>(out var enemyScript))
+                {
+                    enemyScript.TakeDamage(meleeDamage);
+                }
+                else
+                {
+                    yield return null;
+                }
+                
+            }
+        }
+        
+    }
+
     IEnumerator WaitAndThrowShuriken(float time, GameObject chosenSlotItem)
     {
         yield return new WaitForSecondsRealtime(time);
