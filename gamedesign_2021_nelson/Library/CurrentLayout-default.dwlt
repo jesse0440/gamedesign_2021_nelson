@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 2560
     height: 1357
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 72
+  controlID: 123
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 73
+  controlID: 124
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -398,9 +398,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 404c0000
       m_LastClickedID: 0
-      m_ExpandedIDs: ee5efeffe25ffeff1a64feff7c64feff1865feff8c68feff1a6afeff366afeff4c6afeff5c6bfeffa26cfeff7c6dfeffa86dfeffbe6dfeff44a4fefff8a4fefff8a5feff26a8feff68abfeff72b3feffacb5fefff6b5feff52b6feffacb6feff46b7feff5cb7feff70bafeffc2f7ffffd4f7ffffaaf8ffff9a520000e2530000b4c702002ecb02008ace0200a0d10200fcd40200cefc0200724c0300fa650300fa6803009ed403005ee003008ee2030044190400881f04009027040026d004006ed1040008f204000c130500e21f0500e22005006a310500203b0500
+      m_ExpandedIDs: 5a73ffff7873ffff9873ffffaa73ffffbe73ffffdc73fffff873ffff0a74ffff2074ffff3c74ffff5074ffff6274ffffae74ffffc074ffffd274ffffe674fffff874ffff2c75ffff4075fffff276ffff0478ffff7c78ffff9279ffff5c7cffffec7dfffffe7dffff267effffbc91ffff3ca4ffff68a4ffff32afffffa0afffff86b0fffff6b0ffff58b1ffffc4b1ffff40b2ffffcab2ffff28b3ffff9ab3fffff6b3ffff5ab4ffffb8b4ffff18b5ffff70b5ffff84b5fffffeb5ffff34b8ffff4eb8ffff60b8ffffb0b8ffff24b9ffffaeb9ffff94baffffcebaffff08bbffff8abdffffdcf6ffff86f7ffff9af7ffffacf7ffffc6f7ffffdaf7ffff06f8ffff26f8ffff7af8ffff8cf8ffff9ef8ffffb8f8ffff6af9ffff0e740000907400003876000088bc0000d0bd0000be080100e80a01008ea50100b0a501000cba010054bb0100a8d0010068d1010018d20100fad2010090050200d0060200d0070200e40c02009c0d02004c0e0200f40e02002e0f0200801c0200c01d020088580200b25a0200de710200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -460,9 +460,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -7.787676, y: -5.314, z: -119.204285}
+    m_Target: {x: 11.218403, y: 2.6970875, z: -185.75562}
     speed: 2
-    m_Value: {x: -8.057147, y: -5.2631984, z: -119.15357}
+    m_Value: {x: 11.218403, y: 2.6970875, z: -185.75562}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -513,9 +513,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 13.453185
+    m_Target: 21.426678
     speed: 2
-    m_Value: 14.087105
+    m_Value: 21.426678
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -672,28 +672,28 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scenes/SpaceShip
   m_LastFoldersGridSize: 67
-  m_LastProjectPath: C:\Users\Pottunisti\Documents\GitHub\gamedesign_2021_nelson\gamedesign_2021_nelson
+  m_LastProjectPath: Z:\PROJECT GAME\gamedesign_2021_nelson\gamedesign_2021_nelson
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 884d0000
-    m_LastClickedID: 19848
-    m_ExpandedIDs: 000000004e4d0000504d0000524d0000544d0000564d0000584d00005a4d00005c4d00005e4d0000604d0000624d0000644d0000664d00004c58000000ca9a3b
+    m_SelectedIDs: 384c0000
+    m_LastClickedID: 19512
+    m_ExpandedIDs: 00000000fc4b0000fe4b0000004c0000024c0000044c0000064c0000084c00000a4c00000c4c00000e4c0000104c0000124c0000144c0000164c0000244c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Materials
+      m_OriginalName: Materials
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 19488
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -707,7 +707,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004e4d0000504d0000524d0000544d0000564d0000584d00005a4d00005c4d00005e4d0000604d0000624d0000644d0000664d0000
+    m_ExpandedIDs: 00000000fc4b0000fe4b0000004c0000024c0000044c0000064c0000084c00000a4c00000c4c00000e4c0000104c0000124c0000144c0000164c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
