@@ -52,6 +52,7 @@ public class RoomWarp : MonoBehaviour
             PlayerPrefs.SetInt("YellowKeyCount", playerScript.yellowCount);
             PlayerPrefs.SetInt("BlueKeyCount", playerScript.blueCount);
             PlayerPrefs.SetInt("RedKeyCount", playerScript.redCount);
+            PlayerPrefs.SetInt("ActiveSceneID", SceneManager.GetActiveScene().buildIndex); 
 
             // Load next room
             SceneManager.LoadScene(nextRoomId);

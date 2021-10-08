@@ -5,12 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    PlayerController Loader;
-
-    void Start()
-    {
-        //Loader = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-    }
+    int SceneID;
 
     // Start a new game
     public void PlayGame()
@@ -22,7 +17,8 @@ public class MainMenu : MonoBehaviour
     // Load an existing game
     public void LoadGame()
     {
-        //Loader.LoadPlayer();
+        SceneID = PlayerPrefs.GetInt("ActiveSceneID");
+        SceneManager.LoadScene(SceneID);
     }
 
     // Quit the game

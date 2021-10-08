@@ -34,12 +34,18 @@ public class RespawnTrigger : MonoBehaviour
             // Move the spawnpoint of the room to this respawn point trigger
             PlayerPrefs.SetFloat("Room " + sceneID + " Respawn Coordinate X", gameObject.transform.position.x);
             PlayerPrefs.SetFloat("Room " + sceneID + " Respawn Coordinate Y", gameObject.transform.position.y);
-            
 
-            /*
-            player = GameObject.FindWithTag("Player");
-            SaveSystem.SavePlayer(player.GetComponent<PlayerController>());
-            */
+            PlayerController playerScript = collision.gameObject.GetComponent<PlayerController>();
+            // Save the rest of the variables here because of possible abuse mechanisms
+            PlayerPrefs.SetFloat("PlayerHealth", playerScript.playerHealth);
+            PlayerPrefs.SetInt("ConsumableSelection", playerScript.consumableSelection);
+            PlayerPrefs.SetInt("ShurikenAmount", playerScript.currentShuriken);
+            PlayerPrefs.SetInt("BombAmount", playerScript.currentBombs);
+            PlayerPrefs.SetInt("HealthPotionAmount", playerScript.currentHealthPotions);
+            PlayerPrefs.SetInt("YellowKeyCount", playerScript.yellowCount);
+            PlayerPrefs.SetInt("BlueKeyCount", playerScript.blueCount);
+            PlayerPrefs.SetInt("RedKeyCount", playerScript.redCount);
+            PlayerPrefs.SetInt("ActiveSceneID", SceneManager.GetActiveScene().buildIndex);
 
             // Disable this respawn point trigger
             gameObject.SetActive(false);

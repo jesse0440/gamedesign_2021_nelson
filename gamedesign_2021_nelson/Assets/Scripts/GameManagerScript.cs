@@ -43,11 +43,4 @@ public class GameManagerScript : MonoBehaviour
             canEnemiesSpawn = false;
         }
     }
-
-    // When the application is closed, erase all checkpoints' progress in rooms
-    // This is for testing purposes and will be removed later
-    void OnApplicationQuit()
-    {
-        PlayerPrefs.DeleteAll();
-    }
 }

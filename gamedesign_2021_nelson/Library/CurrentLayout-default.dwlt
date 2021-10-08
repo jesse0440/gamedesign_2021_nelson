@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 68
+  controlID: 147
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 69
+  controlID: 18
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 70
+  controlID: 19
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -400,7 +400,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: fae2ffff54e5ffff24e8ffff36e8ffff48e8ffff5ae8ffff6ae8ffff7ae8ffff8ce8ffff9ee8ffffcee8ffff68f2ffffd6f4ffffc2f6ffffe2f8ffff8e03010008040100d2050100183f01003c41010046440100e64401009a4e0100c6510100ca6e0100ce6e0100
+      m_ExpandedIDs: 32d2ffff44d2ffff58d2ffff6ed2ffffa4d2ffffe0d2ffff48d3ffff78d3ffffbed3ffff08d4ffff1ad4ffff48d4ffff7ed4ffffb2d4ffffded4ffff18d5ffff42d5ffff40d6ffff34e0ffff7ee6ffff90e6ffffc0f7ffffb0f8ffff22f9ffff3ef9ffff3afaffff3cfbffffe26a0000f66a000028df0000a4df0000bc5502006c570200c25702003a5e0200785e02008e5e0200c06402000c6502001c6502004a6b0200986b0200a86b020068720200ae720200b4750200788102007c8302009c840200049002000892020028930200969f020044a002003ca3020032ad0200e0ad0200d8b00200b8b4020062b6020084b8020022c402009ec40200c6c40200ecca0200dccb02000ecc020040d20200d0d2020054d3020046ed02008ced020092f00200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -460,9 +460,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 2.960838, y: 1.3640046, z: -59.271355}
+    m_Target: {x: 20.765419, y: 3.3256216, z: -657.0289}
     speed: 2
-    m_Value: {x: 2.960838, y: 1.3640046, z: -59.271355}
+    m_Value: {x: 20.765419, y: 3.3256216, z: -657.0289}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -513,9 +513,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 6.7805147
+    m_Target: 3.9717343
     speed: 2
-    m_Value: 6.7805147
+    m_Value: 3.9717343
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -672,14 +672,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scenes/SpaceShip
   m_LastFoldersGridSize: 67
-  m_LastProjectPath: Z:\PROJECT GAME\gamedesign_2021_nelson\gamedesign_2021_nelson
+  m_LastProjectPath: C:\Users\Pottunisti\Documents\GitHub\gamedesign_2021_nelson\gamedesign_2021_nelson
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 164e0000
-    m_LastClickedID: 19990
-    m_ExpandedIDs: 00000000e24d0000e44d0000e64d0000e84d0000ea4d0000ec4d0000ee4d0000f04d0000f24d0000f44d0000f64d0000f84d0000fa4d0000fc4d0000fe4d0000004e0000104e000000ca9a3b
+    m_SelectedIDs: e4470000
+    m_LastClickedID: 18404
+    m_ExpandedIDs: 00000000b4470000b6470000b8470000ba470000bc470000be470000c0470000c2470000c4470000c6470000c8470000ca470000cc470000ce470000d0470000d247000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -707,7 +707,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e24d0000e44d0000e64d0000e84d0000ea4d0000ec4d0000ee4d0000f04d0000f24d0000f44d0000f64d0000f84d0000fa4d0000fc4d0000fe4d0000004e0000
+    m_ExpandedIDs: 00000000b4470000b6470000b8470000ba470000bc470000be470000c0470000c2470000c4470000c6470000c8470000ca470000cc470000ce470000d0470000d2470000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
