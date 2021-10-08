@@ -27,6 +27,7 @@ TagManager:
   - BossWall
   - BossTrigger
   - GameAudioManager
+  - Victory
   layers:
   - Default
   - TransparentFX

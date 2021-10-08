@@ -464,6 +464,9 @@ public class EnemyScript : MonoBehaviour
                     wall.SetActive(false);
                 }
 
+                // Enable victory warp
+                bossTrigger.GetComponent<BossTriggerObject>().victoryWarp.SetActive(true);
+
                 // Play victory sound
                 gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().victory;
                 gameAudioManager.Play();

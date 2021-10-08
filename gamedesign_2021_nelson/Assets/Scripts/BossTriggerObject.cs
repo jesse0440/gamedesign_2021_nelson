@@ -10,6 +10,7 @@ public class BossTriggerObject : MonoBehaviour
     AudioSource gameAudioManager;
     AudioSource gameAudio;
     GameObject[] bossWalls;
+    public GameObject victoryWarp;
     int bossBeenFoughtValue = 0;
 
     // ID of the boss this trigger is used for
@@ -32,12 +33,15 @@ public class BossTriggerObject : MonoBehaviour
         gameManager = GameObject.FindWithTag("GameManager");
         gameAudioManager = GameObject.FindWithTag("GameAudioManager").GetComponent<AudioSource>();
         bossWalls = GameObject.FindGameObjectsWithTag("BossWall");
+        victoryWarp = GameObject.FindWithTag("Victory");
 
         // Disable walls at first
         foreach (GameObject wall in bossWalls)
         {
             wall.SetActive(false);
         }
+
+        victoryWarp.SetActive(false);
     }
 
     // When something enters the trigger

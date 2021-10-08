@@ -62,9 +62,21 @@ public class PlayerBomb : MonoBehaviour
             {
                 enemy.TakeDamage(impactDamage);
 
-                // Play enemy hit sound
-                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
-                gameAudioManager.Play();
+                // If there is an enemy in the explosion
+                if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "BossMinion")
+                {
+                    // Play enemy hit sound
+                    gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
+                    gameAudioManager.Play();
+                }
+
+                // If there is a boss enemy in the explosion
+                else if (collision.gameObject.tag == "Boss")
+                {
+                    // Play boss hit sound
+                    gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().bossHit;
+                    gameAudioManager.Play();
+                }
 
                 hasImpacted = true;
             }
@@ -109,9 +121,21 @@ public class PlayerBomb : MonoBehaviour
                 var damagePercent = Mathf.InverseLerp(splashRange, 0, distance);
                 enemy.TakeDamage(damagePercent * explosionDamage);
 
-                // Play enemy hit sound
-                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
-                gameAudioManager.Play();
+                // If there is an enemy in the explosion
+                if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "BossMinion")
+                {
+                    // Play enemy hit sound
+                    gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
+                    gameAudioManager.Play();
+                }
+
+                // If there is a boss enemy in the explosion
+                else if (collision.gameObject.tag == "Boss")
+                {
+                    // Play boss hit sound
+                    gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().bossHit;
+                    gameAudioManager.Play();
+                }
             }
 
             // Destroy Secret Tile if it is in the explosion range

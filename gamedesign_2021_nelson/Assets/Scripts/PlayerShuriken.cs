@@ -40,9 +40,19 @@ public class PlayerShuriken : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyScript>().TakeDamage(projectileDamage);
             
-            // Play enemy hit sound
-            gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
-            gameAudioManager.Play();
+            if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "BossMinion")
+            {
+                // Play enemy hit sound
+                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
+                gameAudioManager.Play();
+            }
+
+            else if (collision.gameObject.tag == "Boss")
+            {
+                // Play boss hit sound
+                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().bossHit;
+                gameAudioManager.Play();
+            }
 
             Destroy(gameObject);
         }

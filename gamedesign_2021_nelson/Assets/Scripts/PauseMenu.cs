@@ -40,6 +40,7 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        PlayerPrefs.SetInt("ActiveSceneID", SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
