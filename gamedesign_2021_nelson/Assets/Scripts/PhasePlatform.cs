@@ -5,7 +5,6 @@ using UnityEngine;
 public class PhasePlatform : MonoBehaviour
 {
     // The collider variables
-    GameObject player;
     EdgeCollider2D playerEdgeCollider;
     BoxCollider2D boxCollider;
 
@@ -14,26 +13,25 @@ public class PhasePlatform : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        // Assign the player, the player's edge collider and the platform's collider
-        player = GameObject.FindWithTag("Player");
-        playerEdgeCollider = player.GetComponent<EdgeCollider2D>();
+        // Assign the platform's collider
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
     }
 
     // Update called once per frame
     void Update()
     {
-        // If the player's Y position + the player's height / 2 is lower than the platform's Y position
-        // Unsolidify the platform
-        if (playerEdgeCollider.bounds.min.y < boxCollider.bounds.center.y)
+        // Update player collider
+        playerEdgeCollider = GameObject.FindWithTag("Player").GetComponent<EdgeCollider2D>();
+
+        // If the player is under the phaseplatform unsolidify the platform
+        if (playerEdgeCollider.bounds.min.y < boxCollider.bounds.max.y)
         {
             boxCollider.enabled = false;
             phaseCheck = false;
         }
 
-        // If the player's Y position - the player's height / 2 is higher than the platform's Y position
-        // Solidify the platform
-        if (playerEdgeCollider.bounds.min.y > boxCollider.bounds.center.y && phaseCheck == false)
+        // If the player is above the phaseplatform solidify the platform
+        if (playerEdgeCollider.bounds.min.y > boxCollider.bounds.max.y && phaseCheck == false)
         {
             boxCollider.enabled = true;
             phaseCheck = true;

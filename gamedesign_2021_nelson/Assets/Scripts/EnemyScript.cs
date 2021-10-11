@@ -50,6 +50,10 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     AudioClip gameMusic;
 
+    //
+    [SerializeField]
+    GameObject victoryWarp;
+
     
     
     [Header("Movement Settings")]
@@ -223,6 +227,12 @@ public class EnemyScript : MonoBehaviour
         // If enemy trigger mode spawning is on and trigger has not been passed
         if (enemyTriggerMode == true && enemyTriggerValue == 0)
         {
+            //
+            if (isEnemyABoss)
+            {
+                victoryWarp.SetActive(false);
+            }
+            
             // Disable this enemy
             gameObject.SetActive(false);
         }
@@ -456,7 +466,6 @@ public class EnemyScript : MonoBehaviour
             {
                 PlayerPrefs.SetInt("BossFought_" + bossID, 1);
                 GameObject[] bossWalls = GameObject.FindGameObjectsWithTag("BossWall");
-                GameObject bossTrigger = GameObject.FindWithTag("BossTrigger");
 
                 // Disable walls and trigger
                 foreach (GameObject wall in bossWalls)
@@ -465,13 +474,12 @@ public class EnemyScript : MonoBehaviour
                 }
 
                 // Enable victory warp
-                bossTrigger.GetComponent<BossTriggerObject>().victoryWarp.SetActive(true);
+                victoryWarp.SetActive(true);
 
                 // Play victory sound
                 gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().victory;
                 gameAudioManager.Play();
 
-                bossTrigger.SetActive(false);
                 GameObject.FindWithTag("GameManager").GetComponent<AudioSource>().clip = gameManager.GetComponent<GameManagerScript>().gameMusic;
                 GameObject.FindWithTag("GameManager").GetComponent<AudioSource>().Play();
             }
@@ -872,5 +880,14 @@ public class EnemyScript : MonoBehaviour
         // Delay the next possible attack with the interval
         alreadyAttacked = true;
         enemyAttackTimer = Time.time;
+    }
+
+    //
+    private void OnDrawGizmosSelected() {
+
+        if (canEnemyDetectPlayer)
+        {
+            Gizmos.DrawWireSphere(gameObject.transform.position, playerDetectionRange);
+        }
     }
 }

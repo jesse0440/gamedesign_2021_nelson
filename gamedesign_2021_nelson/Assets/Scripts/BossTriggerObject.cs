@@ -40,8 +40,6 @@ public class BossTriggerObject : MonoBehaviour
         {
             wall.SetActive(false);
         }
-
-        victoryWarp.SetActive(false);
     }
 
     // When something enters the trigger
@@ -66,6 +64,8 @@ public class BossTriggerObject : MonoBehaviour
                 // Switch Audio
                 gameManager.GetComponent<AudioSource>().clip = gameManager.GetComponent<GameManagerScript>().bossMusic;
                 gameManager.GetComponent<AudioSource>().Play();
+
+                gameObject.SetActive(false);
             }
         }
     }

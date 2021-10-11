@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 100
   playerMaxHealth: 100
-  attackRange: 3
+  attackRange: 2.5
   meleeDamage: 10
   meleeAttackInterval: 2
   shurikenAttackInterval: 0.3
@@ -108,6 +108,7 @@ MonoBehaviour:
   teleportUnlockedCheck: 0
   teleportRange: 8
   teleportInterval: 10
+  colliders: []
   consumableSelection: 0
   dashIntervalTimer: 0
   teleportIntervalTimer: 0

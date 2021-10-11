@@ -368,6 +368,11 @@ public class PlayerController : MonoBehaviour
         float tempXCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " X Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.x);
         float tempYCoordinate = PlayerPrefs.GetFloat("Room " + SceneManager.GetActiveScene().buildIndex + " Y Coordinate", GameObject.FindWithTag("SpawnPointLocation").transform.position.y);
         transform.position = new Vector2(tempXCoordinate, tempYCoordinate);
+
+
+
+        // Double jumps from the start
+        playerMaxJumpCounter = 2;
     }
 
     // Update is called once per frame
@@ -644,7 +649,7 @@ public class PlayerController : MonoBehaviour
         PlayerMovement(playerDirection.x);
 
         // If falling and vertical velocity is lower than the bump velocity limit
-        if (rigidBody.velocity.y < -1.67f)
+        if (rigidBody.velocity.y < 0)
         {
             // Increase gravity by the multiplier
             rigidBody.gravityScale = playerGravity * fallingGravityMultiplier;
@@ -659,7 +664,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // If the player has not jumped but their vertical velocity is lower than the bump velocity limit
-        if (hasNotJumped && rigidBody.velocity.y < -1.67f)
+        if (hasNotJumped && rigidBody.velocity.y < -1.01f)
         {
             // Count it as a fall and increase jump counter
             playerJumpCounter += 1;
@@ -685,7 +690,7 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded() 
     {
         // Cast the box to check for ground
-        RaycastHit2D rayCastHit = Physics2D.BoxCast(edgeCollider.bounds.center, new Vector3(edgeCollider.bounds.size.x / 2, edgeCollider.bounds.size.y, edgeCollider.bounds.size.z), 0f, Vector2.down, groundedCheckRayLength, terrainLayerMask);
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(edgeCollider.bounds.center, new Vector3(edgeCollider.bounds.size.x, edgeCollider.bounds.size.y + 0.1f, edgeCollider.bounds.size.z), 0f, Vector2.down, groundedCheckRayLength, terrainLayerMask);
 
         // Return the value so script knows whether the player's jump counter is reset or not
         return rayCastHit.collider;
@@ -704,9 +709,8 @@ public class PlayerController : MonoBehaviour
     public void takeDamage(float enemyDamage)
     {
         playerAnimator.SetTrigger("TakeDamage");
-       playerHealth -= enemyDamage;
+        playerHealth -= enemyDamage;
     }
-
 
     // Function to instantiate a thrown shuriken
     private void ThrowShuriken(GameObject chosenSlotItem)
@@ -849,7 +853,9 @@ public class PlayerController : MonoBehaviour
         {
             Gizmos.DrawWireSphere(transform.position, teleportRange);
         }
-        if (playerJumpCounter > 0){
+
+        if (playerJumpCounter > 0)
+        {
             Gizmos.DrawWireCube(edgeCollider.bounds.center, new Vector3(edgeCollider.bounds.size.x / 2, edgeCollider.bounds.size.y, edgeCollider.bounds.size.z));
         }
     }

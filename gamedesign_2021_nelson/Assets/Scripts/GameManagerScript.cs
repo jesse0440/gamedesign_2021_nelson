@@ -10,9 +10,12 @@ public class GameManagerScript : MonoBehaviour
     // Check if enemies are allowed to spawn
     [HideInInspector]
     public bool canEnemiesSpawn = false;
+
     public AudioClip gameMusic;
     public AudioClip enemyMusic;
     public AudioClip bossMusic;
+
+    AudioSource audio;
 
     // Wake up protocols
     void Awake()
@@ -33,6 +36,10 @@ public class GameManagerScript : MonoBehaviour
     // Start up protocols
     void Start()
     {
+        audio = GetComponent<AudioSource>();
+        audio.loop = true;
+        audio.Play();
+
         if (PlayerPrefs.GetInt("EnemiesCanSpawn") == 1)
         {
             canEnemiesSpawn = true;
