@@ -464,6 +464,8 @@ public class PlayerController : MonoBehaviour
         {
             //trigger dash animation
             playerAnimator.SetTrigger("UseDash");
+            //Start Coroutine to set dash collider
+            StartCoroutine(SetColliderForAnimation(1, 0.3f));
 
             // If dash has not been used in this room yet
             if (abilitiesObject.firstDashUsage == false)
@@ -478,6 +480,8 @@ public class PlayerController : MonoBehaviour
             // Reset Dash timer
             dashIntervalPassed = false;
             dashIntervalTimer = Time.time;
+
+
         }
 
         // Teleporting with F if it is unlocked
@@ -628,7 +632,7 @@ public class PlayerController : MonoBehaviour
         // Resetting the jump counter & jump height damage boost when player hits the ground
         // Inform the system that the player can fall again
         // Set gravity back to normal
-        if (IsGrounded() && rigidBody.velocity.y == 0 || IsWallClimbing())
+        if (IsGrounded() || IsWallClimbing())
         {
             playerCurrentJumpHeight = playerBaseJumpHeight;
             playerJumpCounter = 0;
@@ -845,6 +849,9 @@ public class PlayerController : MonoBehaviour
         {
             Gizmos.DrawWireSphere(transform.position, teleportRange);
         }
+        if (playerJumpCounter > 0){
+            Gizmos.DrawWireCube(edgeCollider.bounds.center, new Vector3(edgeCollider.bounds.size.x / 2, edgeCollider.bounds.size.y, edgeCollider.bounds.size.z));
+        }
     }
 
     // Jump function
@@ -862,16 +869,25 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void SetColliderForAnimation( int animationIndex )
+    IEnumerator SetColliderForAnimation( int animationIndex, float animDuration )
     {
+    
     //disable collider of the last animation
-    colliders[currentColliderIndex].enabled = false;
+    colliders[0].enabled = false;
     currentColliderIndex = animationIndex;
     //enable collider of the new animatison
-    colliders[currentColliderIndex].enabled = true;
-
+    colliders[animationIndex].enabled = true;
     //reassign edgeCollider for other functions
     edgeCollider = colliders[animationIndex];
+
+    //Wait until animation is finished
+    yield return new WaitForSeconds(animDuration);
+
+    //set default collider again (index 0)
+    colliders[animationIndex].enabled = false;
+    currentColliderIndex = 0;
+    colliders[0].enabled = true;
+    edgeCollider = colliders[0];
     }
 
     
