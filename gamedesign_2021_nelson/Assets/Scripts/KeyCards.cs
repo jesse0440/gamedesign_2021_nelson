@@ -15,11 +15,18 @@ public class KeyCards : MonoBehaviour
     [SerializeField]
     int keyIDInRoom;
 
+    // Global ID of a key
+    [SerializeField]
+    int globalKeyID;
+
     // The player's script
     PlayerController playerController;
 
     // Check to determine if this key was already given
     int keyGiven = 0;
+
+    // Check to determine globally if key was already given
+    int keyGiven2 = 0;
 
     // The ID of the room the container is located in
     int roomID;
@@ -36,9 +43,17 @@ public class KeyCards : MonoBehaviour
 
         // Find out if this key has already been obtained in this playthrough or use default (0)
         keyGiven = PlayerPrefs.GetInt("Key" + roomID + "_" + keyIDInRoom, 0);
+        keyGiven2 = PlayerPrefs.GetInt("GlobalKey_" + globalKeyID, 0);
 
         // If it has been obtained
         if (keyGiven == 1)
+        {
+            // Disable this key when re-entering the room
+            gameObject.SetActive(false);
+        }
+
+        // If it has been obtained
+        if (keyGiven2 == 1)
         {
             // Disable this key when re-entering the room
             gameObject.SetActive(false);
@@ -63,7 +78,7 @@ public class KeyCards : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // If it is the player
-        if (collision.gameObject.tag == "Player" && keyGiven == 0)
+        if (collision.gameObject.tag == "Player" && keyGiven == 0 && keyGiven2 == 0)
         {
             // Give the player a key of this object's type and destroy this object
             playerController.AddKey(GetKeyType());
@@ -75,8 +90,12 @@ public class KeyCards : MonoBehaviour
             // Make the game remember that this key by ID, in this room by ID, has been obtained
             PlayerPrefs.SetInt("Key" + roomID + "_" + keyIDInRoom, 1);
 
+            // Make the game remember that this global key ID has been used to obtain a key
+            PlayerPrefs.SetInt("GlobalKey_" + globalKeyID, 1);
+
             // Assign the check so keys can't be obtained multiple times in the few frames before disappearing
             keyGiven = PlayerPrefs.GetInt("Key" + roomID + "_" + keyIDInRoom, 0);
+            keyGiven2 = PlayerPrefs.GetInt("GlobalKey_" + globalKeyID, 0);
 
             Destroy(gameObject);
         }

@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     // Player statistics which are only needed in this script
     float playerSpeed = 10f;
     float playerMaxSpeed = 8f;
-    float groundedCheckRayLength = 0.01f;
+    float groundedCheckRayLength = 0.05f;
     float nextMeleeTimer;
     float nextShurikenTimer;
     float nextBombTimer;
@@ -101,6 +101,8 @@ public class PlayerController : MonoBehaviour
     bool shurikenIntervalPassed = true;
     bool bombIntervalPassed = true;
     bool dashIntervalPassed = true;
+    bool isNotGroundedCheckChecker = false;
+    bool isNotGrounded = false;
     bool hasNotJumped = true;
     bool dashUsed;
 
@@ -629,6 +631,19 @@ public class PlayerController : MonoBehaviour
         {
             currentHealthPotions = maxHealthPotions;
         }
+
+        if (IsGrounded() == false && isNotGroundedCheckChecker == false)
+        {
+            isNotGrounded = true;
+            isNotGroundedCheckChecker = true;
+            hasNotJumped = false;
+        }
+        
+        if (isNotGrounded)
+        {
+            playerJumpCounter += 1;
+            isNotGrounded = false;
+        }
     }
 
     // Fixed update occurs at the same time regardless of framerate
@@ -641,8 +656,13 @@ public class PlayerController : MonoBehaviour
         {
             playerCurrentJumpHeight = playerBaseJumpHeight;
             playerJumpCounter = 0;
-            hasNotJumped = true;
             rigidBody.gravityScale = playerGravity;
+            isNotGroundedCheckChecker = false;
+        }
+
+        if (IsGrounded())
+        {
+            hasNotJumped = true;
         }
 
         // Call movement
@@ -664,7 +684,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // If the player has not jumped but their vertical velocity is lower than the bump velocity limit
-        if (hasNotJumped && rigidBody.velocity.y < -1.01f)
+        if (hasNotJumped && rigidBody.velocity.y < 0f)
         {
             // Count it as a fall and increase jump counter
             playerJumpCounter += 1;
@@ -690,7 +710,7 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded() 
     {
         // Cast the box to check for ground
-        RaycastHit2D rayCastHit = Physics2D.BoxCast(edgeCollider.bounds.center, new Vector3(edgeCollider.bounds.size.x, edgeCollider.bounds.size.y + 0.1f, edgeCollider.bounds.size.z), 0f, Vector2.down, groundedCheckRayLength, terrainLayerMask);
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(edgeCollider.bounds.center, new Vector2(edgeCollider.bounds.size.x, edgeCollider.bounds.size.y), 0f, Vector2.down, groundedCheckRayLength, terrainLayerMask);
 
         // Return the value so script knows whether the player's jump counter is reset or not
         return rayCastHit.collider;
@@ -863,6 +883,7 @@ public class PlayerController : MonoBehaviour
     // Jump function
     private void Jump() 
     {
+        playerJumpCounter += 1;
         // Set gravity and drag to normal, add an upwards force to the player and increase jump counter
         rigidBody.gravityScale = playerGravity;
         rigidBody.drag = 0f;
@@ -871,7 +892,6 @@ public class PlayerController : MonoBehaviour
         // Play jump sound
         gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().playerJumping;
         gameAudioManager.Play();
-        playerJumpCounter += 1;
     }
 
 
