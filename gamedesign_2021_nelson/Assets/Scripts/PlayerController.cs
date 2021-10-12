@@ -590,6 +590,59 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        //Switch active consumable with mouse wheel
+        if (Input.GetAxis("Scroll") > 0f ) // scrolling up
+        {
+            //set next consumable for each active item
+            switch(consumableSelection){
+                case 0:
+                consumableSelection = 1;
+                consumableSelectionOne.SetActive(false);
+                consumableSelectionTwo.SetActive(true);
+                consumableSelectionThree.SetActive(false);
+                break;
+
+                case 1:
+                consumableSelection = 2;
+                consumableSelectionOne.SetActive(false);
+                consumableSelectionTwo.SetActive(false);
+                consumableSelectionThree.SetActive(true);
+                break;
+
+                case 2:
+                consumableSelection = 0;
+                consumableSelectionOne.SetActive(true);
+                consumableSelectionTwo.SetActive(false);
+                consumableSelectionThree.SetActive(false);
+                break;
+            }
+        }
+        else if (Input.GetAxis("Scroll") < 0f ) // scrolling down
+        {
+            switch(consumableSelection){
+                case 0:
+                consumableSelection = 2;
+                consumableSelectionOne.SetActive(false);
+                consumableSelectionTwo.SetActive(false);
+                consumableSelectionThree.SetActive(true);
+                break;
+
+                case 1:
+                consumableSelection = 0;
+                consumableSelectionOne.SetActive(true);
+                consumableSelectionTwo.SetActive(false);
+                consumableSelectionThree.SetActive(false);
+                break;
+
+                case 2:
+                consumableSelection = 1;
+                consumableSelectionOne.SetActive(false);
+                consumableSelectionTwo.SetActive(true);
+                consumableSelectionThree.SetActive(false);
+                break;
+            }
+        }
+
         // Switch between consumable slots and selection icons
         if (Input.GetButtonDown("SelectConsumable1"))
         {
