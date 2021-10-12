@@ -1831,7 +1831,7 @@ GameObject:
   - component: {fileID: 210007236}
   - component: {fileID: 210007238}
   - component: {fileID: 210007237}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4218,14 +4218,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393556713}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 43.35, y: -5.73, z: 0}
-  m_LocalScale: {x: 0.6, y: 2.75, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 38.186306, y: -11.818556, z: 0}
+  m_LocalScale: {x: 0.6, y: 2.7499998, z: 1}
   m_Children:
   - {fileID: 531482480}
   - {fileID: 1310709530}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 1207605582}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &419941025
 GameObject:
@@ -4997,7 +4997,7 @@ GameObject:
   - component: {fileID: 487230412}
   - component: {fileID: 487230414}
   - component: {fileID: 487230413}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5106,7 +5106,7 @@ GameObject:
   - component: {fileID: 487880739}
   - component: {fileID: 487880741}
   - component: {fileID: 487880740}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6696,7 +6696,7 @@ GameObject:
   - component: {fileID: 620965068}
   - component: {fileID: 620965070}
   - component: {fileID: 620965069}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7418,7 +7418,7 @@ GameObject:
   - component: {fileID: 660325363}
   - component: {fileID: 660325365}
   - component: {fileID: 660325364}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12222,7 +12222,7 @@ GameObject:
   - component: {fileID: 1198709631}
   - component: {fileID: 1198709633}
   - component: {fileID: 1198709632}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12359,6 +12359,7 @@ Transform:
   - {fileID: 768801265}
   - {fileID: 214065024}
   - {fileID: 999590278}
+  - {fileID: 393556717}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16144,7 +16145,7 @@ GameObject:
   - component: {fileID: 1445570178}
   - component: {fileID: 1445570180}
   - component: {fileID: 1445570179}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16615,7 +16616,7 @@ GameObject:
   - component: {fileID: 1512682224}
   - component: {fileID: 1512682226}
   - component: {fileID: 1512682225}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17136,7 +17137,7 @@ GameObject:
   - component: {fileID: 1544114855}
   - component: {fileID: 1544114857}
   - component: {fileID: 1544114856}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19734,7 +19735,7 @@ GameObject:
   - component: {fileID: 1841045927}
   - component: {fileID: 1841045929}
   - component: {fileID: 1841045928}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24506,19 +24507,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2096342881812137458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5028182624545536332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88087ac4efc11b947a1c07c5cbf18e32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextRoomId: 13
 --- !u!114 &2111947728814673952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24807,7 +24795,7 @@ MonoBehaviour:
   enemyAttackInterval: 7.5
   enemyDamage: 0
   canEnemyDetectPlayer: 1
-  playerDetectionRange: 100
+  playerDetectionRange: 25
   isSelfdestructing: 0
   healthBarLength: 1.5
   enemyTriggerMode: 1
@@ -25463,8 +25451,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 1471942247
-  m_SortingOrder: 1
+  m_SortingLayerID: -1722639607
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &4918288720940484551
 RectTransform:
@@ -25677,7 +25665,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.017744064, y: -0.03234124}
@@ -25702,9 +25690,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5028182624545536321}
-  - component: {fileID: 2096342881812137458}
+  - component: {fileID: 5028182624545536334}
   - component: {fileID: 5028182624545536322}
-  - component: {fileID: 5028182624545536335}
   - component: {fileID: 5028182624545536333}
   m_Layer: 0
   m_Name: RoomWarpVictory
@@ -25764,35 +25751,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &5028182624545536335
-PolygonCollider2D:
+--- !u!114 &5028182624545536334
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5028182624545536332}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 2, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 2, y: 2}
-      - {x: 2, y: -2}
-      - {x: -2, y: -2}
-      - {x: -2, y: 2}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5bcd1f67fb0ae4593e6d3d633d2f00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextRoomId: 13
 --- !u!1 &5034104548295734232
 GameObject:
   m_ObjectHideFlags: 0
@@ -26611,7 +26582,7 @@ MonoBehaviour:
   playerConsumableSlotThree: {fileID: 928391778872182823, guid: 795d3f41d83780a418bd5fbce727e8e1, type: 3}
   playerMaxJumpCounter: 1
   playerJumpCounter: 0
-  playerBaseJumpHeight: 12
+  playerBaseJumpHeight: 14
   playerCurrentJumpHeight: 0
   playerGravity: 3
   fallingGravityMultiplier: 2
@@ -27346,9 +27317,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1722639607
-  m_SortingLayer: 3
-  m_SortingOrder: -2
+  m_SortingLayerID: -2049003397
+  m_SortingLayer: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3d085bafc89344522a478bae55809424, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

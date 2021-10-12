@@ -1559,7 +1559,7 @@ GameObject:
   - component: {fileID: 576378694}
   - component: {fileID: 576378693}
   - component: {fileID: 576378692}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2431,7 +2431,7 @@ GameObject:
   - component: {fileID: 797425760}
   - component: {fileID: 797425759}
   - component: {fileID: 797425758}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4859,7 +4859,7 @@ GameObject:
   - component: {fileID: 1946514569}
   - component: {fileID: 1946514568}
   - component: {fileID: 1946514567}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12440,7 +12440,7 @@ MonoBehaviour:
   playerConsumableSlotThree: {fileID: 928391778872182823, guid: 795d3f41d83780a418bd5fbce727e8e1, type: 3}
   playerMaxJumpCounter: 1
   playerJumpCounter: 0
-  playerBaseJumpHeight: 12
+  playerBaseJumpHeight: 14
   playerCurrentJumpHeight: 0
   playerGravity: 3
   fallingGravityMultiplier: 2

@@ -591,7 +591,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Switch active consumable with mouse wheel
-        if (Input.GetAxis("Scroll") > 0f ) // scrolling up
+        if (Input.GetAxis("Scroll") < 0f) // scrolling up
         {
             //set next consumable for each active item
             switch(consumableSelection){
@@ -617,7 +617,7 @@ public class PlayerController : MonoBehaviour
                 break;
             }
         }
-        else if (Input.GetAxis("Scroll") < 0f ) // scrolling down
+        else if (Input.GetAxis("Scroll") > 0f) // scrolling down
         {
             switch(consumableSelection){
                 case 0:

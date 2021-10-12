@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -38,7 +39,10 @@ public class GameManagerScript : MonoBehaviour
     {
         audio = GetComponent<AudioSource>();
         audio.loop = true;
-        audio.Play();
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            audio.Play();
+        }
 
         if (PlayerPrefs.GetInt("EnemiesCanSpawn") == 1)
         {

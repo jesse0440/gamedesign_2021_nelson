@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 22764224}
   - component: {fileID: 22764226}
   - component: {fileID: 22764225}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3671,7 +3671,7 @@ GameObject:
   - component: {fileID: 420718873}
   - component: {fileID: 420718875}
   - component: {fileID: 420718874}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7394,7 +7394,7 @@ GameObject:
   - component: {fileID: 833027768}
   - component: {fileID: 833027770}
   - component: {fileID: 833027769}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10242,7 +10242,7 @@ GameObject:
   - component: {fileID: 1254946306}
   - component: {fileID: 1254946308}
   - component: {fileID: 1254946307}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10678,7 +10678,7 @@ GameObject:
   - component: {fileID: 1279166780}
   - component: {fileID: 1279166782}
   - component: {fileID: 1279166781}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12105,7 +12105,7 @@ GameObject:
   - component: {fileID: 1404200051}
   - component: {fileID: 1404200053}
   - component: {fileID: 1404200052}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12838,7 +12838,7 @@ GameObject:
   - component: {fileID: 1503388370}
   - component: {fileID: 1503388372}
   - component: {fileID: 1503388371}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Ceiling (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12947,7 +12947,7 @@ GameObject:
   - component: {fileID: 1555520382}
   - component: {fileID: 1555520384}
   - component: {fileID: 1555520383}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14730,7 +14730,7 @@ GameObject:
   - component: {fileID: 1838031149}
   - component: {fileID: 1838031151}
   - component: {fileID: 1838031150}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15504,7 +15504,7 @@ GameObject:
   - component: {fileID: 1920182898}
   - component: {fileID: 1920182900}
   - component: {fileID: 1920182899}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16370,7 +16370,7 @@ GameObject:
   - component: {fileID: 2056935796}
   - component: {fileID: 2056935798}
   - component: {fileID: 2056935797}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16660,7 +16660,7 @@ GameObject:
   - component: {fileID: 2108199742}
   - component: {fileID: 2108199744}
   - component: {fileID: 2108199743}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17056,7 +17056,7 @@ GameObject:
   - component: {fileID: 38159060171831371}
   - component: {fileID: 38159060171831370}
   - component: {fileID: 38159060171831373}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LightSpot2On
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21149,7 +21149,7 @@ GameObject:
   - component: {fileID: 3498042216873096161}
   - component: {fileID: 3498042216873096160}
   - component: {fileID: 3493975747340612282}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Sofa2_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22353,8 +22353,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2049003397
-  m_SortingLayer: 1
+  m_SortingLayerID: -1722639607
+  m_SortingLayer: 3
   m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: 05974452a681f4d8e9b61bc9815d80b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25319,7 +25319,7 @@ MonoBehaviour:
   playerConsumableSlotThree: {fileID: 928391778872182823, guid: 795d3f41d83780a418bd5fbce727e8e1, type: 3}
   playerMaxJumpCounter: 1
   playerJumpCounter: 0
-  playerBaseJumpHeight: 12
+  playerBaseJumpHeight: 14
   playerCurrentJumpHeight: 0
   playerGravity: 3
   fallingGravityMultiplier: 2
@@ -25556,8 +25556,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1722639607
-  m_SortingLayer: 3
+  m_SortingLayerID: -2049003397
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c9d1c410f739645b1bdd336e177e27cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

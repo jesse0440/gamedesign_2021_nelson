@@ -262,7 +262,7 @@ MonoBehaviour:
   enemyAttackInterval: 7.5
   enemyDamage: 0
   canEnemyDetectPlayer: 1
-  playerDetectionRange: 100
+  playerDetectionRange: 25
   isSelfdestructing: 0
   healthBarLength: 1.5
   enemyTriggerMode: 1
@@ -348,7 +348,7 @@ MonoBehaviour:
   entityToSpawn: {fileID: 2145464484755151677, guid: e12268efae4852743be6cce3fe19ead7, type: 3}
   spawnManagerValues: {fileID: 11400000, guid: 174a0d47ceb07e2428ec3550ec0161aa, type: 2}
   canEnemyDetectPlayer: 1
-  playerDetectionRange: 100
+  playerDetectionRange: 25
   entitySpawnTickerMax: 250
 --- !u!61 &580929982259293442
 BoxCollider2D:

@@ -8177,8 +8177,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: To switch between consumable items you collect press the number keys 1
-    to 3
+  m_text: To switch between consumable items press the keys 1 to 3 or use the Mouse
+    Scroll Wheel.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16885,7 +16885,7 @@ MonoBehaviour:
   playerConsumableSlotThree: {fileID: 928391778872182823, guid: 795d3f41d83780a418bd5fbce727e8e1, type: 3}
   playerMaxJumpCounter: 1
   playerJumpCounter: 0
-  playerBaseJumpHeight: 12
+  playerBaseJumpHeight: 14
   playerCurrentJumpHeight: 0
   playerGravity: 3
   fallingGravityMultiplier: 2

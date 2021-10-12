@@ -11,7 +11,6 @@ public class RoomWarp : MonoBehaviour
     // In short: always position the PolygonCollider2D before the BoxCollider2D
 
     // The ID of the next room
-    // Needs to be entered manually in the editor!
     [SerializeField]
     int nextRoomId;
 
