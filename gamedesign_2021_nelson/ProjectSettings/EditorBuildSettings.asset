@@ -45,6 +45,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SpaceShip/Ship Room2.0.unity
     guid: 87170e23b4539714b8e2465c48639973
   - enabled: 1
+    path: Assets/Scenes/SpaceShip/Ship Room2.1.unity
+    guid: 9bd21ad3b6d984c4f883203e7e1252d7
+  - enabled: 1
     path: Assets/Scenes/SpaceShip/Victory.unity
     guid: 56b55615027f6d743ae5414081d4ef8a
   m_configObjects: {}
