@@ -81,11 +81,8 @@ public class PlayerController : MonoBehaviour
     public float dashIntervalTimer;
     [HideInInspector]
     public float teleportIntervalTimer;
-    [HideInInspector]
     public int yellowCount = 0;
-    [HideInInspector]
     public int blueCount = 0;
-    [HideInInspector]
     public int redCount = 0;
     
     // Player statistics which are only needed in this script
@@ -388,6 +385,7 @@ public class PlayerController : MonoBehaviour
             gameAudioManager.Play();
             // Respawn the player
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            PlayerPrefs.SetFloat("PlayerHealth", 100f);
         }
 
         // If an health container would overheal the player or the player's health bugs out to over max

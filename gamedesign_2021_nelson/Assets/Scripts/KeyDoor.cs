@@ -73,6 +73,11 @@ public class KeyDoor : MonoBehaviour
                 keyUsed = PlayerPrefs.GetInt("Door" + roomID + "_" + doorIDInRoom, 0);
 
                 OpenDoor();
+
+                PlayerController playerScript = playerController.GetComponent<PlayerController>();
+                PlayerPrefs.SetInt("YellowKeyCount", playerScript.yellowCount);
+                PlayerPrefs.SetInt("BlueKeyCount", playerScript.blueCount);
+                PlayerPrefs.SetInt("RedKeyCount", playerScript.redCount);
             }
         }
     }
