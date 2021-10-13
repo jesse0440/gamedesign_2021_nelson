@@ -96,6 +96,9 @@ public class PlayerBomb : MonoBehaviour
     {
         // Change to explosion sprite
         spriteRenderer.sprite = explosionSprite;
+        /*Light explosionLight = gameObject.AddComponent<Light>();
+        explosionLight.color = Color.white;
+        explosionLight.intensity = Mathf.PingPong(Time.time, 8);*/
 
         // Resize sprite
         spriteRenderer.drawMode = SpriteDrawMode.Tiled;  

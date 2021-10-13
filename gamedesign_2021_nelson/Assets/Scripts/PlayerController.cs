@@ -402,6 +402,8 @@ public class PlayerController : MonoBehaviour
         {
             hasNotJumped = false;
             Jump();
+            playerAnimator.SetBool("HasJumped", true);
+            playerAnimator.SetTrigger("UseJump");
         }
 
         // Jumping up with Spacebar if your jump counter is not maxed
@@ -409,6 +411,8 @@ public class PlayerController : MonoBehaviour
         {
             hasNotJumped = false;
             Jump();
+            playerAnimator.SetBool("HasJumped", true);
+            playerAnimator.SetTrigger("UseJump");
         }
 
         // Check if enough time has passed since last melee attack
@@ -716,7 +720,11 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded())
         {
             hasNotJumped = true;
+            playerAnimator.SetBool("IsGrounded", true);
+            playerAnimator.SetBool("HasJumped", false);
+            
         }
+        else playerAnimator.SetBool("IsGrounded", false);
 
         // Call movement
         PlayerMovement(playerDirection.x);
