@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnableEnemies:
-  - {fileID: 2075546035540566319, guid: c6830d09ad58c7242bb7a67a57451839, type: 3}
-  - {fileID: 2075546035540566319, guid: c6830d09ad58c7242bb7a67a57451839, type: 3}
+  - {fileID: 8824998732640083703, guid: 54f75a5d22daa1840bca81a78209d22f, type: 3}
+  - {fileID: 8824998732640083703, guid: 54f75a5d22daa1840bca81a78209d22f, type: 3}
   spawnDelay: 3
 --- !u!58 &2145464484755151676
 CircleCollider2D:

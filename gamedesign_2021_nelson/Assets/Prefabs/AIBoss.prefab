@@ -268,7 +268,7 @@ MonoBehaviour:
   enemyTriggerMode: 1
   isEnemyABoss: 1
   bossID: 0
-  gameMusic: {fileID: 8300000, guid: b7ebad17cf9f0614ea6b3dacf777545e, type: 3}
+  gameMusic: {fileID: 8300000, guid: 6059ca3c3968392459318574d53fd8d0, type: 3}
   victoryWarp: {fileID: 0}
   canMove: 0
   enemyMoveSpeed: 0

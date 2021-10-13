@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnableEnemies:
-  - {fileID: 4576656724029759753, guid: 7acad2dcde9b1684389e93acd05ef74e, type: 3}
-  - {fileID: 1743689238912321010, guid: a16abdd5b85514d4797702efa6c17be6, type: 3}
-  - {fileID: 3974522232527720153, guid: f87890fc65f40334796b2628507d5acc, type: 3}
+  - {fileID: 2905657994248872482, guid: 993ee8343ba5f8647aa068325b915322, type: 3}
+  - {fileID: 7042965300579463769, guid: 1129af6abdf093f4da9a22b884d9e80d, type: 3}
+  - {fileID: 1289486025408775941, guid: 006d5b9e71f3a5548b777f7c280ec57e, type: 3}
   spawnDelay: 2
 --- !u!58 &6124055045660875229
 CircleCollider2D:

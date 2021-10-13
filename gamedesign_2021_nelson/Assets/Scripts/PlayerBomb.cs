@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBomb : MonoBehaviour
 {
@@ -141,6 +142,11 @@ public class PlayerBomb : MonoBehaviour
             // Destroy Secret Tile if it is in the explosion range
             if (collision.tag == "SecretTile")
             {
+                int tempID = collision.GetComponent<DestructibleMaterial>().destructibleIDInRoom;
+                int roomID = SceneManager.GetActiveScene().buildIndex;
+
+                PlayerPrefs.SetInt("Destroyed_" + roomID + "_" + tempID, 1);
+
                 Destroy(collision.gameObject);
             }
         }
