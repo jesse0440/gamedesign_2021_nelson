@@ -12995,7 +12995,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5342757023321986768}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.713692, y: -16.208555, z: 0}
+  m_LocalPosition: {x: -22.01, y: -15.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5342757023761916030}
@@ -13170,7 +13170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6218375286455570988}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.507776, y: -15.972155, z: -1309.8501}
+  m_LocalPosition: {x: -24.3, y: -15.61, z: -1309.8501}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2810869090591158410}
@@ -13219,7 +13219,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6542499884378934799}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.953693, y: -14.798555, z: -1003.47406}
+  m_LocalPosition: {x: -20.43, y: -14.54, z: -1003.47406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6542499885163009065}
@@ -13443,6 +13443,7 @@ MonoBehaviour:
   playerDetectionRange: 10
   isSelfdestructing: 0
   healthBarLength: 1.5
+  healthBarHeight: 0.25
   enemyTriggerMode: 1
   isEnemyABoss: 0
   bossID: 0
@@ -13474,6 +13475,7 @@ MonoBehaviour:
   projectileSpeed: 0
   projectile: {fileID: 0}
   projectileOutPoint: {fileID: 0}
+  isDying: 0
 --- !u!1 &6613551235396709270
 GameObject:
   m_ObjectHideFlags: 0
