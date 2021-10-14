@@ -11,18 +11,22 @@ public class UI_KeyHolder : MonoBehaviour
     Transform container;
     Transform keyTemplate;
 
+    void Awake()
+    {
+        container = transform.Find("container");
+        keyTemplate = container.Find("keyTemplate");
+    }
+
     void Start()
     {
         // Assign the player's script
         keyHolder = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         
-        // Hide the UI container for keys in Awake
-        container = transform.Find("container");
-        keyTemplate = container.Find("keyTemplate");
-        keyTemplate.gameObject.SetActive(false);
-
         // Add a function to this function
         keyHolder.OnKeysChanged += KeyHolder_OnKeysChanged;
+
+        // Hide the UI container for keys in Start
+        keyTemplate.gameObject.SetActive(false);
     }
 
     // Updates on keysChanged activated

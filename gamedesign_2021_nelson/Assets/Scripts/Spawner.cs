@@ -39,6 +39,8 @@ public class Spawner : MonoBehaviour
     // The distance between the spawner and the player
     float distanceToPlayer;
 
+    bool isDying = false;
+
 
     AudioSource gameAudioManager;
     Animator enemyAnimator;
@@ -54,12 +56,23 @@ public class Spawner : MonoBehaviour
     // Fixed update is called at the same frame regardless of framerate
     void FixedUpdate()
     {
+        isDying = gameObject.GetComponent<EnemyScript>().isDying;
+        
         // If the spawner has the ability to detect a player
         if (canEnemyDetectPlayer)
         {
             // Find the player's transform and the distance between the enemy and the player
             playerTransform = GameObject.FindWithTag("Player").transform;
-            distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+
+            if (isEnemyABoss)
+            {
+                distanceToPlayer = Vector2.Distance(transform.position - new Vector3(0, 8f, 0), playerTransform.position);
+            }
+
+            else
+            {
+                distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+            }
 
             // If the player is closer than the spawner's range
             if (distanceToPlayer <= playerDetectionRange)
@@ -76,7 +89,7 @@ public class Spawner : MonoBehaviour
             }
 
             // If the ticker reaches or surpasses the tipping point
-            if (entitySpawnTicker >= entitySpawnTickerMax)
+            if (entitySpawnTicker >= entitySpawnTickerMax && !isDying)
             {
                 // Spawn an entity and reset the ticker
                 SpawnEntities();
@@ -101,8 +114,8 @@ public class Spawner : MonoBehaviour
             gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemySpawning;
             gameAudioManager.Play();
 
-            //play spawn animation
-            if(isEnemyABoss)
+            // Play spawn animation
+            if (isEnemyABoss)
             {
                 enemyAnimator.SetTrigger("Spawn");
             }
@@ -115,6 +128,15 @@ public class Spawner : MonoBehaviour
 
             // The spawnable entity instance number goes up by one
             instanceNumber++;
+        }
+    }
+
+    private void OnDrawGizmosSelected() 
+    {
+        if (canEnemyDetectPlayer)
+        {
+            Gizmos.DrawWireSphere(gameObject.transform.position, playerDetectionRange);
+            Gizmos.DrawWireSphere(gameObject.transform.position - new Vector3(0, 8f, 0), playerDetectionRange);
         }
     }
 }

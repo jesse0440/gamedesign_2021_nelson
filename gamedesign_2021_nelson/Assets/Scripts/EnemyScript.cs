@@ -34,6 +34,10 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     float healthBarLength = 1.5f;
 
+    //
+    [SerializeField]
+    float healthBarHeight = 0.25f;
+
     // Bool to determine if this enemy has enemy trigger spawning turned on
     [SerializeField]
     bool enemyTriggerMode = false;
@@ -178,6 +182,8 @@ public class EnemyScript : MonoBehaviour
     bool wallPatrolCheck = false;
     bool edgePatrolCheck = false;
     bool bossAlreadyDead = false;
+    [HideInInspector]
+    public bool isDying = false;
 
 
 
@@ -418,7 +424,7 @@ public class EnemyScript : MonoBehaviour
         // If active change the healthbar size to match the health percentage
         if (enemyHealthBarCanvas.activeInHierarchy)
         {
-            enemyHealthBar.GetComponent<RectTransform>().sizeDelta = new Vector2((enemyHealth / enemyMaxHealth) * healthBarLength, 0.25f);
+            enemyHealthBar.GetComponent<RectTransform>().sizeDelta = new Vector2((enemyHealth / enemyMaxHealth) * healthBarLength, healthBarHeight);
         }
 
         // If the health bugs out over max health or is reduced to 0 or lower
@@ -435,7 +441,6 @@ public class EnemyScript : MonoBehaviour
                 bossAlreadyDead = true;
 
                 StartCoroutine(WaitAndDie());
-                
             }
 
             else if (isEnemyABoss == false)
@@ -510,9 +515,13 @@ public class EnemyScript : MonoBehaviour
     //Waiting coroutine for boss death
     IEnumerator WaitAndDie()
     {
+        isDying = true;
         enemyAnimator.SetTrigger("Death");
 
-        yield return new WaitForSecondsRealtime(3.5f);
+        if (bossID != 1)
+        {
+            yield return new WaitForSecondsRealtime(3.5f);
+        }
                 
         // If the enemy was a boss pass the ID so it won't respawn
         PlayerPrefs.SetInt("BossFought_" + bossID, 1);
@@ -630,9 +639,18 @@ public class EnemyScript : MonoBehaviour
             // If going left before hitting a wall/nearing an edge
             if (enemyFacingDirection == LEFT)
             {
-                // Change direction to right and flip health bar
+                // Change direction to right if not secret boss and flip health bar
                 ChangeFacingDirection(RIGHT);
-                gameObject.transform.Find("EnemyCanvas").localScale = new Vector2(-gameObject.transform.Find("EnemyCanvas").localScale.x, gameObject.transform.Find("EnemyCanvas").localScale.y);
+
+                if (!isEnemyABoss)
+                {
+                    gameObject.transform.Find("EnemyCanvas").localScale = new Vector2(-gameObject.transform.Find("EnemyCanvas").localScale.x, gameObject.transform.Find("EnemyCanvas").localScale.y);
+                }
+
+                else if (isEnemyABoss && bossID != 1)
+                {
+                    gameObject.transform.Find("EnemyCanvas").localScale = new Vector2(-gameObject.transform.Find("EnemyCanvas").localScale.x, gameObject.transform.Find("EnemyCanvas").localScale.y);
+                }
             }
 
             // If going right before hitting a wall/nearing an edge
@@ -640,8 +658,18 @@ public class EnemyScript : MonoBehaviour
             {
                 // Change direction to left and flip health bar
                 ChangeFacingDirection(LEFT);
-                gameObject.transform.Find("EnemyCanvas").localScale = new Vector2(-gameObject.transform.Find("EnemyCanvas").localScale.x, gameObject.transform.Find("EnemyCanvas").localScale.y);
+
+                if (!isEnemyABoss)
+                {
+                    gameObject.transform.Find("EnemyCanvas").localScale = new Vector2(-gameObject.transform.Find("EnemyCanvas").localScale.x, gameObject.transform.Find("EnemyCanvas").localScale.y);
+                }
+
+                else if (isEnemyABoss && bossID != 1)
+                {
+                    gameObject.transform.Find("EnemyCanvas").localScale = new Vector2(-gameObject.transform.Find("EnemyCanvas").localScale.x, gameObject.transform.Find("EnemyCanvas").localScale.y);
+                }
             }
+
         }
 
         // If jumping is allowed and enemy has not jumped in an interval
@@ -699,7 +727,7 @@ public class EnemyScript : MonoBehaviour
                 if (distanceToPlayer <= playerDetectionRange)
                 {
                     // If the enemy has not attacked in the attack interval
-                    if (!alreadyAttacked)
+                    if (!alreadyAttacked && !isDying)
                     {
                         // Shoot at the player
                         ShootAtPlayer();
@@ -716,11 +744,26 @@ public class EnemyScript : MonoBehaviour
         Vector3 newScale = baseScale;
 
         // If the enemy is moving left
-        //Flip enemy if it's not the secret boss
+        // Flip enemy if it's not the secret boss
         if (newDirection == LEFT)
         {
             // Change the scale from 1 to -1 (Flips the sprite)
-            newScale.x = -baseScale.x;
+            if (!isEnemyABoss)
+            {
+                newScale.x = -baseScale.x;
+            }
+
+            else if (isEnemyABoss && bossID != 1)
+            {
+                newScale.x = -baseScale.x;
+            }
+
+            else if (isEnemyABoss && bossID == 1)
+            {
+                newScale.x = baseScale.x;
+                castingPosition = gameObject.transform.Find("CastPosition");
+                castingPosition.position = new Vector3(gameObject.transform.position.x - 4.5f, castingPosition.position.y, castingPosition.position.z);
+            }
         }
 
         // If the enemy is moving right
@@ -728,6 +771,12 @@ public class EnemyScript : MonoBehaviour
         {
             // Change the scale from -1 to 1 (Flips the sprite)
             newScale.x = baseScale.x;
+
+            if (isEnemyABoss && bossID == 1)
+            {
+                castingPosition = gameObject.transform.Find("CastPosition");
+                castingPosition.position = new Vector3(gameObject.transform.position.x + 4.25f, castingPosition.position.y, castingPosition.position.z);
+            }
         }
 
         //if (isEnemyABoss == false){
@@ -932,8 +981,8 @@ public class EnemyScript : MonoBehaviour
     }
 
     //
-    private void OnDrawGizmosSelected() {
-
+    private void OnDrawGizmosSelected() 
+    {
         if (canEnemyDetectPlayer)
         {
             Gizmos.DrawWireSphere(gameObject.transform.position, playerDetectionRange);

@@ -17,6 +17,10 @@ public class BossTriggerObject : MonoBehaviour
     [SerializeField]
     int bossID;
 
+    //
+    [SerializeField]
+    bool spawnCheck = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,9 +52,13 @@ public class BossTriggerObject : MonoBehaviour
         // If it is the player
         if (collision.gameObject.tag == "Player")
         {
+            spawnCheck = gameManager.GetComponent<GameManagerScript>().canEnemiesSpawn;
+
             // If enemies can spawn
-            if (gameManager.GetComponent<GameManagerScript>().canEnemiesSpawn == true)
+            if (spawnCheck == true)
             {
+                victoryWarp.SetActive(false);
+
                 // Find the walls and enable them
                 foreach (GameObject wall in bossWalls)
                 {

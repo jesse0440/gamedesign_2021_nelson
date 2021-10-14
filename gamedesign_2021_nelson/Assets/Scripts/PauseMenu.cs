@@ -10,9 +10,12 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     GameObject player;
 
+    GameObject gameManager;
+
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        gameManager = GameObject.FindWithTag("GameManager");
     }
 
 
@@ -57,6 +60,8 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetInt("YellowKeyCount", playerScript.yellowCount);
         PlayerPrefs.SetInt("BlueKeyCount", playerScript.blueCount);
         PlayerPrefs.SetInt("RedKeyCount", playerScript.redCount);
+
+        gameManager.GetComponent<AudioSource>().Stop();
 
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
