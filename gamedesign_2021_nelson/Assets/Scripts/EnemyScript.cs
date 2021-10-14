@@ -177,6 +177,7 @@ public class EnemyScript : MonoBehaviour
     bool chargeInstanceCheck = false;
     bool wallPatrolCheck = false;
     bool edgePatrolCheck = false;
+    bool bossAlreadyDead = false;
 
 
 
@@ -188,6 +189,7 @@ public class EnemyScript : MonoBehaviour
     Rigidbody2D rigidBody;
     Transform castingPosition;
     Vector3 baseScale;
+    Animator enemyAnimator;
 
     // Transform of the player
     Transform playerTransform;
@@ -260,6 +262,9 @@ public class EnemyScript : MonoBehaviour
         // Assign the health bar components
         enemyHealthBar = gameObject.transform.Find("EnemyCanvas").Find("HealthBarFull").gameObject;
         enemyHealthBarCanvas = gameObject.transform.Find("EnemyCanvas").gameObject;
+
+        //assign animator
+        enemyAnimator = GetComponent<Animator>();
 
         // If jumping is allowed and RNG is turned on for jump intervals
         if (enemyJumpingAllowed && randomJumpIntervalExtender)
@@ -420,68 +425,17 @@ public class EnemyScript : MonoBehaviour
         // Try to spawn an item and destroy this enemy object
         if (enemyHealth <= 0 || enemyHealth > enemyMaxHealth)
         {
-            if (canEnemyDropItems)
+            if (canEnemyDropItems && isEnemyABoss == false)
             {
-                int randomItem = Random.Range(0, itemDrop.Length);
-                float dropRandomValue = Random.Range(1f, 101f);
-
-                if (dropRandomValue <= enemyDropChance)
-                {
-                    GameObject temporaryObject = Instantiate(itemDrop[randomItem], transform.position, transform.rotation);
-                    GameObject childObject = temporaryObject.transform.GetChild(0).gameObject;
-                    
-                    if (childObject.name == "HealthContainer")
-                    {
-                        childObject.GetComponent<HealthContainer>().containerIDInRoom = roomDropCounter;
-                    }
-
-                    else if (childObject.name == "ShurikenContainer")
-                    {
-                        childObject.GetComponent<ShurikenContainer>().containerIDInRoom = roomDropCounter;
-                    }
-
-                    else if (childObject.name == "BombContainer")
-                    {
-                        childObject.GetComponent<BombContainer>().containerIDInRoom = roomDropCounter;
-                    }
-
-                    else if (childObject.name == "HealthPotionContainer")
-                    {
-                        childObject.GetComponent<HealthPotionContainer>().containerIDInRoom = roomDropCounter;
-                    }
-
-                    else
-                    {
-                        return;
-                    }
-                }            
+                DropItems();
             }
-
-            // Rise the drop counter
-            roomDropCounter++;
-            PlayerPrefs.SetInt("DropCounter_" + "Room_" + roomID, roomDropCounter);
-
-            // If the enemy was a boss pass the ID so it won't respawn
-            if (isEnemyABoss == true)
+            
+            if (isEnemyABoss == true && bossAlreadyDead == false)
             {
-                PlayerPrefs.SetInt("BossFought_" + bossID, 1);
-                GameObject[] bossWalls = GameObject.FindGameObjectsWithTag("BossWall");
+                bossAlreadyDead = true;
 
-                // Disable walls and trigger
-                foreach (GameObject wall in bossWalls)
-                {
-                    wall.SetActive(false);
-                }
-
-                // Enable victory warp
-                victoryWarp.SetActive(true);
-
-                // Play victory sound
-                gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().victory;
-                gameAudioManager.Play();
-
-                GameObject.FindWithTag("GameManager").GetComponent<AudioSource>().clip = gameManager.GetComponent<GameManagerScript>().gameMusic;
-                GameObject.FindWithTag("GameManager").GetComponent<AudioSource>().Play();
+                StartCoroutine(WaitAndDie());
+                
             }
 
             else if (isEnemyABoss == false)
@@ -489,9 +443,10 @@ public class EnemyScript : MonoBehaviour
                 // Play enemy death sound
                 gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyDeath;
                 gameAudioManager.Play();
+                Destroy(gameObject);
             }
 
-            Destroy(gameObject);
+            
         }
 
         // Check if an interval has passed since this enemy last caused damage
@@ -508,6 +463,85 @@ public class EnemyScript : MonoBehaviour
             randomJumpIntervalExtenderValue = Random.value;
             alreadyJumped = false;
         }
+    }
+
+    void DropItems(){
+        int randomItem = Random.Range(0, itemDrop.Length);
+        float dropRandomValue = Random.Range(1f, 101f);
+
+        if (dropRandomValue <= enemyDropChance)
+        {
+            GameObject temporaryObject = Instantiate(itemDrop[randomItem], transform.position, transform.rotation);
+            GameObject childObject = temporaryObject.transform.GetChild(0).gameObject;
+        
+            if (childObject.name == "HealthContainer")
+            {
+                childObject.GetComponent<HealthContainer>().containerIDInRoom = roomDropCounter;
+            }
+
+            else if (childObject.name == "ShurikenContainer")
+            {
+                childObject.GetComponent<ShurikenContainer>().containerIDInRoom = roomDropCounter;
+            }
+
+            else if (childObject.name == "BombContainer")
+            {
+                childObject.GetComponent<BombContainer>().containerIDInRoom = roomDropCounter;
+            }
+
+            else if (childObject.name == "HealthPotionContainer")
+            {
+                childObject.GetComponent<HealthPotionContainer>().containerIDInRoom = roomDropCounter;
+            }
+
+            else
+            {
+                return;
+            }
+        }
+    // Raise the drop counter
+    roomDropCounter++;
+    PlayerPrefs.SetInt("DropCounter_" + "Room_" + roomID, roomDropCounter);
+    }
+
+            
+    
+
+    //Waiting coroutine for boss death
+    IEnumerator WaitAndDie()
+    {
+        enemyAnimator.SetTrigger("Death");
+
+        yield return new WaitForSecondsRealtime(3.5f);
+                
+        // If the enemy was a boss pass the ID so it won't respawn
+        PlayerPrefs.SetInt("BossFought_" + bossID, 1);
+        GameObject[] bossWalls = GameObject.FindGameObjectsWithTag("BossWall");
+
+        // Disable walls and trigger
+        foreach (GameObject wall in bossWalls)
+        {
+            wall.SetActive(false);
+        }
+
+        // Enable victory warp
+        victoryWarp.SetActive(true);
+
+        // Play victory sound
+        gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().victory;
+        gameAudioManager.Play();
+
+        GameObject.FindWithTag("GameManager").GetComponent<AudioSource>().clip = gameManager.GetComponent<GameManagerScript>().gameMusic;
+        GameObject.FindWithTag("GameManager").GetComponent<AudioSource>().Play();
+
+        int randomItem = Random.Range(0, itemDrop.Length);
+        float dropRandomValue = Random.Range(1f, 101f);
+
+        //Itemdrop for Boss
+        DropItems();
+
+        //Destroy the boss
+        Destroy(gameObject);
     }
 
     // If enemy is collided with
@@ -551,8 +585,17 @@ public class EnemyScript : MonoBehaviour
     {
         //TODO: play hurt animation
         // Play enemy hurt sound
-        gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
-        gameAudioManager.Play();
+
+        if(bossAlreadyDead == false){
+            gameAudioManager.clip = gameAudioManager.gameObject.GetComponent<GameAudioManager>().enemyHit;
+            gameAudioManager.Play();
+        }
+        
+        if(isEnemyABoss && bossID == 0)
+        {
+            enemyAnimator.SetTrigger("TakeDamage");
+        }
+        
 
         enemyHealth -= damage;
     }
@@ -673,6 +716,7 @@ public class EnemyScript : MonoBehaviour
         Vector3 newScale = baseScale;
 
         // If the enemy is moving left
+        //Flip enemy if it's not the secret boss
         if (newDirection == LEFT)
         {
             // Change the scale from 1 to -1 (Flips the sprite)
@@ -686,11 +730,16 @@ public class EnemyScript : MonoBehaviour
             newScale.x = baseScale.x;
         }
 
-        // Assign the new scale as this enemy object's scale
-        transform.localScale = newScale;
+        //if (isEnemyABoss == false){
+            // Assign the new scale as this enemy object's scale
+            transform.localScale = newScale;
+        //}
+        
 
         // Assign the new direction as this enemy's facing direction
         enemyFacingDirection = newDirection;
+        
+        
     }
 
     // Determine if the enemy is hitting a wall and should change direction
