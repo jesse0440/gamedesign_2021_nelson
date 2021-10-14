@@ -498,8 +498,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 5
-  enemyAttackInterval: 0
-  enemyDamage: 4
+  enemyAttackInterval: 2
+  enemyDamage: 5
   canEnemyDetectPlayer: 1
   playerDetectionRange: 20
   isSelfdestructing: 0
@@ -536,6 +536,7 @@ MonoBehaviour:
   projectileSpeed: 0
   projectile: {fileID: 0}
   projectileOutPoint: {fileID: 0}
+  isDying: 0
 --- !u!50 &449395192480768968
 Rigidbody2D:
   serializedVersion: 4

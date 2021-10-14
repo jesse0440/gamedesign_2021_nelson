@@ -522,6 +522,12 @@ public class EnemyScript : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(3.5f);
         }
+
+        if (bossID == 1)
+        {
+            gameManager.GetComponent<GameManagerScript>().secretBossBeaten = true;
+            PlayerPrefs.SetInt("SpeedrunMode", 1);
+        }
                 
         // If the enemy was a boss pass the ID so it won't respawn
         PlayerPrefs.SetInt("BossFought_" + bossID, 1);

@@ -18,6 +18,21 @@ public class GameManagerScript : MonoBehaviour
 
     AudioSource audio;
 
+    [HideInInspector]
+    public int comicBeginning = 0;
+    [HideInInspector]
+    public int comicMiddle = 0;
+    [HideInInspector]
+    public int comicEnding = 0;
+    [HideInInspector]
+    public bool comicBCheck = false;
+    [HideInInspector]
+    public bool comicMCheck = false;
+    [HideInInspector]
+    public bool comicECheck = false;
+
+    public bool secretBossBeaten = false;
+
     // Wake up protocols
     void Awake()
     {
@@ -37,9 +52,14 @@ public class GameManagerScript : MonoBehaviour
     // Start up protocols
     void Start()
     {
+        comicBeginning = PlayerPrefs.GetInt("ComicBeginning", 0);
+        comicMiddle = PlayerPrefs.GetInt("ComicMiddle", 0);
+        comicEnding = PlayerPrefs.GetInt("ComicEnding", 0);
+
         audio = GetComponent<AudioSource>();
         audio.loop = true;
-        if (SceneManager.GetActiveScene().buildIndex != 0)
+
+        if (SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 14)
         {
             audio.Play();
         }
@@ -52,6 +72,27 @@ public class GameManagerScript : MonoBehaviour
         else
         {
             canEnemiesSpawn = false;
+        }
+    }
+
+    void Update()
+    {
+        if (comicBCheck == true)
+        {
+            comicBeginning = PlayerPrefs.GetInt("ComicBeginning", 0);
+            comicBCheck = false;
+        }
+
+        if (comicMCheck == true)
+        {
+            comicMiddle = PlayerPrefs.GetInt("ComicMiddle", 0);
+            comicMCheck = false;
+        }
+
+        if (comicECheck == true)
+        {
+            comicEnding = PlayerPrefs.GetInt("ComicEnding", 0);
+            comicECheck = false;
         }
     }
 }
