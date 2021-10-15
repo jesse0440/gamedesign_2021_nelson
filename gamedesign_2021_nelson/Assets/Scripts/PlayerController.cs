@@ -746,7 +746,7 @@ public class PlayerController : MonoBehaviour
         if (hasNotJumped && rigidBody.velocity.y < 0f)
         {
             // Count it as a fall and increase jump counter
-            playerJumpCounter += 1;
+            //playerJumpCounter += 1;
             hasNotJumped = false;
         }
     }

@@ -25,6 +25,8 @@ public class UI_KeyHolder : MonoBehaviour
         // Add a function to this function
         keyHolder.OnKeysChanged += KeyHolder_OnKeysChanged;
 
+        UpdateVisual();
+
         // Hide the UI container for keys in Start
         keyTemplate.gameObject.SetActive(false);
     }

@@ -39,6 +39,10 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         PlayerPrefs.DeleteAll();
+        gameManagerScript.canEnemiesSpawn = false;
+        gameManagerScript.comicBeginning = 0;
+        gameManagerScript.comicMiddle = 0;
+        gameManagerScript.comicEnding = 0;
         mainMenu.SetActive(false);
         comicBeginning.SetActive(true);
     }
@@ -68,8 +72,11 @@ public class MainMenu : MonoBehaviour
     public void SpeedrunMode()
     {
         PlayerPrefs.DeleteAll();
-        //
+        gameManagerScript.canEnemiesSpawn = false;
         gameManagerScript.secretBossBeaten = true;
+        gameManagerScript.comicBeginning = 0;
+        gameManagerScript.comicMiddle = 0;
+        gameManagerScript.comicEnding = 0;
         mainMenu.SetActive(false);
         comicBeginning.SetActive(true);
     }
